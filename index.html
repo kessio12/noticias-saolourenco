@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal São Lourenço Notícias | Povoado de São Lourenço • Goiana - PE</title>
+  <title>Portal São Lourenço Notícias | Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -24,6 +24,12 @@
             coral: {
               500: '#f97316',
               600: '#ea580c',
+            },
+            terra: {
+              600: '#854d0e',
+              700: '#713f12',
+              800: '#5c330c',
+              900: '#422006',
             }
           }
         }
@@ -47,7 +53,7 @@
     }
     .ticker-move {
       display: inline-block;
-      animation: ticker 32s linear infinite;
+      animation: ticker 36s linear infinite;
     }
     .ticker-move:hover {
       animation-play-state: paused;
@@ -60,14 +66,14 @@
 </head>
 <body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-sans">
 
-  <!-- BARRA DE UTILIDADE DO TOPO: LOCALIZAÇÃO EXATA -->
+  <!-- BARRA DE TOPO COM IDENTIFICAÇÃO QUILOMBOLA & REGIONAL -->
   <header class="bg-mar-800 text-slate-100 border-b border-mar-700">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-xs sm:text-sm gap-2">
       <div class="flex items-center gap-3">
         <span id="data-atual" class="font-medium"><i class="far fa-calendar-alt mr-1 text-sky-400"></i> Carregando data...</span>
         <span class="hidden sm:inline text-slate-400">|</span>
-        <span class="text-sky-300 font-semibold flex items-center gap-1.5">
-          <i class="fas fa-location-dot text-rose-400"></i> Povoado de São Lourenço • Goiana - PE (Estuário do Rio Goiana)
+        <span class="text-amber-300 font-semibold flex items-center gap-1.5">
+          <i class="fas fa-certificate text-amber-400"></i> Território da Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE
         </span>
       </div>
       <div class="flex items-center gap-3">
@@ -82,21 +88,21 @@
     </div>
   </header>
 
-  <!-- CABEÇALHO PRINCIPAL COM IDENTIDADE DE SÃO LOURENÇO - GOIANA PE -->
+  <!-- CABEÇALHO PRINCIPAL -->
   <div class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-sm sticky top-0 z-30">
     <div class="max-w-7xl mx-auto px-4 py-4">
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <a href="#" class="inline-flex items-center gap-3 group">
-            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-mar-700 to-sky-500 flex items-center justify-center text-white text-xl shadow-md group-hover:scale-105 transition">
-              <i class="fas fa-anchor"></i>
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-amber-600 to-mar-700 flex items-center justify-center text-white text-xl shadow-md group-hover:scale-105 transition">
+              <i class="fas fa-drum"></i>
             </div>
             <div>
               <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-mar-900 dark:text-white leading-none">
                 SÃO LOURENÇO <span class="text-coral-500">NOTÍCIAS</span>
               </h1>
               <p class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide uppercase mt-1">
-                A Voz, a Pesca e o Dia a Dia da Nossa Comunidade • Goiana - PE
+                Voz Quilombola, Pesca Artesanal, Tradição e Fé • Goiana - PE
               </p>
             </div>
           </a>
@@ -105,7 +111,7 @@
         <div class="flex items-center gap-2">
           <div class="relative flex-1 md:w-72">
             <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-            <input type="text" id="campo-busca" placeholder="Buscar em São Lourenço..." 
+            <input type="text" id="campo-busca" placeholder="Buscar quilombo, marisco, maré..." 
               class="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-mar-500 dark:text-white">
           </div>
           <a href="#voz-do-povo" class="bg-coral-500 hover:bg-coral-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm flex items-center gap-1.5 whitespace-nowrap">
@@ -114,41 +120,44 @@
         </div>
       </div>
 
-      <!-- CATEGORIAS -->
+      <!-- NAVEGAÇÃO DE CATEGORIAS -->
       <nav class="flex items-center gap-2 overflow-x-auto pt-3 mt-2 border-t border-slate-100 dark:border-slate-700 text-sm font-medium no-scrollbar">
         <button onclick="filtrarCategoria('todas')" class="btn-filtro active px-3.5 py-1.5 rounded-full bg-mar-600 text-white whitespace-nowrap transition">Todas</button>
+        <button onclick="filtrarCategoria('Quilombo & Memória')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          ✊ Comunidade Quilombola
+        </button>
+        <button onclick="filtrarCategoria('Pesca & Manguezal')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          🦀 Pesca, Siri, Marisco & Sururu
+        </button>
+        <button onclick="filtrarCategoria('Andada do Caranguejo')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          ⚠️ Andada & Defeso
+        </button>
+        <button onclick="filtrarCategoria('História & Fé')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          ⛪ Igreja de 1555 & Padroeiro
+        </button>
         <button onclick="filtrarCategoria('Economia & Viveiros')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
           🦐 Carcinicultura & Viveiros
         </button>
-        <button onclick="filtrarCategoria('Pesca & Estuário')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🎣 Pesca de Tarrafa & Marisco
-        </button>
-        <button onclick="filtrarCategoria('Defeso & Andada')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🦀 Caranguejo & Defeso
-        </button>
         <button onclick="filtrarCategoria('Saúde & Serviços')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🏥 Saúde & Comunidade
-        </button>
-        <button onclick="filtrarCategoria('Esporte & Lazer')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          ⚽ Esporte do Povoado
+          🏥 PSF & Transporte
         </button>
       </nav>
     </div>
   </div>
 
-  <!-- LETREIRO DE AVISOS DO POVOADO -->
+  <!-- LETREIRO DE AVISOS -->
   <div class="bg-amber-500 text-mar-900 font-semibold text-xs sm:text-sm py-1.5 px-4 shadow-sm">
     <div class="max-w-7xl mx-auto flex items-center">
       <span class="bg-mar-900 text-amber-300 uppercase px-2 py-0.5 rounded text-xs font-bold mr-3 tracking-wider flex items-center gap-1">
-        <i class="fas fa-bell animate-bounce"></i> COMUNICADOS DE SÃO LOURENÇO
+        <i class="fas fa-bullhorn animate-bounce"></i> COMUNIDADE INFORMA
       </span>
       <div class="ticker-wrap flex-1">
         <div class="ticker-move space-x-8">
-          <span>🦐 <strong>Viveiros de São Lourenço:</strong> Manejo e renovação de comportas a todo vapor com a boa salinidade do Rio Goiana.</span>
-          <span>🦀 <strong>Caranguejo-Uçá:</strong> Cata artesanal liberada nos manguezais locais; proibido fêmeas com ovas e animais com carapaça menor que 6cm.</span>
-          <span>🚐 <strong>Transporte:</strong> Vans e lotações para Goiana Centro com saídas regulares saindo do largo de São Lourenço.</span>
-          <span>🏥 <strong>PSF São Lourenço:</strong> Pesagem do Bolsa Família e atualização vacinal nesta semana.</span>
-          <span>⚽ <strong>Futebol Amador:</strong> Jogo decisivo no campo do povoado no domingo às 15h30.</span>
+          <span>✊ <strong>Território Quilombola:</strong> Povoação de São Lourenço celebra a força da ancestralidade, do mangue e da união comunitária!</span>
+          <span>🦀 <strong>Fartura do Mangue:</strong> Safra de caranguejo-uçá, siri-azul, marisco unha-de-velho e sururu nas marés de Goiana.</span>
+          <span>⚠️ <strong>Atenção à Andada:</strong> Respeite os períodos de acasalamento do caranguejo nas luas cheia e nova.</span>
+          <span>⛪ <strong>História Viva:</strong> Igreja Matriz de São Lourenço (~1555), quase cinco séculos de raízes em Pernambuco.</span>
+          <span>🦐 <strong>Viveiros de Camarão:</strong> Despesca abastece os comércios e feiras da região.</span>
         </div>
       </div>
     </div>
@@ -157,7 +166,265 @@
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
 
-    <!-- SEÇÃO TÁBUA DE MARÉS DO RIO GOIANA COM TEMPORIZADOR -->
+    <!-- SEÇÃO 1: COMUNIDADE QUILOMBOLA & IDENTIDADE ANCESTRAL -->
+    <section class="bg-gradient-to-br from-amber-950 via-stone-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-800/50">
+      <div class="flex flex-col lg:flex-row items-center gap-8">
+        <div class="w-full lg:w-1/2 space-y-4">
+          <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 text-xs px-3.5 py-1.5 rounded-full border border-amber-400/30 font-bold uppercase tracking-wider">
+            <i class="fas fa-fist-raised text-amber-400"></i> Território Remanescente de Quilombo
+          </div>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+            Comunidade Quilombola de Povoação de São Lourenço
+          </h2>
+          <p class="text-amber-100/90 text-sm leading-relaxed">
+            A <strong>Povoação de São Lourenço</strong>, em Goiana - PE, é muito mais do que um marco geográfico no estuário do Rio Goiana: é um <strong>território quilombola de luta, resistência e memória viva</strong>. Certificada pela Fundação Cultural Palmares, a nossa comunidade carrega nos traços, na culinária, no respeito ao manguezal e nas celebrações religiosas os ensinamentos dos antepassados que aqui conquistaram a sua liberdade.
+          </p>
+          <p class="text-slate-300 text-sm leading-relaxed">
+            Aqui, a terra e as águas não são apenas recursos econômicos: são patrimônio coletivo sagrado. O saber tradicional de tirar o sustento da lama do mangue, manusear canoas sem motor e respeitar o tempo das marés é um legado ancestral passado de mãe para filha e de pai para filho há várias gerações.
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
+            <div class="bg-amber-900/40 p-3.5 rounded-2xl border border-amber-700/50">
+              <strong class="block text-amber-300 font-bold text-base">Ancestralidade</strong>
+              <span class="text-amber-100/80">Identidade e cultura viva</span>
+            </div>
+            <div class="bg-amber-900/40 p-3.5 rounded-2xl border border-amber-700/50">
+              <strong class="block text-amber-300 font-bold text-base">Palmares</strong>
+              <span class="text-amber-100/80">Certificação Quilombola</span>
+            </div>
+            <div class="bg-amber-900/40 p-3.5 rounded-2xl border border-amber-700/50 col-span-2 sm:col-span-1">
+              <strong class="block text-amber-300 font-bold text-base">Comunidade</strong>
+              <span class="text-amber-100/80">União e força coletiva</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-stone-800/80 p-5 rounded-2xl border border-amber-700/30 space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
+              <i class="fas fa-hands-holding-circle"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Resistência Negra & Estuarina</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              O refúgio seguro oferecido pela foz do Rio Goiana e seus labirintos de manguezais permitiu aos nossos ancestrais proteger suas famílias e fincar raízes fortes.
+            </p>
+          </div>
+
+          <div class="bg-stone-800/80 p-5 rounded-2xl border border-amber-700/30 space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-lg">
+              <i class="fas fa-leaf"></i>
+            </div>
+            <h3 class="font-bold text-white text-base">Guardiões do Manguezal</h3>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              A comunidade zela pelo equilíbrio do estuário, combatendo agressões ambientais e defendendo as áreas de pesca tradicionais da população ribeirinha.
+            </p>
+          </div>
+
+          <div class="bg-stone-800/80 p-5 rounded-2xl border border-amber-700/30 space-y-2 sm:col-span-2">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg flex-shrink-0">
+                <i class="fas fa-heart"></i>
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-sm">Tradição das Mulheres Marisqueiras</h3>
+                <p class="text-xs text-slate-300 mt-0.5">
+                  As mulheres de São Lourenço são os pilares da economia familiar, dominando com dignidade a cata, a fervura e o beneficiamento do marisco e do sururu.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: TUDO QUE EXISTE NO NOSSO MANGUEZAL E NA NOSSA PESCA -->
+    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="pb-6 border-b border-slate-200 dark:border-slate-700">
+        <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
+          <i class="fas fa-water"></i> Riqueza e Sustento de São Lourenço
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+          A Vida no Manguezal: Caranguejo, Siri, Marisco e Sururu
+        </h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+          Conheça as quatro forças do extrativismo artesanal que alimentam e sustentam as famílias da Povoação de São Lourenço.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+        
+        <!-- CARD 1: CARANGUEJO-UÇÁ -->
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-3">
+              🦀
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Caranguejo-Uçá</h3>
+            <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-2">O Rei do Manguezal de Goiana</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Catado no braço nas raízes do mangue-vermelho e mangue-branco. Nossos catadores entram com destreza na lama funda para tirar os maiores espécimes, que abastecem bares, quiosques e feiras de Goiana e do litoral pernambucano.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
+            <strong>Manejo:</strong> Apenas machos acima de 6cm de carapaça.
+          </div>
+        </div>
+
+        <!-- CARD 2: SIRI -->
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-2xl mb-3">
+              🌊
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Siri de Mangue & Siri-Azul</h3>
+            <p class="text-xs font-semibold text-sky-600 dark:text-sky-400 mb-2">Sabor Marcante das Correntes</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Pescado nas margens do esteiro com puçás, covos ou manualmente nas gamboas de maré baixa. A carne desfiada e a famosa casquinha de siri temperada no coco são tradições gastronômicas consagradas na comunidade.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
+            <strong>Pesca:</strong> Atividade diária nas marés calmas de quadratura.
+          </div>
+        </div>
+
+        <!-- CARD 3: MARISCO / UNHA-DE-VELHO -->
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-3">
+              🐚
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Marisco & Unha-de-Velho</h3>
+            <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2">A Fartura das Coroas de Areia</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Quando a maré vaza e expõe os bancos arenosos de São Lourenço, as marisqueiras entram em ação com pequenas colheres e facas para recolher marisco-branco e unhas-de-velho, preparados no caldo verde ou ensopados.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
+            <strong>Horário:</strong> Picos de baixa-mar nas marés de sizígia.
+          </div>
+        </div>
+
+        <!-- CARD 4: SURURU -->
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between hover:shadow-md transition">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mb-3">
+              🥣
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Sururu de Mangue</h3>
+            <p class="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-2">Tradição das Pedras e Troncos</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Encontrado fixado em pedrais submersos e raízes do Rio Goiana. Após a apanha, é cozido e catado manualmente com enorme carinho pelas famílias locais para dar origem ao tradicional caldinho de sururu quilombola.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
+            <strong>Beneficiamento:</strong> Fervura comunitária no fogo a lenha.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: O FENÔMENO DA ANDADA DO CARANGUEJO -->
+    <section class="bg-amber-50 dark:bg-slate-800/80 rounded-3xl p-6 sm:p-8 border border-amber-200 dark:border-slate-700">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6 border-b border-amber-200 dark:border-slate-700">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
+            <i class="fas fa-exclamation-triangle"></i> Ciclo de Reprodução da Natureza
+          </div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white">
+            A Andada do Caranguejo-Uçá: Entenda o Fenômeno e o Defeso
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">
+            Por que os caranguejos saem das tocas e como a comunidade de São Lourenço protege a espécie.
+          </p>
+        </div>
+
+        <div class="bg-white dark:bg-slate-700 px-5 py-3 rounded-2xl shadow-sm border border-amber-200 dark:border-slate-600">
+          <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 block">Período Crítico</span>
+          <strong class="text-amber-700 dark:text-amber-300 text-base font-black">Janeiro a Abril (Luas Cheia e Nova)</strong>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+            <i class="fas fa-venus-mars text-rose-500"></i> O Ritual de Acasalamento
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Durante a <em>andada</em>, os machos e fêmeas abandonam suas tocas e caminham livremente pelo manguezal para acasalar e liberar os ovos na água salgada. Eles ficam indefesos, sem instinto de fuga.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+            <i class="fas fa-balance-scale text-amber-500"></i> A Importância do Defeso
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Se capturados na andada, milhões de filhotes deixam de nascer, esgotando o mangue nos anos seguintes. O defeso garante que o caranguejo continue abundante para as próximas gerações do povoado.
+          </p>
+        </div>
+
+        <div class="space-y-2">
+          <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
+            <i class="fas fa-hand-holding-heart text-emerald-500"></i> Consciência Quilombola
+          </h4>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Os pescadores mais velhos de São Lourenço sempre ensinaram: <em>"Quem ama a maré sabe a hora de esperar"</em>. Respeitar o defeso é um ato de respeito à nossa própria mãe natureza.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: HISTÓRIA DA IGREJA MATRIZ (~1555) & PADROEIRO SÃO LOURENÇO -->
+    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="flex flex-col lg:flex-row items-center gap-8 pb-8 border-b border-slate-200 dark:border-slate-700">
+        <div class="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-md relative h-72 sm:h-80 border border-slate-200 dark:border-slate-700 group">
+          <img src="https://images.unsplash.com/photo-1548625361-16ef7ef7fe0f?auto=format&fit=crop&w=1200&q=80" 
+               alt="Igreja Matriz de São Lourenço" 
+               class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
+          <div class="absolute bottom-4 left-4 right-4 text-white">
+            <span class="bg-amber-500 text-mar-900 font-black text-xs uppercase px-2.5 py-1 rounded-lg shadow">
+              Patrimônio Nacional Tombado (IPHAN / FUNDARPE)
+            </span>
+            <h3 class="text-lg font-bold mt-2">Igreja Matriz de São Lourenço • Goiana - PE</h3>
+            <p class="text-xs text-slate-300">Fundada por volta de 1555 • Século XVI (~470 Anos)</p>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 space-y-4">
+          <div class="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-xs px-3 py-1 rounded-full font-bold">
+            <i class="fas fa-church"></i> História Secular da Povoação
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-tight">
+            Igreja de São Lourenço (1555): Testemunha de Quase Cinco Séculos
+          </h2>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+            Erguida nas margens do Rio Goiana por volta de <strong>1555</strong>, a Igreja de São Lourenço foi sede da freguesia mais antiga da comarca de Goiana. Suas paredes resistentes de pedra colonial atravessaram invasões holandesas, o ciclo do açúcar e abrigaram as primeiras famílias que deram origem ao nosso povoado quilombola.
+          </p>
+          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
+            O padroeiro, <strong>São Lourenço</strong>, diácono martirizado em Roma no ano 258 d.C., celebrizou-se pela defesa incondicional dos pobres e necessitados. A sua festa tradicional, comemorada anualmente a <strong>10 de Agosto</strong>, reúne a comunidade em profunda oração, procissão e confraternização popular.
+          </p>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
+            <div class="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-xl border border-slate-200 dark:border-slate-600">
+              <strong class="block text-slate-900 dark:text-white font-bold text-base">~1555</strong>
+              <span class="text-slate-500 dark:text-slate-400">Origem colonial</span>
+            </div>
+            <div class="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-xl border border-slate-200 dark:border-slate-600">
+              <strong class="block text-slate-900 dark:text-white font-bold text-base">10 de Agosto</strong>
+              <span class="text-slate-500 dark:text-slate-400">Festa do Padroeiro</span>
+            </div>
+            <div class="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-xl border border-slate-200 dark:border-slate-600 col-span-2 sm:col-span-1">
+              <strong class="block text-emerald-600 dark:text-emerald-400 font-bold text-base">Tombada</strong>
+              <span class="text-slate-500 dark:text-slate-400">Patrimônio Histórico</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 5: TÁBUA DE MARÉS DO POVOADO -->
     <section class="bg-gradient-to-br from-mar-800 via-mar-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden border border-mar-700">
       <div class="absolute inset-x-0 bottom-0 opacity-15 pointer-events-none h-24 overflow-hidden">
         <svg class="wave-animation w-[200%] h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
@@ -169,13 +436,13 @@
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-6 border-b border-mar-700/60">
           <div>
             <div class="inline-flex items-center gap-2 bg-sky-500/20 text-sky-300 text-xs px-3 py-1 rounded-full border border-sky-400/30 font-semibold mb-2">
-              <i class="fas fa-water"></i> Estuário do Rio Goiana / Canal de São Lourenço (Goiana - PE)
+              <i class="fas fa-water"></i> Estuário do Rio Goiana / Canal de São Lourenço
             </div>
             <h2 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-2">
-              <i class="fas fa-water text-sky-400"></i> Tábua de Marés do Nosso Povoado
+              <i class="fas fa-water text-sky-400"></i> Tábua de Marés de São Lourenço
             </h2>
             <p class="text-slate-300 text-sm mt-1">
-              Horários exatos de cheia e seca para os canoeiros, pescadores de tarrafa, marisqueiras e criadores de camarão.
+              Horários de cheia e seca essenciais para catadores de caranguejo, marisqueiras, canoeiros e criadores de camarão.
             </p>
           </div>
 
@@ -188,7 +455,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6" id="grid-dados-mare">
-          <!-- Card Temporizador -->
           <div class="bg-mar-950/70 backdrop-blur rounded-2xl p-4 border border-mar-700/70 flex flex-col justify-between">
             <span class="text-xs uppercase tracking-wider text-amber-300 font-semibold flex items-center justify-between">
               Próxima Virada <i class="fas fa-hourglass-half animate-spin text-amber-400"></i>
@@ -202,7 +468,6 @@
             </div>
           </div>
 
-          <!-- Card Lua & Tipo -->
           <div class="bg-mar-950/70 backdrop-blur rounded-2xl p-4 border border-mar-700/70 flex flex-col justify-between">
             <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center justify-between">
               Ciclo Lunar <i class="fas fa-moon text-amber-300"></i>
@@ -218,7 +483,6 @@
             </div>
           </div>
 
-          <!-- Picos do Dia -->
           <div class="md:col-span-2 bg-mar-950/70 backdrop-blur rounded-2xl p-4 border border-mar-700/70">
             <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold block mb-2">
               Picos de Cheia e Seca Calculados para o Rio Goiana
@@ -233,99 +497,24 @@
               <i class="fas fa-compass"></i>
             </div>
             <div>
-              <strong class="text-white block font-semibold">Orientações para o Povoado de São Lourenço:</strong>
+              <strong class="text-white block font-semibold">Orientações para os Catadores e Marisqueiras:</strong>
               <span class="text-slate-300" id="dica-mare-dia">
                 A baixa-mar abre excelentes coroas nas margens de São Lourenço para cata de marisco e unhas-de-velho.
               </span>
             </div>
           </div>
           <button onclick="abrirModalGuiaMare()" class="text-xs text-sky-300 hover:text-white underline font-semibold whitespace-nowrap">
-            Entenda a Maré de Sizígia <i class="fas fa-arrow-right ml-1"></i>
+            Entenda as Marés <i class="fas fa-arrow-right ml-1"></i>
           </button>
         </div>
       </div>
     </section>
 
-    <!-- PAINEL DO CARANGUEJO-UÇÁ & ANDADA (IBAMA / CPRH) NO MANGUEZAL DE GOIANA -->
-    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
-        <div>
-          <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
-            <i class="fas fa-shield-alt"></i> Normas Ambientais Oficiais • IBAMA & CPRH
-          </div>
-          <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            🦀 Monitoramento do Caranguejo-Uçá nos Manguezais de São Lourenço
-          </h2>
-          <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
-            Orientações obrigatórias para os catadores do povoado, feirantes e comércio de Goiana - PE.
-          </p>
-        </div>
-
-        <div class="bg-emerald-500/10 border-2 border-emerald-500 rounded-2xl px-4 py-3 flex items-center gap-3">
-          <div class="w-3.5 h-3.5 rounded-full bg-emerald-500 animate-pulse"></div>
-          <div>
-            <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 block">Status da Cata</span>
-            <strong class="text-emerald-600 dark:text-emerald-400 text-sm sm:text-base font-black">Cata Artesanal Liberada (Com Regras)</strong>
-          </div>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700">
-          <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg mb-3">
-            <i class="fas fa-calendar-alt"></i>
-          </div>
-          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">O que é a Andada no Nosso Litoral?</h3>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            Período reprodutivo em que os caranguejos saem das tocas e andam pelo mangue para acasalar. No litoral de Pernambuco e estuário do Rio Goiana, ocorre durante o verão (entre <strong>janeiro e abril</strong>) nas luas cheia e nova.
-          </p>
-          <div class="mt-3 text-[11px] font-semibold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 p-2 rounded-lg">
-            ⚠️ Nos dias oficiais de andada, é crime ambiental pegar, transportar ou vender caranguejo.
-          </div>
-        </div>
-
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700">
-          <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-lg mb-3">
-            <i class="fas fa-ruler-combined"></i>
-          </div>
-          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Regras Permanentes no Manguezal</h3>
-          <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
-            <li class="flex items-start gap-1.5">
-              <i class="fas fa-check text-emerald-500 mt-0.5"></i>
-              <span><strong>Largura Mínima de 6 cm:</strong> Proibido capturar caranguejo com carapaça menor que 6 centímetros.</span>
-            </li>
-            <li class="flex items-start gap-1.5">
-              <i class="fas fa-ban text-rose-500 mt-0.5"></i>
-              <span><strong>Fêmeas com Ovos Proibidas:</strong> Toda fêmea ovada deve permanecer intocada na natureza.</span>
-            </li>
-            <li class="flex items-start gap-1.5">
-              <i class="fas fa-hand-holding text-emerald-500 mt-0.5"></i>
-              <span><strong>Apenas Cata Artesanal no Braço:</strong> Tirar o bicho tradicionalmente sem destruir a galeria da toca.</span>
-            </li>
-          </ul>
-        </div>
-
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700">
-          <div class="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center text-lg mb-3">
-            <i class="fas fa-ban"></i>
-          </div>
-          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Práticas Proibidas pelo IBAMA</h3>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
-            Sujeito a apreensão e multas para quem desrespeitar o mangue de Goiana:
-          </p>
-          <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
-            <li class="text-rose-600 dark:text-rose-400 font-semibold">• <strong>Proibido uso de "redinhas"</strong> ou sacos plásticos nas tocas.</li>
-            <li class="text-rose-600 dark:text-rose-400 font-semibold">• <strong>Proibido cavar com pá ou enxada</strong>, pois destrói as raízes da vegetação.</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- NOTÍCIAS LOCAIS EXCLUSIVAS DE SÃO LOURENÇO (GOIANA - PE) -->
+    <!-- NOTÍCIAS & ACONTECIMENTOS DO POVOADO -->
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div class="lg:col-span-2 space-y-8">
         
-        <!-- MATÉRIA DE DESTAQUE: CARCINICULTURA DE SÃO LOURENÇO -->
+        <!-- MATÉRIA DE DESTAQUE: CARCINICULTURA -->
         <article class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700 group cursor-pointer" onclick="abrirNoticia('noticia-camarao-sl')">
           <div class="relative h-64 sm:h-80 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80" 
@@ -337,7 +526,7 @@
                 Carcinicultura Local
               </span>
               <span class="bg-mar-700/90 text-white font-bold text-xs px-3 py-1 rounded-full backdrop-blur">
-                São Lourenço • Goiana
+                Povoação de São Lourenço
               </span>
             </div>
             <div class="absolute bottom-4 left-4 right-4 text-white">
@@ -351,7 +540,7 @@
           </div>
           <div class="p-6">
             <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-              Com a boa salinidade do estuário do Rio Goiana nesta época de estiagem, os viveiros de camarão de São Lourenço intensificaram a renovação de água por gravidade nas marés de sizígia. Os lotes ganharam peso e já começam a abastecer os pontos de venda e restaurantes da região de Goiana.
+              Com a salinidade equilibrada do estuário do Rio Goiana nesta época de estiagem, os viveiros de camarão de São Lourenço intensificaram a renovação de água por gravidade nas marés de sizígia. Os lotes ganharam peso e já começam a abastecer pontos de venda e restaurantes de Goiana.
             </p>
             <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-100 dark:border-slate-700">
               <span class="font-medium"><i class="fas fa-user-edit text-mar-600"></i> Redação São Lourenço Notícias</span>
@@ -360,7 +549,7 @@
           </div>
         </article>
 
-        <!-- FEED DAS DEMAIS MATÉRIAS DE SÃO LOURENÇO -->
+        <!-- FEED DAS MATÉRIAS -->
         <div>
           <div class="flex items-center justify-between mb-4">
             <h3 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
@@ -372,7 +561,7 @@
         </div>
       </div>
 
-      <!-- LATERAL: VOZ DO POVO & TELEFONES ÚTEIS DE GOIANA -->
+      <!-- LATERAL: VOZ DO POVO & TELEFONES ÚTEIS -->
       <aside class="space-y-6">
         
         <!-- Enviar Pauta Comunitária -->
@@ -383,34 +572,35 @@
             </div>
             <div>
               <h3 class="font-bold text-slate-900 dark:text-white leading-snug">Voz do Povo de São Lourenço</h3>
-              <p class="text-xs text-slate-500 dark:text-slate-400">Tem um aviso para o povoado? Mande aqui!</p>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Tem um aviso para a comunidade? Mande aqui!</p>
             </div>
           </div>
 
           <form id="form-noticia-comunitaria" onsubmit="enviarNoticiaComunidade(event)" class="space-y-3 mt-4 text-xs">
             <div>
-              <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Seu Nome / Pescador / Morador:</label>
-              <input type="text" id="autor-input" required placeholder="Ex: Zé Pescador de São Lourenço" 
+              <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Seu Nome / Morador / Marisqueira / Catador:</label>
+              <input type="text" id="autor-input" required placeholder="Ex: Maria Marisqueira de São Lourenço" 
                 class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 focus:outline-none dark:text-white">
             </div>
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Título do Comunicado:</label>
-              <input type="text" id="titulo-input" required placeholder="Ex: Reunião sobre água no povoado" 
+              <input type="text" id="titulo-input" required placeholder="Ex: Mutirão de limpeza no cais" 
                 class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 focus:outline-none dark:text-white">
             </div>
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Categoria:</label>
               <select id="categoria-input" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 dark:text-white">
+                <option value="Quilombo & Memória">Comunidade Quilombola</option>
+                <option value="Pesca & Manguezal">Pesca, Siri, Marisco & Sururu</option>
+                <option value="Andada do Caranguejo">Andada do Caranguejo</option>
+                <option value="História & Fé">História & Padroeiro</option>
                 <option value="Economia & Viveiros">Carcinicultura & Viveiros</option>
-                <option value="Pesca & Estuário">Pesca de Tarrafa & Marisco</option>
-                <option value="Defeso & Andada">Caranguejo & Defeso</option>
                 <option value="Saúde & Serviços">Saúde & Comunidade</option>
-                <option value="Esporte & Lazer">Esporte do Povoado</option>
               </select>
             </div>
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Detalhes:</label>
-              <textarea id="texto-input" rows="3" required placeholder="Escreva o aviso para os moradores de São Lourenço..." 
+              <textarea id="texto-input" rows="3" required placeholder="Escreva o aviso para os moradores da comunidade..." 
                 class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 dark:text-white"></textarea>
             </div>
             <button type="submit" class="w-full py-2.5 rounded-xl bg-mar-700 hover:bg-mar-800 text-white font-bold transition shadow flex items-center justify-center gap-1.5 text-xs">
@@ -419,7 +609,7 @@
           </form>
         </div>
 
-        <!-- Telefones e Serviços Úteis de São Lourenço & Goiana -->
+        <!-- Telefones e Serviços Úteis -->
         <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
           <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 text-sm sm:text-base">
             <i class="fas fa-phone-alt text-emerald-500"></i> Telefones de Utilidade Pública
@@ -471,9 +661,10 @@
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
       <div>
         <p class="font-bold text-white text-sm">Portal São Lourenço Notícias</p>
-        <p class="text-slate-400">Povoado de São Lourenço • Município de Goiana - Pernambuco | Estuário do Rio Goiana</p>
+        <p class="text-slate-400">Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE | Estuário do Rio Goiana</p>
+        <p class="text-[11px] text-amber-400/90 mt-1">Ancestralidade Negra • Berço das Marisqueiras e Catadores • Igreja Colonial (~1555)</p>
       </div>
-      <p class="text-slate-400">Desenvolvido para valorizar a pesca artesanal, a carcinicultura e a comunidade local.</p>
+      <p class="text-slate-400">Desenvolvido com orgulho para valorizar a memória quilombola, a pesca artesanal e os moradores de São Lourenço.</p>
     </div>
   </footer>
 
@@ -585,7 +776,7 @@
         tipo: "Maré Grande",
         alturaAtual: "0.9m",
         statusTexto: "Baixa-mar",
-        dica: "Seca funda pela manhã no estuário.",
+        dica: "Seca funda pela manhã no estuário para mariscagem.",
         eventos: [
           { hora: "04:48", tipo: "Preamar (Cheia)", altura: "2.3m", icone: "fa-arrow-up", cor: "text-sky-400" },
           { hora: "11:05", tipo: "Baixa-mar (Seca)", altura: "0.2m", icone: "fa-arrow-down", cor: "text-amber-400" },
@@ -599,7 +790,7 @@
         tipo: "Início de Maré Quebrada",
         alturaAtual: "1.4m",
         statusTexto: "Águas Calmas",
-        dica: "Correnteza mais branda no Rio Goiana, excelente para tarrafa.",
+        dica: "Correnteza mais branda no Rio Goiana, excelente para pesca de siri e tarrafa.",
         eventos: [
           { hora: "05:32", tipo: "Preamar (Cheia)", altura: "2.1m", icone: "fa-arrow-up", cor: "text-sky-400" },
           { hora: "11:50", tipo: "Baixa-mar (Seca)", altura: "0.4m", icone: "fa-arrow-down", cor: "text-amber-400" },
@@ -690,54 +881,64 @@
     setInterval(atualizarTemporizador, 1000);
     atualizarTemporizador();
 
-    // NOTÍCIAS EXCLUSIVAS DO POVOADO DE SÃO LOURENÇO (GOIANA - PE)
+    // NOTÍCIAS DA COMUNIDADE QUILOMBOLA DE SÃO LOURENÇO
     let noticias = [
       {
-        id: "noticia-pesca-tarrafa-sl",
-        categoria: "Pesca & Estuário",
-        titulo: "Maré de sizígia movimenta pescadores de tarrafa e marisqueiras na margem do Rio Goiana",
-        autor: "Seu Tonho (Pescador de São Lourenço)",
-        data: "Hoje",
+        id: "noticia-quilombo-resistencia",
+        categoria: "Quilombo & Memória",
+        titulo: "Comunidade Quilombola de São Lourenço reafirma a preservação de sua ancestralidade e das águas",
+        autor: "Liderança Comunitária",
+        data: "Em Destaque",
         imagem: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-        resumo: "Coroas secas abriram fartura de mariscos e a água subindo garantiu tarrafadas certeiras de camurim e tainha.",
-        corpo: `<p>O ciclo de maré grande desta semana movimentou os canoeiros e marisqueiras de São Lourenço. Na baixa-mar das 09h40, as coroas ficaram totalmente expostas, permitindo a colheita de marisco e unhas-de-velho frescas.</p><p>Com o início da enchente na parte da tarde, os pescadores ocuparam os esteiros com suas tarrafas artesanais, garantindo bom volume de pescado para o consumo das famílias e venda no povoado.</p>`
+        resumo: "Comunidade certificada valoriza os saberes transmitidos pelas marisqueiras e catadores como patrimônio vivo.",
+        corpo: `<p>A Povoação de São Lourenço carrega uma história secular de bravura negra e indígena nas margens do estuário do Rio Goiana. O reconhecimento quilombola fortalece a garantia de direitos territoriais e a proteção do modo de vida artesanal das famílias que vivem da maré há centenas de anos.</p><p>As reuniões comunitárias buscam cada vez mais incentivar os jovens a terem orgulho de suas raízes quilombolas e a preservarem a riqueza natural do manguezal.</p>`
+      },
+      {
+        id: "noticia-mariscagem-tradicional",
+        categoria: "Pesca & Manguezal",
+        titulo: "Marisqueiras e catadores garantem fartura de sururu, marisco e siri nas mesas de Goiana",
+        autor: "Associação das Marisqueiras",
+        data: "Hoje",
+        imagem: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        resumo: "A força das mulheres marisqueiras de São Lourenço mantém viva a culinária do marisco unha-de-velho e do sururu na região.",
+        corpo: `<p>A rotina das marisqueiras de São Lourenço começa antes do nascer do sol, acompanhando as tabelas de maré. A cata minuciosa de unhas-de-velho e a apanha do sururu nos esteiros representam não só a fonte de renda, mas uma arte passada de geração em geração.</p><p>O alimento limpo e cozido na própria comunidade abastece restaurantes e lares em Goiana e municípios vizinhos, consolidando a gastronomia estuarina tradicional.</p>`
+      },
+      {
+        id: "noticia-andada-consciencia",
+        categoria: "Andada do Caranguejo",
+        titulo: "Catadores de São Lourenço destacam a importância de respeitar os dias de andada do caranguejo",
+        autor: "Pescadores Antigos de São Lourenço",
+        data: "Esta Semana",
+        imagem: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80",
+        resumo: "Consciência ecológica dos trabalhadores do mangue assegura que a espécie continue reproduzindo com vigor.",
+        corpo: `<p>Durante o período em que o caranguejo-uçá sai da toca para o acasalamento, a proibição da cata e venda é amplamente defendida pelos próprios trabalhadores tradicionais da comunidade.</p><p>'Se a gente pegar ele andando tonto na lama, amanhã nossos netos não terão o que comer', explica um dos catadores veteranos do povoado, reforçando o compromisso com o defeso.</p>`
+      },
+      {
+        id: "noticia-igreja-1555",
+        categoria: "História & Fé",
+        titulo: "Construída por volta de 1555, Igreja Matriz de São Lourenço preserva quase cinco séculos de fé",
+        autor: "Memória de São Lourenço",
+        data: "Em Destaque",
+        imagem: "https://images.unsplash.com/photo-1548625361-16ef7ef7fe0f?auto=format&fit=crop&w=800&q=80",
+        resumo: "Erguida no século XVI, uma das igrejas mais antigas do Brasil é o marco sagrado do povoado.",
+        corpo: `<p>A Igreja Matriz de São Lourenço é um tesouro histórico e cultural inestimável para Goiana e Pernambuco. Registros apontam a construção da capela primitiva em meados de 1555, sendo matriz da freguesia mais antiga da região.</p><p>Suas paredes de pedra abrigam anualmente a grande festa de 10 de Agosto em honra a São Lourenço, padroeiro dos diáconos e protetor dos humildes.</p>`
       },
       {
         id: "noticia-psf-saude-sl",
         categoria: "Saúde & Serviços",
-        titulo: "PSF São Lourenço confirma pesagem do Bolsa Família e atualização de vacinas",
+        titulo: "PSF São Lourenço confirma pesagem do Bolsa Família e vacinação nesta semana",
         autor: "Equipe de Saúde da Família • Goiana",
         data: "Ontem",
         imagem: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80",
-        resumo: "Atendimento prioritário para crianças e gestantes no posto de saúde do povoado com pesagem e vacinas.",
-        corpo: `<p>A equipe do Posto de Saúde da Família (PSF) de São Lourenço informa aos moradores que está realizando o acompanhamento nutricional obrigatório dos beneficiários do Bolsa Família.</p><p>A sala de vacinação funciona das 08h às 13h para atualização da caderneta de crianças, idosos e gestantes. Moradores devem apresentar documento com foto e cartão do SUS.</p>`
-      },
-      {
-        id: "noticia-transporte-vans-sl",
-        categoria: "Saúde & Serviços",
-        titulo: "Lotação Centro de Goiana ⇄ São Lourenço opera com saídas a cada 40 minutos",
-        autor: "Associação dos Motoristas da Rota",
-        data: "Ontem",
-        imagem: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
-        resumo: "Vans e transporte complementar reforçam os horários para quem vai à feira e ao comércio central de Goiana.",
-        corpo: `<p>Para atender quem precisa fazer compras de feira ou resolver pendências bancárias no Centro de Goiana, a frota de vans e lotações que atende o Povoado de São Lourenço mantém partidas regulares saindo do largo principal a partir das 06h.</p><p>O último horário de retorno do centro para a comunidade sai pontualmente às 18h das imediações do terminal de vans de Goiana.</p>`
-      },
-      {
-        id: "noticia-futebol-amador-sl",
-        categoria: "Esporte & Lazer",
-        titulo: "Campo de São Lourenço recebe clássico do futebol de várzea neste domingo às 15h30",
-        autor: "Comissão do Esporte Amador",
-        data: "2 dias atrás",
-        imagem: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80",
-        resumo: "Comunidade se reúne para disputar vaga na semifinal do campeonato amador local.",
-        corpo: `<p>O tradicional campo de terra batida de São Lourenço será palco de um grande jogo no próximo domingo. O time da casa entra em campo buscando a classificação para as semifinais da copa regional.</p><p>Haverá barracas comunitárias com bebidas e lanches organizadas pelas famílias do povoado para apoiar a compra de novas bolas e materiais esportivos para a juventude local.</p>`
+        resumo: "Atendimento prioritário para crianças e gestantes no posto de saúde da comunidade.",
+        corpo: `<p>O Posto de Saúde da Família (PSF) de São Lourenço continua com o acompanhamento nutricional obrigatório dos beneficiários do Bolsa Família e atualização de vacinas das 08h às 13h.</p>`
       }
     ];
 
     function renderizarNoticias(lista) {
       const feed = document.getElementById('lista-noticias');
       feed.innerHTML = '';
-      document.getElementById('contador-noticias').innerText = `${lista.length} matérias do povoado`;
+      document.getElementById('contador-noticias').innerText = `${lista.length} matérias da comunidade`;
 
       lista.forEach(n => {
         feed.innerHTML += `
@@ -768,8 +969,6 @@
     function filtrarCategoria(cat) {
       if (cat === 'todas') {
         renderizarNoticias(noticias);
-      } else if (cat === 'Defeso & Andada') {
-        window.scrollTo({ top: 520, behavior: 'smooth' });
       } else {
         renderizarNoticias(noticias.filter(n => n.categoria.toLowerCase().includes(cat.toLowerCase())));
       }
@@ -791,9 +990,9 @@
         id: "comunidade-" + Date.now(),
         categoria: categoria,
         titulo: titulo,
-        autor: autor + " (Morador de São Lourenço)",
+        autor: autor,
         data: "Agora mesmo",
-        imagem: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        imagem: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
         resumo: texto.substring(0, 100) + "...",
         corpo: `<p>${texto}</p>`
       });
@@ -812,7 +1011,6 @@
         document.getElementById('modal-corpo').innerHTML = `
           <p>Com a estabilidade das águas do estuário do Rio Goiana nesta época, os produtores de camarão dos viveiros de São Lourenço intensificaram o manejo hídrico diário.</p>
           <p>A renovação por gravidade nas marés de sizígia garantiu ganho de peso nos lotes, que já começam a ser despescados para atender peixarias e restaurantes de Goiana e cidades vizinhas.</p>
-          <p>Os produtores reforçam a importância de monitorar o oxigênio e a salinidade nas primeiras horas da manhã para manter a alta qualidade do produto.</p>
         `;
         document.getElementById('modal-noticia').classList.remove('hidden');
         document.getElementById('modal-noticia').classList.add('flex');
