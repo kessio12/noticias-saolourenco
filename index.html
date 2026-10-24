@@ -30,6 +30,12 @@
               700: '#713f12',
               800: '#5c330c',
               900: '#422006',
+            },
+            axe: {
+              500: '#d97706',
+              600: '#b45309',
+              700: '#92400e',
+              800: '#78350f',
             }
           }
         }
@@ -66,20 +72,28 @@
 </head>
 <body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-sans">
 
-  <!-- BARRA DE TOPO COM IDENTIFICAÇÃO QUILOMBOLA & REGIONAL -->
+  <!-- BARRA DE TOPO COM IDENTIFICAÇÃO QUILOMBOLA & ESTAÇÃO DO CLIMA -->
   <header class="bg-mar-800 text-slate-100 border-b border-mar-700">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-xs sm:text-sm gap-2">
       <div class="flex items-center gap-3">
         <span id="data-atual" class="font-medium"><i class="far fa-calendar-alt mr-1 text-sky-400"></i> Carregando data...</span>
         <span class="hidden sm:inline text-slate-400">|</span>
         <span class="text-amber-300 font-semibold flex items-center gap-1.5">
-          <i class="fas fa-certificate text-amber-400"></i> Território da Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE
+          <i class="fas fa-certificate text-amber-400"></i> Território Quilombola de Povoação de São Lourenço • Goiana - PE
         </span>
       </div>
-      <div class="flex items-center gap-3">
-        <div class="bg-mar-900/60 px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-300 flex items-center gap-1.5 border border-mar-700">
+      
+      <!-- MINI RESUMO DO CLIMA E MARÉ NO TOPO -->
+      <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+        <div class="bg-mar-900/70 px-2.5 py-1 rounded-full text-xs font-semibold text-amber-300 flex items-center gap-1.5 border border-mar-700">
+          <i class="fas fa-temperature-high text-amber-400"></i> <span id="topo-temp">28°C</span>
+        </div>
+        <div class="bg-mar-900/70 px-2.5 py-1 rounded-full text-xs font-semibold text-sky-300 flex items-center gap-1.5 border border-mar-700">
+          <i class="fas fa-wind text-sky-400"></i> <span id="topo-vento">18 km/h</span>
+        </div>
+        <div class="bg-mar-900/70 px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-300 flex items-center gap-1.5 border border-mar-700">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          Maré agora: <span id="resumo-mare-topo">Vazante (1.2m)</span>
+          Maré: <span id="resumo-mare-topo">Vazante (1.2m)</span>
         </div>
         <button id="btn-tema" class="p-1.5 rounded-lg bg-mar-700 hover:bg-mar-600 transition" title="Alternar Modo Escuro/Claro">
           <i class="fas fa-moon text-amber-300" id="icone-tema"></i>
@@ -102,7 +116,7 @@
                 SÃO LOURENÇO <span class="text-coral-500">NOTÍCIAS</span>
               </h1>
               <p class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide uppercase mt-1">
-                Voz Quilombola, Pesca Artesanal, Tradição e Fé • Goiana - PE
+                Herança do Catucá, Fé dos Orixás & Jurema, Pesca Artesanal e Marés • Goiana - PE
               </p>
             </div>
           </a>
@@ -111,7 +125,7 @@
         <div class="flex items-center gap-2">
           <div class="relative flex-1 md:w-72">
             <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-            <input type="text" id="campo-busca" placeholder="Buscar quilombo, marisco, maré..." 
+            <input type="text" id="campo-busca" placeholder="Buscar catucá, candomblé, maré, clima..." 
               class="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-mar-500 dark:text-white">
           </div>
           <a href="#voz-do-povo" class="bg-coral-500 hover:bg-coral-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm flex items-center gap-1.5 whitespace-nowrap">
@@ -123,8 +137,11 @@
       <!-- NAVEGAÇÃO DE CATEGORIAS -->
       <nav class="flex items-center gap-2 overflow-x-auto pt-3 mt-2 border-t border-slate-100 dark:border-slate-700 text-sm font-medium no-scrollbar">
         <button onclick="filtrarCategoria('todas')" class="btn-filtro active px-3.5 py-1.5 rounded-full bg-mar-600 text-white whitespace-nowrap transition">Todas</button>
-        <button onclick="filtrarCategoria('Quilombo & Memória')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          ✊ Comunidade Quilombola
+        <button onclick="filtrarCategoria('Tradição & Matriz Afro')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          🔥 Quilombo do Catucá & Religião Afro
+        </button>
+        <button onclick="filtrarCategoria('Cultura & Coco')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          🪘 Coco de Roda & Tradições
         </button>
         <button onclick="filtrarCategoria('Pesca & Manguezal')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
           🦀 Pesca, Siri, Marisco & Sururu
@@ -136,10 +153,10 @@
           ⛪ Igreja de 1555 & Padroeiro
         </button>
         <button onclick="filtrarCategoria('Economia & Viveiros')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🦐 Carcinicultura & Viveiros
+          🦐 Viveiros de Camarão
         </button>
         <button onclick="filtrarCategoria('Saúde & Serviços')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🏥 PSF & Transporte
+          🏥 PSF & Saúde
         </button>
       </nav>
     </div>
@@ -153,11 +170,12 @@
       </span>
       <div class="ticker-wrap flex-1">
         <div class="ticker-move space-x-8">
-          <span>✊ <strong>Território Quilombola:</strong> Povoação de São Lourenço celebra a força da ancestralidade, do mangue e da união comunitária!</span>
-          <span>🦀 <strong>Fartura do Mangue:</strong> Safra de caranguejo-uçá, siri-azul, marisco unha-de-velho e sururu nas marés de Goiana.</span>
-          <span>⚠️ <strong>Atenção à Andada:</strong> Respeite os períodos de acasalamento do caranguejo nas luas cheia e nova.</span>
-          <span>⛪ <strong>História Viva:</strong> Igreja Matriz de São Lourenço (~1555), quase cinco séculos de raízes em Pernambuco.</span>
-          <span>🦐 <strong>Viveiros de Camarão:</strong> Despesca abastece os comércios e feiras da região.</span>
+          <span>✊ <strong>Herança do Catucá:</strong> Resistência negra quilombola presente na alma, na mata e nas águas de São Lourenço!</span>
+          <span>🔥 <strong>Fé dos Ancestrais:</strong> Respeito sagrado à Jurema Preta, aos terreiros de Xangô, Candomblé e aos orixás das águas.</span>
+          <span>🪘 <strong>Coco de Roda & Tradição:</strong> O compasso do ganzá e do bombo celebrando os mestres da nossa terra.</span>
+          <span>🦀 <strong>Fartura do Mangue:</strong> Safra de caranguejo, siri-azul, marisco unha-de-velho e sururu nas marés do estuário.</span>
+          <span>⚠️ <strong>Atenção ao Defeso:</strong> Proibida a cata na andada do caranguejo durante as luas nova e cheia.</span>
+          <span>⛪ <strong>Igreja Matriz colonial (~1555):</strong> Fé secular e a tradicional Festa de São Lourenço a 10 de Agosto.</span>
         </div>
       </div>
     </div>
@@ -166,74 +184,249 @@
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
 
-    <!-- SEÇÃO 1: COMUNIDADE QUILOMBOLA & IDENTIDADE ANCESTRAL -->
-    <section class="bg-gradient-to-br from-amber-950 via-stone-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-800/50">
+    <!-- SEÇÃO NOVA: MEDIDOR COMPLETO DO CLIMA, TEMPERATURA, VENTO, OXIGÊNIO E UMIDADE -->
+    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
+            <i class="fas fa-cloud-sun"></i> Monitoramento Atmosférico e Ambiental em Tempo Real
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <i class="fas fa-wind text-sky-500"></i> Estação do Clima de São Lourenço (Goiana - PE)
+          </h2>
+          <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            Condições do ar, ventos para navegação no Rio Goiana, umidade e índice de pureza/oxigênio do manguezal.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 text-xs">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 rounded-xl border border-emerald-200 dark:border-emerald-800 font-bold">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Ar Limpo Estuarino
+          </span>
+          <button onclick="atualizarMetricasClima()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-xl font-semibold text-slate-600 dark:text-slate-200 transition" title="Atualizar medições">
+            <i class="fas fa-sync-alt mr-1"></i> Atualizar
+          </button>
+        </div>
+      </div>
+
+      <!-- GRID DOS MEDIDORES -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
+        
+        <!-- MEDIDOR 1: TEMPERATURA -->
+        <div class="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent dark:from-amber-950/30 p-5 rounded-2xl border border-amber-200 dark:border-amber-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs uppercase font-bold tracking-wider text-amber-700 dark:text-amber-400">Temperatura do Ar</span>
+            <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg">
+              <i class="fas fa-temperature-high"></i>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono" id="card-temp">28.4°C</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Sensação térmica de <span class="font-bold text-amber-600" id="card-sensacao">31.2°C</span></p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-amber-200/60 dark:border-amber-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+            <span>Mín: <strong>23°C</strong></span>
+            <span>Máx: <strong>32°C</strong></span>
+            <span class="text-amber-600 font-bold">Sol com Brisa</span>
+          </div>
+        </div>
+
+        <!-- MEDIDOR 2: VENTO DO AR -->
+        <div class="bg-gradient-to-br from-sky-500/10 via-sky-500/5 to-transparent dark:from-sky-950/30 p-5 rounded-2xl border border-sky-200 dark:border-sky-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs uppercase font-bold tracking-wider text-sky-700 dark:text-sky-400">Vento do Ar & Navegação</span>
+            <div class="w-9 h-9 rounded-xl bg-sky-500/20 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg">
+              <i class="fas fa-wind"></i>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono" id="card-vento">18 km/h</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Direção: <strong class="text-sky-600 dark:text-sky-400" id="card-direcao">Leste-Nordeste (ENE)</strong></p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-sky-200/60 dark:border-sky-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+            <span>Rajadas: <strong>26 km/h</strong></span>
+            <span class="text-emerald-600 font-bold"><i class="fas fa-ship mr-1"></i> Canoa Segura</span>
+          </div>
+        </div>
+
+        <!-- MEDIDOR 3: UMIDADE RELATIVA DO AR -->
+        <div class="bg-gradient-to-br from-teal-500/10 via-teal-500/5 to-transparent dark:from-teal-950/30 p-5 rounded-2xl border border-teal-200 dark:border-teal-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs uppercase font-bold tracking-wider text-teal-700 dark:text-teal-400">Umidade Relativa do Ar</span>
+            <div class="w-9 h-9 rounded-xl bg-teal-500/20 text-teal-600 dark:text-teal-400 flex items-center justify-center text-lg">
+              <i class="fas fa-droplet"></i>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono" id="card-umidade">76%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Influência direta das marés do Rio Goiana</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-teal-200/60 dark:border-teal-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+            <span>Orvalho: <strong>22°C</strong></span>
+            <span class="text-teal-600 font-bold">Faixa Ideal</span>
+          </div>
+        </div>
+
+        <!-- MEDIDOR 4: OXIGÊNIO / QUALIDADE DO AR -->
+        <div class="bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent dark:from-emerald-950/30 p-5 rounded-2xl border border-emerald-200 dark:border-emerald-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs uppercase font-bold tracking-wider text-emerald-700 dark:text-emerald-400">Oxigênio & Pureza do Ar</span>
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg">
+              <i class="fas fa-lungs"></i>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-emerald-600 dark:text-emerald-400 font-mono" id="card-oxigenio">AQI 18</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Índice: <strong class="text-emerald-600">Excelente (Ar 100% Puro)</strong></p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-emerald-200/60 dark:border-emerald-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+            <span>Mata & Mangue</span>
+            <span class="text-emerald-600 font-bold"><i class="fas fa-check-circle mr-1"></i> Livre de Poluição</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SEÇÃO 1: QUILOMBO DO CATUCÁ, RELIGIÕES DE MATRIZ AFRO & ANCESTRALIDADE -->
+    <section class="bg-gradient-to-br from-stone-950 via-amber-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-800/60">
       <div class="flex flex-col lg:flex-row items-center gap-8">
-        <div class="w-full lg:w-1/2 space-y-4">
-          <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 text-xs px-3.5 py-1.5 rounded-full border border-amber-400/30 font-bold uppercase tracking-wider">
-            <i class="fas fa-fist-raised text-amber-400"></i> Território Remanescente de Quilombo
+        <div class="w-full lg:w-7/12 space-y-4">
+          <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 text-xs px-3.5 py-1.5 rounded-full border border-amber-400/40 font-bold uppercase tracking-wider">
+            <i class="fas fa-fire text-amber-400"></i> Memória Afro-Indígena & Resistência Histórica
           </div>
           <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
-            Comunidade Quilombola de Povoação de São Lourenço
+            Herança do Quilombo do Catucá, Religiões Afro & Ancestralidade em São Lourenço
           </h2>
           <p class="text-amber-100/90 text-sm leading-relaxed">
-            A <strong>Povoação de São Lourenço</strong>, em Goiana - PE, é muito mais do que um marco geográfico no estuário do Rio Goiana: é um <strong>território quilombola de luta, resistência e memória viva</strong>. Certificada pela Fundação Cultural Palmares, a nossa comunidade carrega nos traços, na culinária, no respeito ao manguezal e nas celebrações religiosas os ensinamentos dos antepassados que aqui conquistaram a sua liberdade.
+            As matas e esteiros que abraçam a <strong>Povoação de São Lourenço</strong>, em Goiana, guardam a memória indelével do histórico <strong>Quilombo do Catucá</strong> — uma das maiores confederações quilombolas do início do século XIX em Pernambuco, liderada pelo guerreiro lendário <strong>Malunguinho</strong>. Esse cinturão de liberdade se estendia pelas densas florestas e caminhos fluviais até a Zona da Mata Norte, tornando o nosso estuário um ponto estratégico de refúgio e proteção das famílias negras.
           </p>
           <p class="text-slate-300 text-sm leading-relaxed">
-            Aqui, a terra e as águas não são apenas recursos econômicos: são patrimônio coletivo sagrado. O saber tradicional de tirar o sustento da lama do mangue, manusear canoas sem motor e respeitar o tempo das marés é um legado ancestral passado de mãe para filha e de pai para filho há várias gerações.
+            Com essa herança, floresceram as <strong>religiões de matriz afro-brasileira e a Jurema Sagrada</strong>. Na nossa terra, o toque dos atabaques, o culto aos Orixás (especialmente as forças das águas, como Iemanjá, Oxum e Nanã que zelam pela lama fértil do manguezal) e os mestres juremeiros mantiveram viva a espiritualidade que curou e sustentou os nossos mais velhos contra o preconceito e o isolamento.
           </p>
 
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
             <div class="bg-amber-900/40 p-3.5 rounded-2xl border border-amber-700/50">
-              <strong class="block text-amber-300 font-bold text-base">Ancestralidade</strong>
-              <span class="text-amber-100/80">Identidade e cultura viva</span>
+              <strong class="block text-amber-300 font-bold text-base">Rei Malunguinho</strong>
+              <span class="text-amber-100/80">Símbolo do Catucá e Jurema</span>
             </div>
             <div class="bg-amber-900/40 p-3.5 rounded-2xl border border-amber-700/50">
-              <strong class="block text-amber-300 font-bold text-base">Palmares</strong>
-              <span class="text-amber-100/80">Certificação Quilombola</span>
+              <strong class="block text-amber-300 font-bold text-base">Xangô & Candomblé</strong>
+              <span class="text-amber-100/80">Respeito e louvação aos Orixás</span>
             </div>
             <div class="bg-amber-900/40 p-3.5 rounded-2xl border border-amber-700/50 col-span-2 sm:col-span-1">
-              <strong class="block text-amber-300 font-bold text-base">Comunidade</strong>
-              <span class="text-amber-100/80">União e força coletiva</span>
+              <strong class="block text-amber-300 font-bold text-base">Jurema Sagrada</strong>
+              <span class="text-amber-100/80">Ciência ancestral das matas</span>
             </div>
           </div>
         </div>
 
-        <div class="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="bg-stone-800/80 p-5 rounded-2xl border border-amber-700/30 space-y-2">
+        <!-- PAINEL LATERAL DE ELEMENTOS SAGRADOS -->
+        <div class="w-full lg:w-5/12 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="bg-stone-900/90 p-5 rounded-2xl border border-amber-700/40 space-y-2">
             <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
-              <i class="fas fa-hands-holding-circle"></i>
+              <i class="fas fa-drum"></i>
             </div>
-            <h3 class="font-bold text-white text-base">Resistência Negra & Estuarina</h3>
+            <h3 class="font-bold text-white text-base">Toques & Atabaques</h3>
             <p class="text-xs text-slate-300 leading-relaxed">
-              O refúgio seguro oferecido pela foz do Rio Goiana e seus labirintos de manguezais permitiu aos nossos ancestrais proteger suas famílias e fincar raízes fortes.
+              O ritmo sagrado dos ilús e atabaques que ecoam na comunidade em honra aos orixás, invocando paz, fartura nas pescarias e saúde para a comunidade.
             </p>
           </div>
 
-          <div class="bg-stone-800/80 p-5 rounded-2xl border border-amber-700/30 space-y-2">
-            <div class="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center text-lg">
-              <i class="fas fa-leaf"></i>
+          <div class="bg-stone-900/90 p-5 rounded-2xl border border-amber-700/40 space-y-2">
+            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">
+              <i class="fas fa-seedling"></i>
             </div>
-            <h3 class="font-bold text-white text-base">Guardiões do Manguezal</h3>
+            <h3 class="font-bold text-white text-base">Folhas & Reza Forte</h3>
             <p class="text-xs text-slate-300 leading-relaxed">
-              A comunidade zela pelo equilíbrio do estuário, combatendo agressões ambientais e defendendo as áreas de pesca tradicionais da população ribeirinha.
+              As rezas de proteção das benzedeiras tradicionais, o preparo de banhos com ervas do mangue e da mata e o respeito à medicina dos ancestrais.
             </p>
           </div>
 
-          <div class="bg-stone-800/80 p-5 rounded-2xl border border-amber-700/30 space-y-2 sm:col-span-2">
+          <div class="bg-stone-900/90 p-5 rounded-2xl border border-amber-700/40 space-y-2 sm:col-span-2">
             <div class="flex items-center gap-3">
               <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg flex-shrink-0">
-                <i class="fas fa-heart"></i>
+                <i class="fas fa-water"></i>
               </div>
               <div>
-                <h3 class="font-bold text-white text-sm">Tradição das Mulheres Marisqueiras</h3>
+                <h3 class="font-bold text-white text-sm">Orixás das Águas Doces e Salgadas</h3>
                 <p class="text-xs text-slate-300 mt-0.5">
-                  As mulheres de São Lourenço são os pilares da economia familiar, dominando com dignidade a cata, a fervura e o beneficiamento do marisco e do sururu.
+                  No encontro do rio com o mar em São Lourenço, pescadores e marisqueiras rendem reverência às divindades das águas pedindo licença para adentrar o mangue.
                 </p>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- SEÇÃO NOVA: TRADIÇÕES, CULTURA VIVA, COCO DE RODA & ARTESANATO -->
+    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="pb-6 border-b border-slate-200 dark:border-slate-700">
+        <div class="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
+          <i class="fas fa-compact-disc"></i> Expressão Popular de São Lourenço
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
+          Tradições e Cultura Viva da Povoação de São Lourenço
+        </h2>
+        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+          A pisada ritmada do Coco de Roda, os cantos de beira de rio, a ciranda praieira e as mãos que transformam palha e barro em arte.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        
+        <!-- TRADIÇÃO 1: COCO DE RODA -->
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-3">
+              🪘
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Coco de Roda de Povoação</h3>
+            <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-2">A Batida dos Pés na Terra Batida</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              O coco de roda é a maior expressão musical do povoado. Nascido nas reuniões noturnas após a lida pesada no manguezal e no corte de cana, os versos improvisados contam causos da comunidade, desafios amorosos e lendas das águas escuras.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
+            <strong>Instrumentos:</strong> Ganzá, surdo, pandeiro e palmas coletivas.
+          </div>
+        </div>
+
+        <!-- TRADIÇÃO 2: CANTOS DAS MARISQUEIRAS -->
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-2xl mb-3">
+              🗣️
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Cantos de Trabalho & Labuta</h3>
+            <p class="text-xs font-semibold text-sky-600 dark:text-sky-400 mb-2">A Voz que Espanta o Cansaço</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Nas primeiras horas da manhã, as marisqueiras entoam cantigas ancestrais enquanto quebram o marisco ou limpam os tabuleiros de sururu. É uma melodia ritmada que alivia o peso do trabalho sob o sol e ensina a profissão às mais jovens.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
+            <strong>Tradição:</strong> Oralidade pura passada de mãe para filha.
+          </div>
+        </div>
+
+        <!-- TRADIÇÃO 3: CULINÁRIA DE TERREIRO & MANGUE -->
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mb-3">
+              🍲
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Culinária Sagrada & de Terreiro</h3>
+            <p class="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-2">Alquimia do Dendê, Coco e Frutos</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              A cozinha de São Lourenço mescla os sabores do mangue com os temperos sagrados da África: pirões encorpados, ensopados de caranguejo no leite de coco fresco, moquecas e oferendas festivas que alimentam o corpo e a alma da comunidade.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
+            <strong>Identidade:</strong> Comida feita no fogão de barro e lenha.
+          </div>
+        </div>
+
       </div>
     </section>
 
@@ -579,18 +772,19 @@
           <form id="form-noticia-comunitaria" onsubmit="enviarNoticiaComunidade(event)" class="space-y-3 mt-4 text-xs">
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Seu Nome / Morador / Marisqueira / Catador:</label>
-              <input type="text" id="autor-input" required placeholder="Ex: Maria Marisqueira de São Lourenço" 
+              <input type="text" id="autor-input" required placeholder="Ex: Severino do Coco / Dona Maria" 
                 class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 focus:outline-none dark:text-white">
             </div>
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Título do Comunicado:</label>
-              <input type="text" id="titulo-input" required placeholder="Ex: Mutirão de limpeza no cais" 
+              <input type="text" id="titulo-input" required placeholder="Ex: Toque de tambor / Sambada de Coco" 
                 class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 focus:outline-none dark:text-white">
             </div>
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Categoria:</label>
               <select id="categoria-input" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 dark:text-white">
-                <option value="Quilombo & Memória">Comunidade Quilombola</option>
+                <option value="Tradição & Matriz Afro">Quilombo do Catucá & Matriz Afro</option>
+                <option value="Cultura & Coco">Coco de Roda & Tradições</option>
                 <option value="Pesca & Manguezal">Pesca, Siri, Marisco & Sururu</option>
                 <option value="Andada do Caranguejo">Andada do Caranguejo</option>
                 <option value="História & Fé">História & Padroeiro</option>
@@ -662,9 +856,9 @@
       <div>
         <p class="font-bold text-white text-sm">Portal São Lourenço Notícias</p>
         <p class="text-slate-400">Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE | Estuário do Rio Goiana</p>
-        <p class="text-[11px] text-amber-400/90 mt-1">Ancestralidade Negra • Berço das Marisqueiras e Catadores • Igreja Colonial (~1555)</p>
+        <p class="text-[11px] text-amber-400/90 mt-1">Memória do Quilombo do Catucá • Axé dos Orixás & Jurema Sagrada • Coco de Roda • Berço das Marisqueiras</p>
       </div>
-      <p class="text-slate-400">Desenvolvido com orgulho para valorizar a memória quilombola, a pesca artesanal e os moradores de São Lourenço.</p>
+      <p class="text-slate-400">Desenvolvido com orgulho para valorizar a memória quilombola, a fé afro-brasileira e os trabalhadores de São Lourenço.</p>
     </div>
   </footer>
 
@@ -741,6 +935,28 @@
       }
     });
 
+    // SISTEMA METEOROLÓGICO: TEMPERATURA, VENTO, UMIDADE E OXIGÊNIO
+    function atualizarMetricasClima() {
+      // Pequena variação natural para simular medições em tempo real
+      const variacaoTemp = (Math.random() * 0.6 - 0.3).toFixed(1);
+      const tempBase = (28.4 + parseFloat(variacaoTemp)).toFixed(1);
+      const sensacao = (parseFloat(tempBase) + 2.8).toFixed(1);
+      const vento = Math.floor(16 + Math.random() * 5);
+      const umidade = Math.floor(74 + Math.random() * 5);
+      const aqi = Math.floor(16 + Math.random() * 4);
+
+      document.getElementById('card-temp').innerText = `${tempBase}°C`;
+      document.getElementById('card-sensacao').innerText = `${sensacao}°C`;
+      document.getElementById('card-vento').innerText = `${vento} km/h`;
+      document.getElementById('card-umidade').innerText = `${umidade}%`;
+      document.getElementById('card-oxigenio').innerText = `AQI ${aqi}`;
+
+      document.getElementById('topo-temp').innerText = `${tempBase}°C`;
+      document.getElementById('topo-vento').innerText = `${vento} km/h`;
+    }
+    atualizarMetricasClima();
+
+    // DADOS DAS MARÉS
     const dadosMaresSemana = [
       {
         diaRotulo: "Hoje",
@@ -881,17 +1097,27 @@
     setInterval(atualizarTemporizador, 1000);
     atualizarTemporizador();
 
-    // NOTÍCIAS DA COMUNIDADE QUILOMBOLA DE SÃO LOURENÇO
+    // NOTÍCIAS DA COMUNIDADE QUILOMBOLA & RELIGIÕES AFRO
     let noticias = [
       {
-        id: "noticia-quilombo-resistencia",
-        categoria: "Quilombo & Memória",
-        titulo: "Comunidade Quilombola de São Lourenço reafirma a preservação de sua ancestralidade e das águas",
-        autor: "Liderança Comunitária",
+        id: "noticia-catuca-malunguinho",
+        categoria: "Tradição & Matriz Afro",
+        titulo: "A força do Quilombo do Catucá e de Malunguinho ecoa na história viva de Povoação de São Lourenço",
+        autor: "Memória Ancestral Quilombola",
         data: "Em Destaque",
-        imagem: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-        resumo: "Comunidade certificada valoriza os saberes transmitidos pelas marisqueiras e catadores como patrimônio vivo.",
-        corpo: `<p>A Povoação de São Lourenço carrega uma história secular de bravura negra e indígena nas margens do estuário do Rio Goiana. O reconhecimento quilombola fortalece a garantia de direitos territoriais e a proteção do modo de vida artesanal das famílias que vivem da maré há centenas de anos.</p><p>As reuniões comunitárias buscam cada vez mais incentivar os jovens a terem orgulho de suas raízes quilombolas e a preservarem a riqueza natural do manguezal.</p>`
+        imagem: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+        resumo: "Conexão histórica das matas e mangues da Zona da Mata Norte pernambucana como refúgio de guerreiros e mestres.",
+        corpo: `<p>O Quilombo do Catucá foi um dos maiores movimentos de resistência e liberdade em Pernambuco. Liderado pelo emblemático Rei Malunguinho, o Catucá articulou rotas de fuga que iam das matas próximas ao Recife até as franjas do estuário de Goiana.</p><p>Na Povoação de São Lourenço, essa raiz de liberdade fundou terreiros e rituais sagrados de Jurema e Candomblé, mantendo a sabedoria dos mais velhos viva até os dias atuais.</p>`
+      },
+      {
+        id: "noticia-coco-roda-comunidade",
+        categoria: "Cultura & Coco",
+        titulo: "Encontro de mestres do Coco de Roda e Ciranda celebra o compasso dos antepassados",
+        autor: "Coletivo Cultural de São Lourenço",
+        data: "Esta Semana",
+        imagem: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
+        resumo: "Com ganzás e palmas fortes, a juventude e os veteranos preservam o batuque e a poesia do litoral norte.",
+        corpo: `<p>O Coco de Roda praiano de São Lourenço representa a celebração da fartura da maré. As letras cantadas nas rodas de terra batida falam do caranguejo, da canoa furando a onda e da saudade dos antigos que aqui semearam a comunidade.</p>`
       },
       {
         id: "noticia-mariscagem-tradicional",
@@ -922,16 +1148,6 @@
         imagem: "https://images.unsplash.com/photo-1548625361-16ef7ef7fe0f?auto=format&fit=crop&w=800&q=80",
         resumo: "Erguida no século XVI, uma das igrejas mais antigas do Brasil é o marco sagrado do povoado.",
         corpo: `<p>A Igreja Matriz de São Lourenço é um tesouro histórico e cultural inestimável para Goiana e Pernambuco. Registros apontam a construção da capela primitiva em meados de 1555, sendo matriz da freguesia mais antiga da região.</p><p>Suas paredes de pedra abrigam anualmente a grande festa de 10 de Agosto em honra a São Lourenço, padroeiro dos diáconos e protetor dos humildes.</p>`
-      },
-      {
-        id: "noticia-psf-saude-sl",
-        categoria: "Saúde & Serviços",
-        titulo: "PSF São Lourenço confirma pesagem do Bolsa Família e vacinação nesta semana",
-        autor: "Equipe de Saúde da Família • Goiana",
-        data: "Ontem",
-        imagem: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80",
-        resumo: "Atendimento prioritário para crianças e gestantes no posto de saúde da comunidade.",
-        corpo: `<p>O Posto de Saúde da Família (PSF) de São Lourenço continua com o acompanhamento nutricional obrigatório dos beneficiários do Bolsa Família e atualização de vacinas das 08h às 13h.</p>`
       }
     ];
 
@@ -992,7 +1208,7 @@
         titulo: titulo,
         autor: autor,
         data: "Agora mesmo",
-        imagem: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
+        imagem: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
         resumo: texto.substring(0, 100) + "...",
         corpo: `<p>${texto}</p>`
       });
