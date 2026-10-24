@@ -30,12 +30,6 @@
               700: '#713f12',
               800: '#5c330c',
               900: '#422006',
-            },
-            axe: {
-              500: '#d97706',
-              600: '#b45309',
-              700: '#92400e',
-              800: '#78350f',
             }
           }
         }
@@ -184,7 +178,7 @@
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
 
-    <!-- SEÇÃO NOVA: MEDIDOR COMPLETO DO CLIMA, TEMPERATURA, VENTO, OXIGÊNIO E UMIDADE -->
+    <!-- SEÇÃO: MEDIDOR COMPLETO DO CLIMA, TEMPERATURA, VENTO, OXIGÊNIO E UMIDADE -->
     <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
         <div>
@@ -360,7 +354,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO NOVA: TRADIÇÕES, CULTURA VIVA, COCO DE RODA & ARTESANATO -->
+    <!-- SEÇÃO: TRADIÇÕES, CULTURA VIVA, COCO DE RODA & ARTESANATO -->
     <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
       <div class="pb-6 border-b border-slate-200 dark:border-slate-700">
         <div class="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
@@ -430,7 +424,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 2: TUDO QUE EXISTE NO NOSSO MANGUEZAL E NA NOSSA PESCA -->
+    <!-- SEÇÃO: TUDO QUE EXISTE NO NOSSO MANGUEZAL E NA NOSSA PESCA -->
     <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
       <div class="pb-6 border-b border-slate-200 dark:border-slate-700">
         <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
@@ -517,7 +511,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 3: O FENÔMENO DA ANDADA DO CARANGUEJO -->
+    <!-- SEÇÃO: O FENÔMENO DA ANDADA DO CARANGUEJO -->
     <section class="bg-amber-50 dark:bg-slate-800/80 rounded-3xl p-6 sm:p-8 border border-amber-200 dark:border-slate-700">
       <div class="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6 border-b border-amber-200 dark:border-slate-700">
         <div>
@@ -568,7 +562,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 4: HISTÓRIA DA IGREJA MATRIZ (~1555) & PADROEIRO SÃO LOURENÇO -->
+    <!-- SEÇÃO: HISTÓRIA DA IGREJA MATRIZ (~1555) & PADROEIRO SÃO LOURENÇO -->
     <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
       <div class="flex flex-col lg:flex-row items-center gap-8 pb-8 border-b border-slate-200 dark:border-slate-700">
         <div class="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-md relative h-72 sm:h-80 border border-slate-200 dark:border-slate-700 group">
@@ -617,11 +611,11 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 5: TÁBUA DE MARÉS DO POVOADO -->
+    <!-- SEÇÃO: TÁBUA DE MARÉS DO POVOADO -->
     <section class="bg-gradient-to-br from-mar-800 via-mar-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden border border-mar-700">
       <div class="absolute inset-x-0 bottom-0 opacity-15 pointer-events-none h-24 overflow-hidden">
         <svg class="wave-animation w-[200%] h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
-          <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z" fill="#38bdf8"></path>
+          <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 Z" fill="#38bdf8"></path>
         </svg>
       </div>
 
@@ -937,7 +931,6 @@
 
     // SISTEMA METEOROLÓGICO: TEMPERATURA, VENTO, UMIDADE E OXIGÊNIO
     function atualizarMetricasClima() {
-      // Pequena variação natural para simular medições em tempo real
       const variacaoTemp = (Math.random() * 0.6 - 0.3).toFixed(1);
       const tempBase = (28.4 + parseFloat(variacaoTemp)).toFixed(1);
       const sensacao = (parseFloat(tempBase) + 2.8).toFixed(1);
