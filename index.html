@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal São Lourenço Notícias | Povoado de São Lourenço • Goiana - PE</title>
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            mar: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              500: '#0284c7',
+              600: '#0369a1',
+              700: '#075985',
+              800: '#0c4a6e',
+              900: '#082f49',
+            },
+            coral: {
+              500: '#f97316',
+              600: '#ea580c',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    @keyframes wave {
+      0% { transform: translateX(0) translateZ(0) scaleY(1); }
+      50% { transform: translateX(-25%) translateZ(0) scaleY(0.85); }
+      100% { transform: translateX(-50%) translateZ(0) scaleY(1); }
+    }
+    .wave-animation {
+      animation: wave 8s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite;
+    }
+    .ticker-wrap {
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .ticker-move {
+      display: inline-block;
+      animation: ticker 32s linear infinite;
+    }
+    .ticker-move:hover {
+      animation-play-state: paused;
+    }
+    @keyframes ticker {
+      0% { transform: translate3d(100%, 0, 0); }
+      100% { transform: translate3d(-100%, 0, 0); }
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-sans">
+
+  <!-- BARRA DE UTILIDADE DO TOPO: LOCALIZAÇÃO EXATA -->
+  <header class="bg-mar-800 text-slate-100 border-b border-mar-700">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-xs sm:text-sm gap-2">
+      <div class="flex items-center gap-3">
+        <span id="data-atual" class="font-medium"><i class="far fa-calendar-alt mr-1 text-sky-400"></i> Carregando data...</span>
+        <span class="hidden sm:inline text-slate-400">|</span>
+        <span class="text-sky-300 font-semibold flex items-center gap-1.5">
+          <i class="fas fa-location-dot text-rose-400"></i> Povoado de São Lourenço • Goiana - PE (Estuário do Rio Goiana)
+        </span>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="bg-mar-900/60 px-2.5 py-1 rounded-full text-xs font-semibold text-emerald-300 flex items-center gap-1.5 border border-mar-700">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          Maré agora: <span id="resumo-mare-topo">Vazante (1.2m)</span>
+        </div>
+        <button id="btn-tema" class="p-1.5 rounded-lg bg-mar-700 hover:bg-mar-600 transition" title="Alternar Modo Escuro/Claro">
+          <i class="fas fa-moon text-amber-300" id="icone-tema"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CABEÇALHO PRINCIPAL COM IDENTIDADE DE SÃO LOURENÇO - GOIANA PE -->
+  <div class="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 shadow-sm sticky top-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 py-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <a href="#" class="inline-flex items-center gap-3 group">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-mar-700 to-sky-500 flex items-center justify-center text-white text-xl shadow-md group-hover:scale-105 transition">
+              <i class="fas fa-anchor"></i>
+            </div>
+            <div>
+              <h1 class="text-2xl sm:text-3xl font-black tracking-tight text-mar-900 dark:text-white leading-none">
+                SÃO LOURENÇO <span class="text-coral-500">NOTÍCIAS</span>
+              </h1>
+              <p class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide uppercase mt-1">
+                A Voz, a Pesca e o Dia a Dia da Nossa Comunidade • Goiana - PE
+              </p>
+            </div>
+          </a>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <div class="relative flex-1 md:w-72">
+            <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+            <input type="text" id="campo-busca" placeholder="Buscar em São Lourenço..." 
+              class="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-mar-500 dark:text-white">
+          </div>
+          <a href="#voz-do-povo" class="bg-coral-500 hover:bg-coral-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm flex items-center gap-1.5 whitespace-nowrap">
+            <i class="fas fa-bullhorn text-xs"></i> Enviar Pauta
+          </a>
+        </div>
+      </div>
+
+      <!-- CATEGORIAS -->
+      <nav class="flex items-center gap-2 overflow-x-auto pt-3 mt-2 border-t border-slate-100 dark:border-slate-700 text-sm font-medium no-scrollbar">
+        <button onclick="filtrarCategoria('todas')" class="btn-filtro active px-3.5 py-1.5 rounded-full bg-mar-600 text-white whitespace-nowrap transition">Todas</button>
+        <button onclick="filtrarCategoria('Economia & Viveiros')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          🦐 Carcinicultura & Viveiros
+        </button>
+        <button onclick="filtrarCategoria('Pesca & Estuário')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          🎣 Pesca de Tarrafa & Marisco
+        </button>
+        <button onclick="filtrarCategoria('Defeso & Andada')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          🦀 Caranguejo & Defeso
+        </button>
+        <button onclick="filtrarCategoria('Saúde & Serviços')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          🏥 Saúde & Comunidade
+        </button>
+        <button onclick="filtrarCategoria('Esporte & Lazer')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          ⚽ Esporte do Povoado
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- LETREIRO DE AVISOS DO POVOADO -->
+  <div class="bg-amber-500 text-mar-900 font-semibold text-xs sm:text-sm py-1.5 px-4 shadow-sm">
+    <div class="max-w-7xl mx-auto flex items-center">
+      <span class="bg-mar-900 text-amber-300 uppercase px-2 py-0.5 rounded text-xs font-bold mr-3 tracking-wider flex items-center gap-1">
+        <i class="fas fa-bell animate-bounce"></i> COMUNICADOS DE SÃO LOURENÇO
+      </span>
+      <div class="ticker-wrap flex-1">
+        <div class="ticker-move space-x-8">
+          <span>🦐 <strong>Viveiros de São Lourenço:</strong> Manejo e renovação de comportas a todo vapor com a boa salinidade do Rio Goiana.</span>
+          <span>🦀 <strong>Caranguejo-Uçá:</strong> Cata artesanal liberada nos manguezais locais; proibido fêmeas com ovas e animais com carapaça menor que 6cm.</span>
+          <span>🚐 <strong>Transporte:</strong> Vans e lotações para Goiana Centro com saídas regulares saindo do largo de São Lourenço.</span>
+          <span>🏥 <strong>PSF São Lourenço:</strong> Pesagem do Bolsa Família e atualização vacinal nesta semana.</span>
+          <span>⚽ <strong>Futebol Amador:</strong> Jogo decisivo no campo do povoado no domingo às 15h30.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+
+    <!-- SEÇÃO TÁBUA DE MARÉS DO RIO GOIANA COM TEMPORIZADOR -->
+    <section class="bg-gradient-to-br from-mar-800 via-mar-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden border border-mar-700">
+      <div class="absolute inset-x-0 bottom-0 opacity-15 pointer-events-none h-24 overflow-hidden">
+        <svg class="wave-animation w-[200%] h-full" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M0,0 C150,90 350,-40 500,60 C650,160 900,10 1200,40 L1200,120 L0,120 Z" fill="#38bdf8"></path>
+        </svg>
+      </div>
+
+      <div class="relative z-10">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-6 border-b border-mar-700/60">
+          <div>
+            <div class="inline-flex items-center gap-2 bg-sky-500/20 text-sky-300 text-xs px-3 py-1 rounded-full border border-sky-400/30 font-semibold mb-2">
+              <i class="fas fa-water"></i> Estuário do Rio Goiana / Canal de São Lourenço (Goiana - PE)
+            </div>
+            <h2 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-2">
+              <i class="fas fa-water text-sky-400"></i> Tábua de Marés do Nosso Povoado
+            </h2>
+            <p class="text-slate-300 text-sm mt-1">
+              Horários exatos de cheia e seca para os canoeiros, pescadores de tarrafa, marisqueiras e criadores de camarão.
+            </p>
+          </div>
+
+          <div class="flex items-center gap-1.5 bg-mar-950/80 p-1.5 rounded-2xl border border-mar-700 text-xs overflow-x-auto" id="seletor-dias">
+            <button onclick="selecionarDiaMare(0)" class="btn-dia px-3 py-2 rounded-xl bg-sky-500 text-white font-bold transition">Hoje</button>
+            <button onclick="selecionarDiaMare(1)" class="btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition">Amanhã</button>
+            <button onclick="selecionarDiaMare(2)" class="btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition">+2 Dias</button>
+            <button onclick="selecionarDiaMare(3)" class="btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition">+3 Dias</button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6" id="grid-dados-mare">
+          <!-- Card Temporizador -->
+          <div class="bg-mar-950/70 backdrop-blur rounded-2xl p-4 border border-mar-700/70 flex flex-col justify-between">
+            <span class="text-xs uppercase tracking-wider text-amber-300 font-semibold flex items-center justify-between">
+              Próxima Virada <i class="fas fa-hourglass-half animate-spin text-amber-400"></i>
+            </span>
+            <div class="my-2">
+              <div class="text-2xl font-black text-amber-300 font-mono" id="tempo-restante">Calculando...</div>
+              <p class="text-xs text-slate-300 mt-1" id="proxima-mare-desc">Para a Preamar</p>
+            </div>
+            <div class="text-xs bg-amber-950/60 text-amber-200 px-2.5 py-1 rounded-lg border border-amber-800/80 font-mono">
+              Status: <strong id="mare-status-texto">Vazante</strong> (<span id="mare-altura-atual">1.2m</span>)
+            </div>
+          </div>
+
+          <!-- Card Lua & Tipo -->
+          <div class="bg-mar-950/70 backdrop-blur rounded-2xl p-4 border border-mar-700/70 flex flex-col justify-between">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold flex items-center justify-between">
+              Ciclo Lunar <i class="fas fa-moon text-amber-300"></i>
+            </span>
+            <div class="my-2">
+              <div class="text-xl font-bold text-amber-300 flex items-center gap-2" id="mare-lua-nome">
+                <i class="fas fa-circle text-amber-300"></i> Lua Cheia
+              </div>
+              <p class="text-xs text-emerald-300 font-semibold mt-1" id="mare-tipo-nome">Maré de Sizígia (Maré Grande)</p>
+            </div>
+            <div class="text-[11px] text-slate-300">
+              Seca bastante as coroas e enche forte no esteiro.
+            </div>
+          </div>
+
+          <!-- Picos do Dia -->
+          <div class="md:col-span-2 bg-mar-950/70 backdrop-blur rounded-2xl p-4 border border-mar-700/70">
+            <span class="text-xs uppercase tracking-wider text-slate-400 font-semibold block mb-2">
+              Picos de Cheia e Seca Calculados para o Rio Goiana
+            </span>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-2 text-center" id="cards-quatro-mares"></div>
+          </div>
+        </div>
+
+        <div class="bg-mar-900/50 rounded-2xl p-4 border border-mar-700 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs sm:text-sm">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-coral-500/20 text-coral-400 flex items-center justify-center text-lg flex-shrink-0">
+              <i class="fas fa-compass"></i>
+            </div>
+            <div>
+              <strong class="text-white block font-semibold">Orientações para o Povoado de São Lourenço:</strong>
+              <span class="text-slate-300" id="dica-mare-dia">
+                A baixa-mar abre excelentes coroas nas margens de São Lourenço para cata de marisco e unhas-de-velho.
+              </span>
+            </div>
+          </div>
+          <button onclick="abrirModalGuiaMare()" class="text-xs text-sky-300 hover:text-white underline font-semibold whitespace-nowrap">
+            Entenda a Maré de Sizígia <i class="fas fa-arrow-right ml-1"></i>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAINEL DO CARANGUEJO-UÇÁ & ANDADA (IBAMA / CPRH) NO MANGUEZAL DE GOIANA -->
+    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
+            <i class="fas fa-shield-alt"></i> Normas Ambientais Oficiais • IBAMA & CPRH
+          </div>
+          <h2 class="text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            🦀 Monitoramento do Caranguejo-Uçá nos Manguezais de São Lourenço
+          </h2>
+          <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            Orientações obrigatórias para os catadores do povoado, feirantes e comércio de Goiana - PE.
+          </p>
+        </div>
+
+        <div class="bg-emerald-500/10 border-2 border-emerald-500 rounded-2xl px-4 py-3 flex items-center gap-3">
+          <div class="w-3.5 h-3.5 rounded-full bg-emerald-500 animate-pulse"></div>
+          <div>
+            <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 block">Status da Cata</span>
+            <strong class="text-emerald-600 dark:text-emerald-400 text-sm sm:text-base font-black">Cata Artesanal Liberada (Com Regras)</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700">
+          <div class="w-10 h-10 rounded-xl bg-amber-500/10 text-amber-500 flex items-center justify-center text-lg mb-3">
+            <i class="fas fa-calendar-alt"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">O que é a Andada no Nosso Litoral?</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+            Período reprodutivo em que os caranguejos saem das tocas e andam pelo mangue para acasalar. No litoral de Pernambuco e estuário do Rio Goiana, ocorre durante o verão (entre <strong>janeiro e abril</strong>) nas luas cheia e nova.
+          </p>
+          <div class="mt-3 text-[11px] font-semibold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 p-2 rounded-lg">
+            ⚠️ Nos dias oficiais de andada, é crime ambiental pegar, transportar ou vender caranguejo.
+          </div>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700">
+          <div class="w-10 h-10 rounded-xl bg-sky-500/10 text-sky-500 flex items-center justify-center text-lg mb-3">
+            <i class="fas fa-ruler-combined"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Regras Permanentes no Manguezal</h3>
+          <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-2">
+            <li class="flex items-start gap-1.5">
+              <i class="fas fa-check text-emerald-500 mt-0.5"></i>
+              <span><strong>Largura Mínima de 6 cm:</strong> Proibido capturar caranguejo com carapaça menor que 6 centímetros.</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <i class="fas fa-ban text-rose-500 mt-0.5"></i>
+              <span><strong>Fêmeas com Ovos Proibidas:</strong> Toda fêmea ovada deve permanecer intocada na natureza.</span>
+            </li>
+            <li class="flex items-start gap-1.5">
+              <i class="fas fa-hand-holding text-emerald-500 mt-0.5"></i>
+              <span><strong>Apenas Cata Artesanal no Braço:</strong> Tirar o bicho tradicionalmente sem destruir a galeria da toca.</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700">
+          <div class="w-10 h-10 rounded-xl bg-rose-500/10 text-rose-500 flex items-center justify-center text-lg mb-3">
+            <i class="fas fa-ban"></i>
+          </div>
+          <h3 class="font-bold text-slate-900 dark:text-white text-base mb-2">Práticas Proibidas pelo IBAMA</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed mb-3">
+            Sujeito a apreensão e multas para quem desrespeitar o mangue de Goiana:
+          </p>
+          <ul class="text-xs text-slate-600 dark:text-slate-300 space-y-1.5">
+            <li class="text-rose-600 dark:text-rose-400 font-semibold">• <strong>Proibido uso de "redinhas"</strong> ou sacos plásticos nas tocas.</li>
+            <li class="text-rose-600 dark:text-rose-400 font-semibold">• <strong>Proibido cavar com pá ou enxada</strong>, pois destrói as raízes da vegetação.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- NOTÍCIAS LOCAIS EXCLUSIVAS DE SÃO LOURENÇO (GOIANA - PE) -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div class="lg:col-span-2 space-y-8">
+        
+        <!-- MATÉRIA DE DESTAQUE: CARCINICULTURA DE SÃO LOURENÇO -->
+        <article class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700 group cursor-pointer" onclick="abrirNoticia('noticia-camarao-sl')">
+          <div class="relative h-64 sm:h-80 overflow-hidden">
+            <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80" 
+                 alt="Viveiros de camarão em São Lourenço" 
+                 class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent"></div>
+            <div class="absolute top-4 left-4 flex gap-2">
+              <span class="bg-rose-500 text-white font-bold text-xs uppercase px-3 py-1 rounded-full shadow">
+                Carcinicultura Local
+              </span>
+              <span class="bg-mar-700/90 text-white font-bold text-xs px-3 py-1 rounded-full backdrop-blur">
+                São Lourenço • Goiana
+              </span>
+            </div>
+            <div class="absolute bottom-4 left-4 right-4 text-white">
+              <p class="text-xs text-sky-300 font-semibold mb-1 flex items-center gap-1.5">
+                <i class="fas fa-shrimp"></i> Economia & Viveiros • Povoado de São Lourenço
+              </p>
+              <h2 class="text-xl sm:text-2xl font-black group-hover:text-sky-300 transition leading-tight">
+                Criadores de camarão de São Lourenço ajustam comportas e preparam despesca para o comércio local
+              </h2>
+            </div>
+          </div>
+          <div class="p-6">
+            <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
+              Com a boa salinidade do estuário do Rio Goiana nesta época de estiagem, os viveiros de camarão de São Lourenço intensificaram a renovação de água por gravidade nas marés de sizígia. Os lotes ganharam peso e já começam a abastecer os pontos de venda e restaurantes da região de Goiana.
+            </p>
+            <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-100 dark:border-slate-700">
+              <span class="font-medium"><i class="fas fa-user-edit text-mar-600"></i> Redação São Lourenço Notícias</span>
+              <span class="text-coral-500 font-bold flex items-center gap-1">Ler matéria completa <i class="fas fa-arrow-right"></i></span>
+            </div>
+          </div>
+        </article>
+
+        <!-- FEED DAS DEMAIS MATÉRIAS DE SÃO LOURENÇO -->
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <h3 class="text-xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+              <i class="fas fa-newspaper text-mar-600"></i> Acontecimentos do Nosso Povoado
+            </h3>
+            <span class="text-xs text-slate-500 font-medium" id="contador-noticias">Carregando...</span>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="lista-noticias"></div>
+        </div>
+      </div>
+
+      <!-- LATERAL: VOZ DO POVO & TELEFONES ÚTEIS DE GOIANA -->
+      <aside class="space-y-6">
+        
+        <!-- Enviar Pauta Comunitária -->
+        <div id="voz-do-povo" class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+          <div class="flex items-center gap-3 mb-3">
+            <div class="w-10 h-10 rounded-2xl bg-coral-500 text-white flex items-center justify-center text-lg shadow-sm">
+              <i class="fas fa-bullhorn"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-slate-900 dark:text-white leading-snug">Voz do Povo de São Lourenço</h3>
+              <p class="text-xs text-slate-500 dark:text-slate-400">Tem um aviso para o povoado? Mande aqui!</p>
+            </div>
+          </div>
+
+          <form id="form-noticia-comunitaria" onsubmit="enviarNoticiaComunidade(event)" class="space-y-3 mt-4 text-xs">
+            <div>
+              <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Seu Nome / Pescador / Morador:</label>
+              <input type="text" id="autor-input" required placeholder="Ex: Zé Pescador de São Lourenço" 
+                class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 focus:outline-none dark:text-white">
+            </div>
+            <div>
+              <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Título do Comunicado:</label>
+              <input type="text" id="titulo-input" required placeholder="Ex: Reunião sobre água no povoado" 
+                class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 focus:outline-none dark:text-white">
+            </div>
+            <div>
+              <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Categoria:</label>
+              <select id="categoria-input" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 dark:text-white">
+                <option value="Economia & Viveiros">Carcinicultura & Viveiros</option>
+                <option value="Pesca & Estuário">Pesca de Tarrafa & Marisco</option>
+                <option value="Defeso & Andada">Caranguejo & Defeso</option>
+                <option value="Saúde & Serviços">Saúde & Comunidade</option>
+                <option value="Esporte & Lazer">Esporte do Povoado</option>
+              </select>
+            </div>
+            <div>
+              <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Detalhes:</label>
+              <textarea id="texto-input" rows="3" required placeholder="Escreva o aviso para os moradores de São Lourenço..." 
+                class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 dark:text-white"></textarea>
+            </div>
+            <button type="submit" class="w-full py-2.5 rounded-xl bg-mar-700 hover:bg-mar-800 text-white font-bold transition shadow flex items-center justify-center gap-1.5 text-xs">
+              <i class="fas fa-paper-plane"></i> Publicar no Portal
+            </button>
+          </form>
+        </div>
+
+        <!-- Telefones e Serviços Úteis de São Lourenço & Goiana -->
+        <div class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
+          <h3 class="font-bold text-slate-900 dark:text-white mb-4 flex items-center gap-2 text-sm sm:text-base">
+            <i class="fas fa-phone-alt text-emerald-500"></i> Telefones de Utilidade Pública
+          </h3>
+          <ul class="space-y-3 text-xs">
+            <li class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+              <div>
+                <strong class="block text-slate-800 dark:text-slate-200">PSF São Lourenço (Goiana)</strong>
+                <span class="text-slate-500 dark:text-slate-400">Posto de Saúde da Família</span>
+              </div>
+              <span class="px-2.5 py-1 bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold rounded-lg">Local</span>
+            </li>
+            <li class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+              <div>
+                <strong class="block text-slate-800 dark:text-slate-200">Colônia de Pescadores Z-21</strong>
+                <span class="text-slate-500 dark:text-slate-400">Goiana - PE / Seguro Defeso</span>
+              </div>
+              <a href="tel:08136261122" class="px-2.5 py-1 bg-mar-100 dark:bg-mar-900/60 text-mar-700 dark:text-mar-300 font-bold rounded-lg">Ligar</a>
+            </li>
+            <li class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+              <div>
+                <strong class="block text-slate-800 dark:text-slate-200">IBAMA - Linha Verde</strong>
+                <span class="text-slate-500 dark:text-slate-400">Denúncias Ambientais</span>
+              </div>
+              <a href="tel:08000618080" class="px-2.5 py-1 bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 font-bold rounded-lg">0800</a>
+            </li>
+            <li class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+              <div>
+                <strong class="block text-slate-800 dark:text-slate-200">SAMU Goiana</strong>
+                <span class="text-slate-500 dark:text-slate-400">Emergência 24 Horas</span>
+              </div>
+              <a href="tel:192" class="px-2.5 py-1 bg-rose-100 text-rose-700 font-bold rounded-lg">192</a>
+            </li>
+            <li class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
+              <div>
+                <strong class="block text-slate-800 dark:text-slate-200">3ª CIPM - Goiana (PMPE)</strong>
+                <span class="text-slate-500 dark:text-slate-400">Polícia Militar de Goiana</span>
+              </div>
+              <a href="tel:190" class="px-2.5 py-1 bg-slate-200 text-slate-700 font-bold rounded-lg">190</a>
+            </li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <!-- RODAPÉ LOCAL -->
+  <footer class="bg-mar-900 text-slate-300 py-8 border-t border-mar-800 mt-12 text-xs">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+      <div>
+        <p class="font-bold text-white text-sm">Portal São Lourenço Notícias</p>
+        <p class="text-slate-400">Povoado de São Lourenço • Município de Goiana - Pernambuco | Estuário do Rio Goiana</p>
+      </div>
+      <p class="text-slate-400">Desenvolvido para valorizar a pesca artesanal, a carcinicultura e a comunidade local.</p>
+    </div>
+  </footer>
+
+  <!-- MODAL DE LEITURA COMPLETA -->
+  <div id="modal-noticia" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 max-w-2xl w-full max-h-[90vh] rounded-3xl overflow-y-auto shadow-2xl border border-slate-200 dark:border-slate-700">
+      <div class="relative h-60 sm:h-72">
+        <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+        <button onclick="fecharModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black transition">
+          <i class="fas fa-times"></i>
+        </button>
+        <span id="modal-cat" class="absolute bottom-4 left-4 bg-coral-500 text-white text-xs font-bold px-3 py-1 rounded-full uppercase"></span>
+      </div>
+      <div class="p-6 sm:p-8">
+        <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-2">
+          <span id="modal-data"><i class="far fa-calendar mr-1"></i> Data</span>
+          <span>•</span>
+          <span id="modal-autor"><i class="far fa-user mr-1"></i> Autor</span>
+        </div>
+        <h2 id="modal-titulo" class="text-2xl font-black text-slate-900 dark:text-white leading-tight mb-4"></h2>
+        <div id="modal-corpo" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed space-y-3 mb-6"></div>
+        <div class="pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-end">
+          <button onclick="fecharModal()" class="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold hover:bg-slate-300 transition">
+            Fechar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL GUIA DA MARÉ -->
+  <div id="modal-guia-mare" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 max-w-xl w-full max-h-[85vh] rounded-3xl overflow-y-auto p-6 shadow-2xl border border-slate-200 dark:border-slate-700">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700 mb-4">
+        <h3 class="text-lg font-bold text-mar-900 dark:text-white flex items-center gap-2">
+          <i class="fas fa-water text-sky-500"></i> Entendendo a Maré de São Lourenço (Goiana - PE)
+        </h3>
+        <button onclick="fecharModalGuiaMare()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <i class="fas fa-times text-lg"></i>
+        </button>
+      </div>
+      <div class="space-y-4 text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p><strong>1. Maré de Sizígia (Maré Grande):</strong> Nas luas Nova e Cheia. A maré desse muito e enche muito no estuário do Rio Goiana. Fundamental para a mariscagem e para abastecer os viveiros por gravidade.</p>
+        <p><strong>2. Maré de Quadratura (Maré Morta):</strong> Nas luas Crescente e Minguante. Pouca variação da água, ideal para quem vai tarrafear de canoa no leito calmo do rio.</p>
+      </div>
+      <div class="mt-6 text-right">
+        <button onclick="fecharModalGuiaMare()" class="px-5 py-2 bg-mar-700 text-white font-bold rounded-xl text-xs">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPTS -->
+  <script>
+    const opcoesData = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const hojeFormatado = new Date().toLocaleDateString('pt-BR', opcoesData);
+    document.getElementById('data-atual').innerHTML = `<i class="far fa-calendar-alt mr-1 text-sky-400"></i> ${hojeFormatado.charAt(0).toUpperCase() + hojeFormatado.slice(1)}`;
+
+    const btnTema = document.getElementById('btn-tema');
+    const iconeTema = document.getElementById('icone-tema');
+
+    if (localStorage.getItem('tema') === 'dark' || (!localStorage.getItem('tema') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      document.documentElement.classList.add('dark');
+      iconeTema.classList.replace('fa-moon', 'fa-sun');
+    }
+
+    btnTema.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      localStorage.setItem('tema', isDark ? 'dark' : 'light');
+      if (isDark) {
+        iconeTema.classList.replace('fa-moon', 'fa-sun');
+      } else {
+        iconeTema.classList.replace('fa-sun', 'fa-moon');
+      }
+    });
+
+    const dadosMaresSemana = [
+      {
+        diaRotulo: "Hoje",
+        lua: "Lua Cheia",
+        tipo: "Maré de Sizígia (Maré Grande)",
+        alturaAtual: "1.2m",
+        statusTexto: "Vazando",
+        dica: "A baixa-mar abre excelentes coroas nas margens de São Lourenço para cata de marisco e unhas-de-velho.",
+        eventos: [
+          { hora: "03:22", tipo: "Preamar (Cheia)", altura: "2.3m", icone: "fa-arrow-up", cor: "text-sky-400" },
+          { hora: "09:40", tipo: "Baixa-mar (Seca)", altura: "0.2m", icone: "fa-arrow-down", cor: "text-amber-400" },
+          { hora: "15:58", tipo: "Preamar (Cheia)", altura: "2.4m", icone: "fa-arrow-up", cor: "text-sky-400" },
+          { hora: "22:15", tipo: "Baixa-mar (Seca)", altura: "0.3m", icone: "fa-arrow-down", cor: "text-amber-400" }
+        ]
+      },
+      {
+        diaRotulo: "Amanhã",
+        lua: "Lua Cheia",
+        tipo: "Maré de Sizígia (Pico Forte)",
+        alturaAtual: "1.6m",
+        statusTexto: "Enchendo",
+        dica: "Preamar baterá 2.5m à tarde: volume ideal para renovar as comportas dos tanques de camarão.",
+        eventos: [
+          { hora: "04:05", tipo: "Preamar (Cheia)", altura: "2.4m", icone: "fa-arrow-up", cor: "text-sky-400" },
+          { hora: "10:22", tipo: "Baixa-mar (Seca)", altura: "0.1m", icone: "fa-arrow-down", cor: "text-amber-400" },
+          { hora: "16:40", tipo: "Preamar (Cheia)", altura: "2.5m", icone: "fa-arrow-up", cor: "text-sky-400" },
+          { hora: "22:58", tipo: "Baixa-mar (Seca)", altura: "0.2m", icone: "fa-arrow-down", cor: "text-amber-400" }
+        ]
+      },
+      {
+        diaRotulo: "+2 Dias",
+        lua: "Lua Cheia",
+        tipo: "Maré Grande",
+        alturaAtual: "0.9m",
+        statusTexto: "Baixa-mar",
+        dica: "Seca funda pela manhã no estuário.",
+        eventos: [
+          { hora: "04:48", tipo: "Preamar (Cheia)", altura: "2.3m", icone: "fa-arrow-up", cor: "text-sky-400" },
+          { hora: "11:05", tipo: "Baixa-mar (Seca)", altura: "0.2m", icone: "fa-arrow-down", cor: "text-amber-400" },
+          { hora: "17:25", tipo: "Preamar (Cheia)", altura: "2.4m", icone: "fa-arrow-up", cor: "text-sky-400" },
+          { hora: "23:42", tipo: "Baixa-mar (Seca)", altura: "0.3m", icone: "fa-arrow-down", cor: "text-amber-400" }
+        ]
+      },
+      {
+        diaRotulo: "+3 Dias",
+        lua: "Minguante Desse",
+        tipo: "Início de Maré Quebrada",
+        alturaAtual: "1.4m",
+        statusTexto: "Águas Calmas",
+        dica: "Correnteza mais branda no Rio Goiana, excelente para tarrafa.",
+        eventos: [
+          { hora: "05:32", tipo: "Preamar (Cheia)", altura: "2.1m", icone: "fa-arrow-up", cor: "text-sky-400" },
+          { hora: "11:50", tipo: "Baixa-mar (Seca)", altura: "0.4m", icone: "fa-arrow-down", cor: "text-amber-400" },
+          { hora: "18:12", tipo: "Preamar (Cheia)", altura: "2.2m", icone: "fa-arrow-up", cor: "text-sky-400" },
+          { hora: "00:29", tipo: "Baixa-mar (Seca)", altura: "0.5m", icone: "fa-arrow-down", cor: "text-amber-400" }
+        ]
+      }
+    ];
+
+    function renderizarMare(diaIndex) {
+      const d = dadosMaresSemana[diaIndex];
+      document.getElementById('mare-status-texto').innerText = d.statusTexto;
+      document.getElementById('mare-altura-atual').innerText = d.alturaAtual;
+      document.getElementById('mare-lua-nome').innerHTML = `<i class="fas fa-circle text-amber-300 text-lg"></i> ${d.lua}`;
+      document.getElementById('mare-tipo-nome').innerText = d.tipo;
+      document.getElementById('dica-mare-dia').innerText = d.dica;
+      document.getElementById('resumo-mare-topo').innerText = `${d.statusTexto} (${d.alturaAtual})`;
+
+      const container = document.getElementById('cards-quatro-mares');
+      container.innerHTML = '';
+      d.eventos.forEach(ev => {
+        container.innerHTML += `
+          <div class="bg-mar-900/80 p-2.5 rounded-xl border border-mar-800 flex flex-col justify-center">
+            <span class="text-xs font-mono font-bold text-white flex items-center justify-center gap-1">
+              <i class="fas ${ev.icone} ${ev.cor}"></i> ${ev.hora}
+            </span>
+            <span class="text-[11px] text-slate-300 font-semibold mt-1">${ev.tipo}</span>
+            <span class="text-xs font-black ${ev.cor}">${ev.altura}</span>
+          </div>
+        `;
+      });
+
+      const btns = document.querySelectorAll('.btn-dia');
+      btns.forEach((btn, idx) => {
+        if(idx === diaIndex) {
+          btn.className = "btn-dia px-3 py-2 rounded-xl bg-sky-500 text-white font-bold transition";
+        } else {
+          btn.className = "btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition";
+        }
+      });
+    }
+
+    function selecionarDiaMare(idx) {
+      renderizarMare(idx);
+    }
+    renderizarMare(0);
+
+    function atualizarTemporizador() {
+      const agora = new Date();
+      const eventosHoje = dadosMaresSemana[0].eventos;
+      
+      let proximoEvento = null;
+      let dataProximo = null;
+
+      for (let ev of eventosHoje) {
+        const [h, m] = ev.hora.split(':').map(Number);
+        const dataEv = new Date();
+        dataEv.setHours(h, m, 0, 0);
+
+        if (dataEv > agora) {
+          proximoEvento = ev;
+          dataProximo = dataEv;
+          break;
+        }
+      }
+
+      if (!proximoEvento) {
+        const primeiroAmanha = dadosMaresSemana[1].eventos[0];
+        const [h, m] = primeiroAmanha.hora.split(':').map(Number);
+        dataProximo = new Date();
+        dataProximo.setDate(dataProximo.getDate() + 1);
+        dataProximo.setHours(h, m, 0, 0);
+        proximoEvento = primeiroAmanha;
+      }
+
+      const diffMs = dataProximo - agora;
+      const diffHoras = Math.floor(diffMs / (1000 * 60 * 60));
+      const diffMinutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+      const diffSegundos = Math.floor((diffMs % (1000 * 60)) / 1000);
+
+      const strHoras = String(diffHoras).padStart(2, '0');
+      const strMinutos = String(diffMinutos).padStart(2, '0');
+      const strSegundos = String(diffSegundos).padStart(2, '0');
+
+      document.getElementById('tempo-restante').innerText = `${strHoras}h ${strMinutos}m ${strSegundos}s`;
+      document.getElementById('proxima-mare-desc').innerText = `Para ${proximoEvento.tipo} (${proximoEvento.hora})`;
+    }
+    setInterval(atualizarTemporizador, 1000);
+    atualizarTemporizador();
+
+    // NOTÍCIAS EXCLUSIVAS DO POVOADO DE SÃO LOURENÇO (GOIANA - PE)
+    let noticias = [
+      {
+        id: "noticia-pesca-tarrafa-sl",
+        categoria: "Pesca & Estuário",
+        titulo: "Maré de sizígia movimenta pescadores de tarrafa e marisqueiras na margem do Rio Goiana",
+        autor: "Seu Tonho (Pescador de São Lourenço)",
+        data: "Hoje",
+        imagem: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
+        resumo: "Coroas secas abriram fartura de mariscos e a água subindo garantiu tarrafadas certeiras de camurim e tainha.",
+        corpo: `<p>O ciclo de maré grande desta semana movimentou os canoeiros e marisqueiras de São Lourenço. Na baixa-mar das 09h40, as coroas ficaram totalmente expostas, permitindo a colheita de marisco e unhas-de-velho frescas.</p><p>Com o início da enchente na parte da tarde, os pescadores ocuparam os esteiros com suas tarrafas artesanais, garantindo bom volume de pescado para o consumo das famílias e venda no povoado.</p>`
+      },
+      {
+        id: "noticia-psf-saude-sl",
+        categoria: "Saúde & Serviços",
+        titulo: "PSF São Lourenço confirma pesagem do Bolsa Família e atualização de vacinas",
+        autor: "Equipe de Saúde da Família • Goiana",
+        data: "Ontem",
+        imagem: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80",
+        resumo: "Atendimento prioritário para crianças e gestantes no posto de saúde do povoado com pesagem e vacinas.",
+        corpo: `<p>A equipe do Posto de Saúde da Família (PSF) de São Lourenço informa aos moradores que está realizando o acompanhamento nutricional obrigatório dos beneficiários do Bolsa Família.</p><p>A sala de vacinação funciona das 08h às 13h para atualização da caderneta de crianças, idosos e gestantes. Moradores devem apresentar documento com foto e cartão do SUS.</p>`
+      },
+      {
+        id: "noticia-transporte-vans-sl",
+        categoria: "Saúde & Serviços",
+        titulo: "Lotação Centro de Goiana ⇄ São Lourenço opera com saídas a cada 40 minutos",
+        autor: "Associação dos Motoristas da Rota",
+        data: "Ontem",
+        imagem: "https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?auto=format&fit=crop&w=800&q=80",
+        resumo: "Vans e transporte complementar reforçam os horários para quem vai à feira e ao comércio central de Goiana.",
+        corpo: `<p>Para atender quem precisa fazer compras de feira ou resolver pendências bancárias no Centro de Goiana, a frota de vans e lotações que atende o Povoado de São Lourenço mantém partidas regulares saindo do largo principal a partir das 06h.</p><p>O último horário de retorno do centro para a comunidade sai pontualmente às 18h das imediações do terminal de vans de Goiana.</p>`
+      },
+      {
+        id: "noticia-futebol-amador-sl",
+        categoria: "Esporte & Lazer",
+        titulo: "Campo de São Lourenço recebe clássico do futebol de várzea neste domingo às 15h30",
+        autor: "Comissão do Esporte Amador",
+        data: "2 dias atrás",
+        imagem: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80",
+        resumo: "Comunidade se reúne para disputar vaga na semifinal do campeonato amador local.",
+        corpo: `<p>O tradicional campo de terra batida de São Lourenço será palco de um grande jogo no próximo domingo. O time da casa entra em campo buscando a classificação para as semifinais da copa regional.</p><p>Haverá barracas comunitárias com bebidas e lanches organizadas pelas famílias do povoado para apoiar a compra de novas bolas e materiais esportivos para a juventude local.</p>`
+      }
+    ];
+
+    function renderizarNoticias(lista) {
+      const feed = document.getElementById('lista-noticias');
+      feed.innerHTML = '';
+      document.getElementById('contador-noticias').innerText = `${lista.length} matérias do povoado`;
+
+      lista.forEach(n => {
+        feed.innerHTML += `
+          <article class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700 flex flex-col group cursor-pointer" onclick="abrirNoticia('${n.id}')">
+            <div class="relative h-44 overflow-hidden">
+              <img src="${n.imagem}" alt="${n.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <span class="absolute top-3 left-3 bg-mar-700 text-white text-[11px] font-bold px-2.5 py-1 rounded-full uppercase">
+                ${n.categoria}
+              </span>
+            </div>
+            <div class="p-5 flex-1 flex flex-col justify-between">
+              <div>
+                <span class="text-xs text-slate-400 block mb-1">${n.data} • ${n.autor}</span>
+                <h4 class="font-bold text-slate-900 dark:text-white text-base leading-snug mb-2">${n.titulo}</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400 line-clamp-2">${n.resumo}</p>
+              </div>
+              <div class="mt-4 pt-3 border-t border-slate-100 dark:border-slate-700 flex items-center justify-between text-xs font-semibold text-coral-500">
+                <span>Ler reportagem completa</span>
+                <i class="fas fa-chevron-right text-xs"></i>
+              </div>
+            </div>
+          </article>
+        `;
+      });
+    }
+    renderizarNoticias(noticias);
+
+    function filtrarCategoria(cat) {
+      if (cat === 'todas') {
+        renderizarNoticias(noticias);
+      } else if (cat === 'Defeso & Andada') {
+        window.scrollTo({ top: 520, behavior: 'smooth' });
+      } else {
+        renderizarNoticias(noticias.filter(n => n.categoria.toLowerCase().includes(cat.toLowerCase())));
+      }
+    }
+
+    document.getElementById('campo-busca').addEventListener('input', (e) => {
+      const termo = e.target.value.toLowerCase().trim();
+      renderizarNoticias(noticias.filter(n => n.titulo.toLowerCase().includes(termo) || n.resumo.toLowerCase().includes(termo)));
+    });
+
+    function enviarNoticiaComunidade(e) {
+      e.preventDefault();
+      const autor = document.getElementById('autor-input').value.trim();
+      const titulo = document.getElementById('titulo-input').value.trim();
+      const categoria = document.getElementById('categoria-input').value;
+      const texto = document.getElementById('texto-input').value.trim();
+
+      noticias.unshift({
+        id: "comunidade-" + Date.now(),
+        categoria: categoria,
+        titulo: titulo,
+        autor: autor + " (Morador de São Lourenço)",
+        data: "Agora mesmo",
+        imagem: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        resumo: texto.substring(0, 100) + "...",
+        corpo: `<p>${texto}</p>`
+      });
+      renderizarNoticias(noticias);
+      document.getElementById('form-noticia-comunitaria').reset();
+      alert("✅ Comunicado comunitário publicado com sucesso!");
+    }
+
+    function abrirNoticia(id) {
+      if(id === 'noticia-camarao-sl') {
+        document.getElementById('modal-img').src = "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80";
+        document.getElementById('modal-cat').innerText = "Carcinicultura • São Lourenço";
+        document.getElementById('modal-data').innerText = "Destaque";
+        document.getElementById('modal-autor').innerText = "Redação São Lourenço Notícias";
+        document.getElementById('modal-titulo').innerText = "Criadores de camarão de São Lourenço ajustam comportas e preparam despesca para o comércio local";
+        document.getElementById('modal-corpo').innerHTML = `
+          <p>Com a estabilidade das águas do estuário do Rio Goiana nesta época, os produtores de camarão dos viveiros de São Lourenço intensificaram o manejo hídrico diário.</p>
+          <p>A renovação por gravidade nas marés de sizígia garantiu ganho de peso nos lotes, que já começam a ser despescados para atender peixarias e restaurantes de Goiana e cidades vizinhas.</p>
+          <p>Os produtores reforçam a importância de monitorar o oxigênio e a salinidade nas primeiras horas da manhã para manter a alta qualidade do produto.</p>
+        `;
+        document.getElementById('modal-noticia').classList.remove('hidden');
+        document.getElementById('modal-noticia').classList.add('flex');
+        return;
+      }
+      const item = noticias.find(n => n.id === id);
+      if(!item) return;
+      document.getElementById('modal-img').src = item.imagem;
+      document.getElementById('modal-cat').innerText = item.categoria;
+      document.getElementById('modal-data').innerText = item.data;
+      document.getElementById('modal-autor').innerText = item.autor;
+      document.getElementById('modal-titulo').innerText = item.titulo;
+      document.getElementById('modal-corpo').innerHTML = item.corpo;
+      document.getElementById('modal-noticia').classList.remove('hidden');
+      document.getElementById('modal-noticia').classList.add('flex');
+    }
+
+    function fecharModal() {
+      document.getElementById('modal-noticia').classList.add('hidden');
+      document.getElementById('modal-noticia').classList.remove('flex');
+    }
+
+    function abrirModalGuiaMare() {
+      document.getElementById('modal-guia-mare').classList.remove('hidden');
+      document.getElementById('modal-guia-mare').classList.add('flex');
+    }
+
+    function fecharModalGuiaMare() {
+      document.getElementById('modal-guia-mare').classList.add('hidden');
+      document.getElementById('modal-guia-mare').classList.remove('flex');
+    }
+  </script>
+</body>
+</html>
