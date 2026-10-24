@@ -82,11 +82,15 @@
 </head>
 <body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-sans">
 
-  <!-- BARRA DE TOPO COM IDENTIFICAÇÃO QUILOMBOLA & ESTAÇÃO DO CLIMA -->
+  <!-- BARRA DE TOPO COM SAUDAÇÃO AUTOMÁTICA, IDENTIFICAÇÃO QUILOMBOLA & ESTAÇÃO DO CLIMA -->
   <header class="bg-mar-800 text-slate-100 border-b border-mar-700">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-xs sm:text-sm gap-2">
-      <div class="flex items-center gap-3">
-        <span id="data-atual" class="font-medium"><i class="far fa-calendar-alt mr-1 text-sky-400"></i> Carregando data...</span>
+      <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
+        <!-- SAUDAÇÃO DINÂMICA AUTOMÁTICA -->
+        <span id="saudacao-topo" class="bg-amber-400 text-mar-950 font-black px-2.5 py-0.5 rounded-full text-xs flex items-center gap-1 shadow-sm">
+          <i class="fas fa-sun"></i> Olá!
+        </span>
+        <span id="data-atual" class="font-medium text-slate-200"><i class="far fa-calendar-alt mr-1 text-sky-400"></i> Carregando data...</span>
         <span class="hidden sm:inline text-slate-400">|</span>
         <span class="text-amber-300 font-semibold flex items-center gap-1.5">
           <i class="fas fa-certificate text-amber-400"></i> Território Quilombola de Povoação de São Lourenço • Goiana - PE
@@ -172,7 +176,7 @@
     </div>
   </div>
 
-  <!-- LETREIRO DE AVISOS -->
+  <!-- LETREIRO DE AVISOS COM SAUDAÇÃO DINÂMICA -->
   <div class="bg-amber-500 text-mar-900 font-semibold text-xs sm:text-sm py-1.5 px-4 shadow-sm">
     <div class="max-w-7xl mx-auto flex items-center">
       <span class="bg-mar-900 text-amber-300 uppercase px-2 py-0.5 rounded text-xs font-bold mr-3 tracking-wider flex items-center gap-1">
@@ -180,12 +184,13 @@
       </span>
       <div class="ticker-wrap flex-1">
         <div class="ticker-move space-x-8">
-          <span>✊ <strong>Dia da Consciência Negra (23 de Novembro):</strong> Povoação de São Lourenço celebra a força da ancestralidade negra, cortejo histórico, tambores e coco de roda!</span>
-          <span>🔥 <strong>Herança de Malunguinho & Catucá:</strong> Resistência quilombola que marcou as matas e águas do estuário de Goiana.</span>
-          <span>🌊 <strong>Axé dos Orixás & Jurema Sagrada:</strong> Gratidão às águas que sustentam nossos catadores e marisqueiras.</span>
-          <span>🦀 <strong>Fartura do Mangue:</strong> Caranguejo-uçá, siri-azul, marisco unha-de-velho e sururu fresco da maré.</span>
-          <span>⚠️ <strong>Atenção à Andada:</strong> Proibida a cata e comercialização do caranguejo durante as luas nova e cheia.</span>
-          <span>⛪ <strong>Igreja Matriz (~1555):</strong> Patrimônio histórico secular às margens do Rio Goiana.</span>
+          <span>👋 <strong id="saudacao-letreiro">Olá</strong> a todos os moradores, pescadores, marisqueiras e visitantes de São Lourenço!</span>
+          <span>✊ <strong>Dia da Consciência Negra (23 de Novembro):</strong> Celebração magna com cortejo histórico, atabaques e sambada de coco!</span>
+          <span>🔥 <strong>Herança de Malunguinho & Catucá:</strong> Resistência quilombola viva nas matas e águas do estuário de Goiana.</span>
+          <span>🌊 <strong>Axé dos Orixás & Jurema Sagrada:</strong> Gratidão às águas que sustentam a nossa comunidade.</span>
+          <span>🦀 <strong>Fartura do Mangue:</strong> Safra de caranguejo-uçá, siri-azul, marisco unha-de-velho e sururu.</span>
+          <span>⚠️ <strong>Atenção ao Defeso:</strong> Respeite os períodos de andada nas luas cheia e nova.</span>
+          <span>⛪ <strong>Igreja Matriz (~1555):</strong> Fé secular e história colonial às margens do Rio Goiana.</span>
         </div>
       </div>
     </div>
@@ -1018,6 +1023,36 @@
 
   <!-- SCRIPTS -->
   <script>
+    // SISTEMA DE SAUDAÇÃO AUTOMÁTICA CONFORME O HORÁRIO LOCAL
+    function atualizarSaudacaoAutomatica() {
+      const agora = new Date();
+      const hora = agora.getHours();
+      let texto = "Olá!";
+      let icone = "fa-hand-sparkles";
+
+      if (hora >= 5 && hora < 12) {
+        texto = "Bom dia!";
+        icone = "fa-sun";
+      } else if (hora >= 12 && hora < 18) {
+        texto = "Boa tarde!";
+        icone = "fa-cloud-sun";
+      } else {
+        texto = "Boa noite!";
+        icone = "fa-moon";
+      }
+
+      const elTopo = document.getElementById('saudacao-topo');
+      if (elTopo) {
+        elTopo.innerHTML = `<i class="fas ${icone}"></i> ${texto}`;
+      }
+
+      const elLetreiro = document.getElementById('saudacao-letreiro');
+      if (elLetreiro) {
+        elLetreiro.innerText = texto;
+      }
+    }
+    atualizarSaudacaoAutomatica();
+
     const opcoesData = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const hojeFormatado = new Date().toLocaleDateString('pt-BR', opcoesData);
     document.getElementById('data-atual').innerHTML = `<i class="far fa-calendar-alt mr-1 text-sky-400"></i> ${hojeFormatado.charAt(0).toUpperCase() + hojeFormatado.slice(1)}`;
