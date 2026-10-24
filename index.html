@@ -30,6 +30,12 @@
               700: '#713f12',
               800: '#5c330c',
               900: '#422006',
+            },
+            axe: {
+              500: '#d97706',
+              600: '#b45309',
+              700: '#92400e',
+              800: '#78350f',
             }
           }
         }
@@ -53,7 +59,7 @@
     }
     .ticker-move {
       display: inline-block;
-      animation: ticker 36s linear infinite;
+      animation: ticker 38s linear infinite;
     }
     .ticker-move:hover {
       animation-play-state: paused;
@@ -80,7 +86,7 @@
       <!-- MINI RESUMO DO CLIMA E MARÉ NO TOPO -->
       <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
         <div class="bg-mar-900/70 px-2.5 py-1 rounded-full text-xs font-semibold text-amber-300 flex items-center gap-1.5 border border-mar-700">
-          <i class="fas fa-temperature-high text-amber-400"></i> <span id="topo-temp">28°C</span>
+          <i class="fas fa-temperature-high text-amber-400"></i> <span id="topo-temp">28.4°C</span>
         </div>
         <div class="bg-mar-900/70 px-2.5 py-1 rounded-full text-xs font-semibold text-sky-300 flex items-center gap-1.5 border border-mar-700">
           <i class="fas fa-wind text-sky-400"></i> <span id="topo-vento">18 km/h</span>
@@ -110,7 +116,7 @@
                 SÃO LOURENÇO <span class="text-coral-500">NOTÍCIAS</span>
               </h1>
               <p class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide uppercase mt-1">
-                Herança do Catucá, Fé dos Orixás & Jurema, Pesca Artesanal e Marés • Goiana - PE
+                Festa do Quilombo (23/Nov), Herança do Catucá, Matriz Afro, Pesca e Marés • Goiana - PE
               </p>
             </div>
           </a>
@@ -119,7 +125,7 @@
         <div class="flex items-center gap-2">
           <div class="relative flex-1 md:w-72">
             <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-            <input type="text" id="campo-busca" placeholder="Buscar catucá, candomblé, maré, clima..." 
+            <input type="text" id="campo-busca" placeholder="Buscar festa, quilombo, maré, clima..." 
               class="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-mar-500 dark:text-white">
           </div>
           <a href="#voz-do-povo" class="bg-coral-500 hover:bg-coral-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm flex items-center gap-1.5 whitespace-nowrap">
@@ -131,11 +137,14 @@
       <!-- NAVEGAÇÃO DE CATEGORIAS -->
       <nav class="flex items-center gap-2 overflow-x-auto pt-3 mt-2 border-t border-slate-100 dark:border-slate-700 text-sm font-medium no-scrollbar">
         <button onclick="filtrarCategoria('todas')" class="btn-filtro active px-3.5 py-1.5 rounded-full bg-mar-600 text-white whitespace-nowrap transition">Todas</button>
+        <button onclick="filtrarCategoria('Festa do Quilombo')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-amber-500 text-mar-950 font-bold hover:bg-amber-400 whitespace-nowrap transition shadow-sm">
+          🎉 Festa do Quilombo (23 de Novembro)
+        </button>
         <button onclick="filtrarCategoria('Tradição & Matriz Afro')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🔥 Quilombo do Catucá & Religião Afro
+          🔥 Quilombo do Catucá & Matriz Afro
         </button>
         <button onclick="filtrarCategoria('Cultura & Coco')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🪘 Coco de Roda & Tradições
+          🪘 Coco de Roda, Ciranda & Artesanato
         </button>
         <button onclick="filtrarCategoria('Pesca & Manguezal')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
           🦀 Pesca, Siri, Marisco & Sururu
@@ -149,9 +158,6 @@
         <button onclick="filtrarCategoria('Economia & Viveiros')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
           🦐 Viveiros de Camarão
         </button>
-        <button onclick="filtrarCategoria('Saúde & Serviços')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🏥 PSF & Saúde
-        </button>
       </nav>
     </div>
   </div>
@@ -164,12 +170,12 @@
       </span>
       <div class="ticker-wrap flex-1">
         <div class="ticker-move space-x-8">
-          <span>✊ <strong>Herança do Catucá:</strong> Resistência negra quilombola presente na alma, na mata e nas águas de São Lourenço!</span>
-          <span>🔥 <strong>Fé dos Ancestrais:</strong> Respeito sagrado à Jurema Preta, aos terreiros de Xangô, Candomblé e aos orixás das águas.</span>
-          <span>🪘 <strong>Coco de Roda & Tradição:</strong> O compasso do ganzá e do bombo celebrando os mestres da nossa terra.</span>
-          <span>🦀 <strong>Fartura do Mangue:</strong> Safra de caranguejo, siri-azul, marisco unha-de-velho e sururu nas marés do estuário.</span>
-          <span>⚠️ <strong>Atenção ao Defeso:</strong> Proibida a cata na andada do caranguejo durante as luas nova e cheia.</span>
-          <span>⛪ <strong>Igreja Matriz colonial (~1555):</strong> Fé secular e a tradicional Festa de São Lourenço a 10 de Agosto.</span>
+          <span>🎉 <strong>Festa do Quilombo (23 de Novembro):</strong> Celebração da Consciência Negra, cortejo ancestral, tambores e sambada de coco em São Lourenço!</span>
+          <span>✊ <strong>Herança do Catucá:</strong> Memória viva de Malunguinho, resistência dos nossos antepassados nas matas e águas de Goiana.</span>
+          <span>🔥 <strong>Fé dos Ancestrais:</strong> Respeito sagrado à Jurema Preta, aos terreiros de Xangô, Candomblé e aos orixás do estuário.</span>
+          <span>🦀 <strong>Fartura do Mangue:</strong> Safra de caranguejo-uçá, siri, marisco unha-de-velho e sururu nas marés do Rio Goiana.</span>
+          <span>⚠️ <strong>Atenção ao Defeso:</strong> Respeite os períodos de andada nas luas cheia e nova.</span>
+          <span>⛪ <strong>História Secular:</strong> Igreja Matriz de São Lourenço (~1555), quase cinco séculos de fé e raízes coloniais.</span>
         </div>
       </div>
     </div>
@@ -177,6 +183,85 @@
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+
+    <!-- SEÇÃO DESTAQUE: GRANDE FESTA DO QUILOMBO EM NOVEMBRO (DIA 23 DE NOVEMBRO) -->
+    <section class="bg-gradient-to-br from-amber-600 via-orange-700 to-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-amber-400 relative overflow-hidden">
+      <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl font-black select-none pointer-events-none">
+        <i class="fas fa-drum"></i>
+      </div>
+
+      <div class="relative z-10">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 pb-6 border-b border-amber-400/30">
+          <div class="space-y-2">
+            <div class="inline-flex items-center gap-2 bg-amber-400 text-stone-950 font-black text-xs px-3.5 py-1.5 rounded-full uppercase tracking-wider shadow">
+              <i class="fas fa-calendar-check"></i> Calendário Oficial da Comunidade • Novembro Negro
+            </div>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
+              Grande Festa da Consciência Quilombola de Povoação de São Lourenço
+            </h2>
+            <p class="text-amber-100 text-sm max-w-3xl leading-relaxed">
+              Comemorada com orgulho no dia <strong>23 de Novembro</strong>, a tradicional <strong>Festa do Quilombo</strong> é o ápice das celebrações do Mês da Consciência Negra em nossa terra. Um momento sagrado de exaltação à luta dos antepassados que resistiram no Quilombo do Catucá, reunindo famílias, marisqueiras, catadores de caranguejo e mestres da cultura popular.
+            </p>
+          </div>
+
+          <div class="bg-stone-950/70 backdrop-blur-md p-5 rounded-2xl border border-amber-400/40 text-center min-w-[200px]">
+            <span class="text-xs uppercase text-amber-300 font-bold block">Data Principal</span>
+            <span class="text-4xl font-black text-white font-mono block my-1">23 / NOV</span>
+            <span class="text-[11px] text-emerald-300 font-semibold block">Celebração em São Lourenço</span>
+          </div>
+        </div>
+
+        <!-- PROGRAMAÇÃO DA FESTA DO QUILOMBO -->
+        <div class="mt-6">
+          <h3 class="text-lg font-black text-amber-200 mb-4 flex items-center gap-2">
+            <i class="fas fa-fire-alt text-amber-400"></i> Programação Cultural e Tradicional do Dia 23 de Novembro:
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs">
+            
+            <div class="bg-stone-900/80 p-4 rounded-2xl border border-amber-500/30 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-amber-300 text-sm">Alvorada dos Atabaques</span>
+                <span class="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono font-bold">06:00</span>
+              </div>
+              <p class="text-slate-300 leading-relaxed">
+                Toque matinal dos atabaques e ilús saudando o despertar da comunidade, louvando as divindades das matas e das águas com banho de folhas e defumação.
+              </p>
+            </div>
+
+            <div class="bg-stone-900/80 p-4 rounded-2xl border border-amber-500/30 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-amber-300 text-sm">Cortejo dos Griôs & Anciãos</span>
+                <span class="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono font-bold">10:00</span>
+              </div>
+              <p class="text-slate-300 leading-relaxed">
+                Caminhada pelas ruas do povoado homenageando as marisqueiras mais idosas, rezadeiras e os pescadores veteranos que guardam as memórias de São Lourenço.
+              </p>
+            </div>
+
+            <div class="bg-stone-900/80 p-4 rounded-2xl border border-amber-500/30 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-amber-300 text-sm">Feira Gastronômica do Mangue</span>
+                <span class="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono font-bold">12:30</span>
+              </div>
+              <p class="text-slate-300 leading-relaxed">
+                Pratos comunitários preparados no fogão a lenha: caldinho de sururu, casquinha de siri, ensopado de marisco, caranguejo no coco, pirão e mungunzá tradicional.
+              </p>
+            </div>
+
+            <div class="bg-stone-900/80 p-4 rounded-2xl border border-amber-500/30 space-y-2">
+              <div class="flex items-center justify-between">
+                <span class="font-bold text-amber-300 text-sm">Grande Sambada de Coco</span>
+                <span class="bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded font-mono font-bold">18:00</span>
+              </div>
+              <p class="text-slate-300 leading-relaxed">
+                Roda aberta de capoeira angola seguida pela noite de Coco de Roda e Ciranda na terra batida, ao som de ganzás, surdos, bombo e cantadores de improviso.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- SEÇÃO: MEDIDOR COMPLETO DO CLIMA, TEMPERATURA, VENTO, OXIGÊNIO E UMIDADE -->
     <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
@@ -282,7 +367,7 @@
       </div>
     </section>
 
-    <!-- SEÇÃO 1: QUILOMBO DO CATUCÁ, RELIGIÕES DE MATRIZ AFRO & ANCESTRALIDADE -->
+    <!-- SEÇÃO: QUILOMBO DO CATUCÁ, RELIGIÕES DE MATRIZ AFRO & ANCESTRALIDADE -->
     <section class="bg-gradient-to-br from-stone-950 via-amber-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-800/60">
       <div class="flex flex-col lg:flex-row items-center gap-8">
         <div class="w-full lg:w-7/12 space-y-4">
@@ -364,11 +449,11 @@
           Tradições e Cultura Viva da Povoação de São Lourenço
         </h2>
         <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
-          A pisada ritmada do Coco de Roda, os cantos de beira de rio, a ciranda praieira e as mãos que transformam palha e barro em arte.
+          A pisada ritmada do Coco de Roda, os cantos de beira de rio, a ciranda praieira, o artesanato de taboa e a mestria dos canoeiros.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
         
         <!-- TRADIÇÃO 1: COCO DE RODA -->
         <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
@@ -379,41 +464,58 @@
             <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Coco de Roda de Povoação</h3>
             <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-2">A Batida dos Pés na Terra Batida</p>
             <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              O coco de roda é a maior expressão musical do povoado. Nascido nas reuniões noturnas após a lida pesada no manguezal e no corte de cana, os versos improvisados contam causos da comunidade, desafios amorosos e lendas das águas escuras.
+              O coco de roda é a maior expressão musical do povoado. Nascido nas reuniões noturnas após a lida pesada no manguezal e no corte de cana, os versos improvisados contam causos da comunidade e desafios das marés.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Instrumentos:</strong> Ganzá, surdo, pandeiro e palmas coletivas.
+            <strong>Instrumentos:</strong> Ganzá, surdo, pandeiro e palmas.
           </div>
         </div>
 
-        <!-- TRADIÇÃO 2: CANTOS DAS MARISQUEIRAS -->
+        <!-- TRADIÇÃO 2: CIRANDA PRAIEIRA -->
         <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-2xl mb-3">
-              🗣️
+              ⭕
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Cantos de Trabalho & Labuta</h3>
-            <p class="text-xs font-semibold text-sky-600 dark:text-sky-400 mb-2">A Voz que Espanta o Cansaço</p>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Ciranda Praieira do Litoral</h3>
+            <p class="text-xs font-semibold text-sky-600 dark:text-sky-400 mb-2">União de Mãos Dadas</p>
             <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Nas primeiras horas da manhã, as marisqueiras entoam cantigas ancestrais enquanto quebram o marisco ou limpam os tabuleiros de sururu. É uma melodia ritmada que alivia o peso do trabalho sob o sol e ensina a profissão às mais jovens.
+              De mãos dadas em grandes rodas abertas, jovens e anciãos cantam as melodias que saúdam o mar aberto, os barcos de pesca e a brisa do Rio Goiana, criando uma corrente de fraternidade.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Tradição:</strong> Oralidade pura passada de mãe para filha.
+            <strong>Compasso:</strong> Passadas ritmadas marcadas pelo bumbo.
           </div>
         </div>
 
-        <!-- TRADIÇÃO 3: CULINÁRIA DE TERREIRO & MANGUE -->
+        <!-- TRADIÇÃO 3: ARTESANATO DE TABOA & CIPÓ -->
+        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-3">
+              🧺
+            </div>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Artesanato de Taboa & Palha</h3>
+            <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2">Mãos que Trançam a Natureza</p>
+            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
+              Esteiras trançadas com fibras do brejo, balaios para carregar marisco, chapéus de palha e pequenas canoas esculpidas em madeira tradicional pelos artesãos quilombolas da comunidade.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
+            <strong>Produção:</strong> Trabalho manual ecológico e sustentável.
+          </div>
+        </div>
+
+        <!-- TRADIÇÃO 4: CULINÁRIA SAGRADA & DE TERREIRO -->
         <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
           <div>
             <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mb-3">
               🍲
             </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Culinária Sagrada & de Terreiro</h3>
-            <p class="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-2">Alquimia do Dendê, Coco e Frutos</p>
+            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Culinária de Terreiro & Mangue</h3>
+            <p class="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-2">Dendê, Coco e Frutos da Lama</p>
             <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              A cozinha de São Lourenço mescla os sabores do mangue com os temperos sagrados da África: pirões encorpados, ensopados de caranguejo no leite de coco fresco, moquecas e oferendas festivas que alimentam o corpo e a alma da comunidade.
+              A cozinha de São Lourenço mescla os sabores do mangue com os temperos sagrados da África: pirões encorpados, ensopados de caranguejo no leite de coco fresco, moquecas e o mungunzá comunitário.
             </p>
           </div>
           <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
@@ -701,37 +803,37 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div class="lg:col-span-2 space-y-8">
         
-        <!-- MATÉRIA DE DESTAQUE: CARCINICULTURA -->
-        <article class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700 group cursor-pointer" onclick="abrirNoticia('noticia-camarao-sl')">
+        <!-- MATÉRIA DE DESTAQUE: FESTA DO QUILOMBO 23 DE NOVEMBRO -->
+        <article class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700 group cursor-pointer" onclick="abrirNoticia('noticia-festa-quilombo-23nov')">
           <div class="relative h-64 sm:h-80 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80" 
-                 alt="Viveiros de camarão em São Lourenço" 
+            <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80" 
+                 alt="Festa do Quilombo de São Lourenço em Novembro" 
                  class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
             <div class="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/30 to-transparent"></div>
             <div class="absolute top-4 left-4 flex gap-2">
-              <span class="bg-rose-500 text-white font-bold text-xs uppercase px-3 py-1 rounded-full shadow">
-                Carcinicultura Local
+              <span class="bg-amber-500 text-mar-950 font-black text-xs uppercase px-3 py-1 rounded-full shadow">
+                23 de Novembro
               </span>
               <span class="bg-mar-700/90 text-white font-bold text-xs px-3 py-1 rounded-full backdrop-blur">
-                Povoação de São Lourenço
+                Festa do Quilombo
               </span>
             </div>
             <div class="absolute bottom-4 left-4 right-4 text-white">
-              <p class="text-xs text-sky-300 font-semibold mb-1 flex items-center gap-1.5">
-                <i class="fas fa-shrimp"></i> Economia & Viveiros • Povoado de São Lourenço
+              <p class="text-xs text-amber-300 font-semibold mb-1 flex items-center gap-1.5">
+                <i class="fas fa-fist-raised"></i> Resistência & Consciência Negra • Povoação de São Lourenço
               </p>
-              <h2 class="text-xl sm:text-2xl font-black group-hover:text-sky-300 transition leading-tight">
-                Criadores de camarão de São Lourenço ajustam comportas e preparam despesca para o comércio local
+              <h2 class="text-xl sm:text-2xl font-black group-hover:text-amber-300 transition leading-tight">
+                Comunidade prepara a tradicional Festa do Quilombo no dia 23 de Novembro com cortejo, atabaques e sambada
               </h2>
             </div>
           </div>
           <div class="p-6">
             <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed mb-4">
-              Com a salinidade equilibrada do estuário do Rio Goiana nesta época de estiagem, os viveiros de camarão de São Lourenço intensificaram a renovação de água por gravidade nas marés de sizígia. Os lotes ganharam peso e já começam a abastecer pontos de venda e restaurantes de Goiana.
+              O Mês da Consciência Negra ganha seu ponto alto no dia 23 de Novembro na Povoação de São Lourenço. Moradores, mestres do coco e marisqueiras organizam a programação que une fé de matriz africana, jurema, gastronomia e homenagens às lideranças históricas do nosso território.
             </p>
             <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-100 dark:border-slate-700">
-              <span class="font-medium"><i class="fas fa-user-edit text-mar-600"></i> Redação São Lourenço Notícias</span>
-              <span class="text-coral-500 font-bold flex items-center gap-1">Ler matéria completa <i class="fas fa-arrow-right"></i></span>
+              <span class="font-medium"><i class="fas fa-user-edit text-mar-600"></i> Comissão Organizadora Quilombola</span>
+              <span class="text-coral-500 font-bold flex items-center gap-1">Ver programação completa <i class="fas fa-arrow-right"></i></span>
             </div>
           </div>
         </article>
@@ -771,14 +873,15 @@
             </div>
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Título do Comunicado:</label>
-              <input type="text" id="titulo-input" required placeholder="Ex: Toque de tambor / Sambada de Coco" 
+              <input type="text" id="titulo-input" required placeholder="Ex: Reunião preparatória para o dia 23 de Novembro" 
                 class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 focus:outline-none dark:text-white">
             </div>
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Categoria:</label>
               <select id="categoria-input" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 dark:text-white">
+                <option value="Festa do Quilombo">Festa do Quilombo (23/Nov)</option>
                 <option value="Tradição & Matriz Afro">Quilombo do Catucá & Matriz Afro</option>
-                <option value="Cultura & Coco">Coco de Roda & Tradições</option>
+                <option value="Cultura & Coco">Coco de Roda, Ciranda & Artesanato</option>
                 <option value="Pesca & Manguezal">Pesca, Siri, Marisco & Sururu</option>
                 <option value="Andada do Caranguejo">Andada do Caranguejo</option>
                 <option value="História & Fé">História & Padroeiro</option>
@@ -850,7 +953,7 @@
       <div>
         <p class="font-bold text-white text-sm">Portal São Lourenço Notícias</p>
         <p class="text-slate-400">Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE | Estuário do Rio Goiana</p>
-        <p class="text-[11px] text-amber-400/90 mt-1">Memória do Quilombo do Catucá • Axé dos Orixás & Jurema Sagrada • Coco de Roda • Berço das Marisqueiras</p>
+        <p class="text-[11px] text-amber-400/90 mt-1">Festa do Quilombo (23 de Novembro) • Quilombo do Catucá • Axé dos Orixás & Jurema Sagrada • Coco de Roda</p>
       </div>
       <p class="text-slate-400">Desenvolvido com orgulho para valorizar a memória quilombola, a fé afro-brasileira e os trabalhadores de São Lourenço.</p>
     </div>
@@ -1093,12 +1196,22 @@
     // NOTÍCIAS DA COMUNIDADE QUILOMBOLA & RELIGIÕES AFRO
     let noticias = [
       {
+        id: "noticia-festa-quilombo-23nov",
+        categoria: "Festa do Quilombo",
+        titulo: "Comunidade Quilombola de São Lourenço convida para a grande festa do dia 23 de Novembro",
+        autor: "Comissão Quilombola de São Lourenço",
+        data: "23 de Novembro",
+        imagem: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+        resumo: "Dia de exaltação à Consciência Negra com alvorada dos atabaques, cortejo de marisqueiras, capoeira e sambada de coco.",
+        corpo: `<p>No dia 23 de Novembro, a Povoação de São Lourenço celebra a sua grande <strong>Festa do Quilombo</strong>, fortalecendo a ancestralidade, a dignidade do povo negro e a preservação do estuário do Rio Goiana.</p><p>A celebração começa logo ao amanhecer com a saudação dos atabaques e bênçãos aos pescadores e marisqueiras. Ao meio-dia, as famílias se unem no almoço comunitário com os tradicionais frutos do mangue. À noite, a terra batida recebe os grupos de Coco de Roda e Ciranda, em um grande encontro de gerações.</p>`
+      },
+      {
         id: "noticia-catuca-malunguinho",
         categoria: "Tradição & Matriz Afro",
         titulo: "A força do Quilombo do Catucá e de Malunguinho ecoa na história viva de Povoação de São Lourenço",
         autor: "Memória Ancestral Quilombola",
         data: "Em Destaque",
-        imagem: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
+        imagem: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
         resumo: "Conexão histórica das matas e mangues da Zona da Mata Norte pernambucana como refúgio de guerreiros e mestres.",
         corpo: `<p>O Quilombo do Catucá foi um dos maiores movimentos de resistência e liberdade em Pernambuco. Liderado pelo emblemático Rei Malunguinho, o Catucá articulou rotas de fuga que iam das matas próximas ao Recife até as franjas do estuário de Goiana.</p><p>Na Povoação de São Lourenço, essa raiz de liberdade fundou terreiros e rituais sagrados de Jurema e Candomblé, mantendo a sabedoria dos mais velhos viva até os dias atuais.</p>`
       },
