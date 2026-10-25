@@ -35,12 +35,6 @@
               500: '#f97316',
               600: '#ea580c',
             },
-            terra: {
-              600: '#854d0e',
-              700: '#713f12',
-              800: '#5c330c',
-              900: '#422006',
-            },
             axe: {
               500: '#d97706',
               600: '#b45309',
@@ -83,20 +77,20 @@
 <body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-sans">
 
   <!-- ========================================== -->
-  <!-- ANÚNCIO GRANDE / MODAL DE BOAS-VINDAS EM DESTAQUE -->
+  <!-- MELHORIA 1: ANÚNCIO GRANDE POP-UP INTELIGENTE COM OPÇÃO 'NÃO MOSTRAR HOJE' -->
   <!-- ========================================== -->
-  <div id="modal-anuncio-grande" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300">
-    <div class="bg-white dark:bg-slate-800 max-w-lg w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-400 relative transform transition-all scale-100">
+  <div id="modal-anuncio-grande" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300">
+    <div class="bg-white dark:bg-slate-800 max-w-lg w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-400 relative transform transition-all">
       
       <!-- BOTÃO FECHAR 'X' -->
       <button onclick="fecharAnuncioGrande()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition shadow-lg">
         <i class="fas fa-times text-lg"></i>
       </button>
 
-      <!-- IMAGEM / CABEÇALHO DO ANÚNCIO -->
+      <!-- CABEÇALHO DO ANÚNCIO -->
       <div class="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-r from-amber-600 via-orange-600 to-mar-800">
         <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80" 
-             alt="São Lourenço Goiana" class="w-full h-full object-cover opacity-40">
+             alt="São Lourenço Goiana" class="w-full h-full object-cover opacity-35">
         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
         
         <div class="absolute bottom-4 left-6 right-6 text-white">
@@ -113,28 +107,38 @@
       <div class="p-6 sm:p-7 space-y-4">
         <div>
           <h3 class="text-lg font-black text-slate-900 dark:text-white leading-snug">
-            Seja bem-vindo ao Portal de São Lourenço!
+            Bem-vindo ao Portal de Povoação de São Lourenço!
           </h3>
           <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE
+            Comunidade Quilombola • Goiana - PE | Estuário do Rio Goiana
           </p>
         </div>
 
         <div class="bg-amber-50 dark:bg-slate-700/60 p-4 rounded-2xl border border-amber-200 dark:border-slate-600 space-y-2 text-xs">
           <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
-            Fique por dentro das novidades do nosso povoado, marés do Rio Goiana, clima ao vivo, pescarias e a grande celebração do <strong>Dia da Consciência Negra em 23 de Novembro</strong>.
+            Fique por dentro das marés do dia, avisos do manguezal, previsão do tempo para navegação e a celebração magna do <strong>Dia da Consciência Negra em 23 de Novembro</strong>.
           </p>
           <div class="flex items-center gap-2 text-amber-700 dark:text-amber-300 font-bold text-[11px] pt-1">
             <i class="fas fa-drum text-amber-500"></i> Ancestralidade, Coco de Roda e Resistência Quilombola!
           </div>
         </div>
 
-        <!-- BOTÕES DE AÇÃO -->
-        <div class="flex items-center gap-3 pt-2">
-          <button onclick="fecharAnuncioGrande()" class="flex-1 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-sm text-center shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center justify-center gap-2">
+        <!-- AÇÕES DO ANÚNCIO -->
+        <div class="space-y-3 pt-2">
+          <button onclick="fecharAnuncioGrande()" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-sm text-center shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2">
             <span>Acessar o Portal Agora</span>
             <i class="fas fa-arrow-right"></i>
           </button>
+          
+          <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 px-1">
+            <label class="flex items-center gap-2 cursor-pointer select-none">
+              <input type="checkbox" id="check-nao-mostrar-hoje" class="rounded text-amber-600 focus:ring-amber-500">
+              <span>Não mostrar mais este aviso hoje</span>
+            </label>
+            <button onclick="compartilharSiteWhatsApp()" class="text-emerald-600 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1">
+              <i class="fab fa-whatsapp"></i> Compartilhar
+            </button>
+          </div>
         </div>
       </div>
 
@@ -155,7 +159,7 @@
         </span>
       </div>
       
-      <!-- MINI RESUMO DO CLIMA E MARÉ NO TOPO -->
+      <!-- MINI RESUMO DO CLIMA E CONTROLES DE ACESSIBILIDADE -->
       <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
         <div class="bg-mar-900/70 px-2.5 py-1 rounded-full text-xs font-semibold text-amber-300 flex items-center gap-1.5 border border-mar-700">
           <i class="fas fa-temperature-high text-amber-400"></i> <span id="topo-temp">28.4°C</span>
@@ -167,6 +171,13 @@
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
           Maré: <span id="resumo-mare-topo">Vazante (1.2m)</span>
         </div>
+        
+        <!-- MELHORIA 2: CONTROLE DE TAMANHO DE FONTE (ACESSIBILIDADE PARA OS MAIS VELHOS) -->
+        <div class="flex items-center bg-mar-900/80 rounded-lg border border-mar-700 text-xs px-1">
+          <button onclick="alterarTamanhoFonte(-1)" class="px-1.5 py-1 hover:text-amber-300 transition" title="Diminuir texto">A-</button>
+          <button onclick="alterarTamanhoFonte(1)" class="px-1.5 py-1 hover:text-amber-300 font-bold transition" title="Aumentar texto">A+</button>
+        </div>
+
         <button id="btn-tema" class="p-1.5 rounded-lg bg-mar-700 hover:bg-mar-600 transition" title="Alternar Modo Escuro/Claro">
           <i class="fas fa-moon text-amber-300" id="icone-tema"></i>
         </button>
@@ -197,9 +208,12 @@
         <div class="flex items-center gap-2">
           <div class="relative flex-1 md:w-72">
             <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-            <input type="text" id="campo-busca" placeholder="Buscar consciência negra, maré, clima..." 
+            <input type="text" id="campo-busca" placeholder="Buscar notícia, maré, clima..." 
               class="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-mar-500 dark:text-white">
           </div>
+          <button onclick="reabrirAnuncioGrande()" class="p-2 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 hover:bg-amber-200 transition" title="Ver comunicado oficial">
+            <i class="fas fa-bell"></i>
+          </button>
           <a href="#voz-do-povo" class="bg-coral-500 hover:bg-coral-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm flex items-center gap-1.5 whitespace-nowrap">
             <i class="fas fa-bullhorn text-xs"></i> Enviar Pauta
           </a>
@@ -808,11 +822,16 @@
             </p>
           </div>
 
-          <div class="flex items-center gap-1.5 bg-mar-950/80 p-1.5 rounded-2xl border border-mar-700 text-xs overflow-x-auto" id="seletor-dias">
-            <button onclick="selecionarDiaMare(0)" class="btn-dia px-3 py-2 rounded-xl bg-sky-500 text-white font-bold transition">Hoje</button>
-            <button onclick="selecionarDiaMare(1)" class="btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition">Amanhã</button>
-            <button onclick="selecionarDiaMare(2)" class="btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition">+2 Dias</button>
-            <button onclick="selecionarDiaMare(3)" class="btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition">+3 Dias</button>
+          <div class="flex items-center gap-2 flex-wrap">
+            <button onclick="compartilharMareWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+              <i class="fab fa-whatsapp"></i> Enviar Maré no Zap
+            </button>
+            <div class="flex items-center gap-1.5 bg-mar-950/80 p-1.5 rounded-2xl border border-mar-700 text-xs overflow-x-auto" id="seletor-dias">
+              <button onclick="selecionarDiaMare(0)" class="btn-dia px-3 py-2 rounded-xl bg-sky-500 text-white font-bold transition">Hoje</button>
+              <button onclick="selecionarDiaMare(1)" class="btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition">Amanhã</button>
+              <button onclick="selecionarDiaMare(2)" class="btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition">+2 Dias</button>
+              <button onclick="selecionarDiaMare(3)" class="btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition">+3 Dias</button>
+            </div>
           </div>
         </div>
 
@@ -926,7 +945,7 @@
       <!-- LATERAL: VOZ DO POVO & TELEFONES ÚTEIS -->
       <aside class="space-y-6">
         
-        <!-- Enviar Pauta Comunitária -->
+        <!-- MELHORIA 3: ENVIAR PAUTA COM SALVAMENTO REAL NO NAVEGADOR (LOCALSTORAGE) -->
         <div id="voz-do-povo" class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
           <div class="flex items-center gap-3 mb-3">
             <div class="w-10 h-10 rounded-2xl bg-coral-500 text-white flex items-center justify-center text-lg shadow-sm">
@@ -946,7 +965,7 @@
             </div>
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Título do Comunicado:</label>
-              <input type="text" id="titulo-input" required placeholder="Ex: Organização do Dia da Consciência Negra" 
+              <input type="text" id="titulo-input" required placeholder="Ex: Aviso sobre a limpeza da beira do rio" 
                 class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 focus:outline-none dark:text-white">
             </div>
             <div>
@@ -969,6 +988,7 @@
             <button type="submit" class="w-full py-2.5 rounded-xl bg-mar-700 hover:bg-mar-800 text-white font-bold transition shadow flex items-center justify-center gap-1.5 text-xs">
               <i class="fas fa-paper-plane"></i> Publicar no Portal
             </button>
+            <p class="text-[10px] text-slate-400 text-center">Fica salvo automaticamente no navegador!</p>
           </form>
         </div>
 
@@ -1019,6 +1039,11 @@
     </div>
   </main>
 
+  <!-- MELHORIA 4: BOTÃO FLUTUANTE DE COMPARTILHAMENTO RÁPIDO NO WHATSAPP -->
+  <button onclick="compartilharSiteWhatsApp()" class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-110 active:scale-95" title="Compartilhar portal no WhatsApp">
+    <i class="fab fa-whatsapp text-3xl"></i>
+  </button>
+
   <!-- RODAPÉ LOCAL -->
   <footer class="bg-mar-900 text-slate-300 py-8 border-t border-mar-800 mt-12 text-xs">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
@@ -1049,7 +1074,10 @@
         </div>
         <h2 id="modal-titulo" class="text-2xl font-black text-slate-900 dark:text-white leading-tight mb-4"></h2>
         <div id="modal-corpo" class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed space-y-3 mb-6"></div>
-        <div class="pt-4 border-t border-slate-200 dark:border-slate-700 flex justify-end">
+        <div class="pt-4 border-t border-slate-200 dark:border-slate-700 flex items-center justify-between">
+          <button onclick="compartilharNoticiaAtualWhatsApp()" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-1.5">
+            <i class="fab fa-whatsapp"></i> Compartilhar no WhatsApp
+          </button>
           <button onclick="fecharModal()" class="px-5 py-2.5 rounded-xl bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 text-xs font-bold hover:bg-slate-300 transition">
             Fechar
           </button>
@@ -1081,7 +1109,7 @@
 
   <!-- SCRIPTS -->
   <script>
-    // SISTEMA DE SAUDAÇÃO AUTOMÁTICA CONFORME O HORÁRIO LOCAL
+    // SISTEMA DE SAUDAÇÃO AUTOMÁTICA
     function atualizarSaudacaoAutomatica() {
       const agora = new Date();
       const hora = agora.getHours();
@@ -1103,19 +1131,16 @@
         iconeEmoji = "🌙";
       }
 
-      // No topo da barra
       const elTopo = document.getElementById('saudacao-topo');
       if (elTopo) {
         elTopo.innerHTML = `<i class="fas ${iconeClasse}"></i> ${texto}`;
       }
 
-      // No letreiro
       const elLetreiro = document.getElementById('saudacao-letreiro');
       if (elLetreiro) {
         elLetreiro.innerText = texto;
       }
 
-      // NO ANÚNCIO GRANDE / POP-UP DE BOAS-VINDAS
       const elAnuncioTexto = document.getElementById('anuncio-texto-saudacao');
       const elAnuncioIcone = document.getElementById('anuncio-icone');
       if (elAnuncioTexto && elAnuncioIcone) {
@@ -1125,9 +1150,27 @@
     }
     atualizarSaudacaoAutomatica();
 
-    // FUNÇÃO PARA FECHAR O ANÚNCIO GRANDE
+    // GERENCIAMENTO INTELIGENTE DO ANÚNCIO GRANDE COM LOCALSTORAGE
+    function checarExibicaoAnuncio() {
+      const hoje = new Date().toDateString();
+      const bloqueioData = localStorage.getItem('anuncio_sl_bloqueio');
+      const modal = document.getElementById('modal-anuncio-grande');
+
+      if (bloqueioData === hoje) {
+        modal.style.display = 'none';
+      }
+    }
+    checarExibicaoAnuncio();
+
     function fecharAnuncioGrande() {
       const modal = document.getElementById('modal-anuncio-grande');
+      const checkNaoMostrar = document.getElementById('check-nao-mostrar-hoje');
+      
+      if (checkNaoMostrar && checkNaoMostrar.checked) {
+        const hoje = new Date().toDateString();
+        localStorage.setItem('anuncio_sl_bloqueio', hoje);
+      }
+
       if (modal) {
         modal.classList.add('opacity-0');
         modal.classList.add('pointer-events-none');
@@ -1135,6 +1178,46 @@
           modal.style.display = 'none';
         }, 300);
       }
+    }
+
+    function reabrirAnuncioGrande() {
+      const modal = document.getElementById('modal-anuncio-grande');
+      if (modal) {
+        modal.style.display = 'flex';
+        modal.classList.remove('opacity-0');
+        modal.classList.remove('pointer-events-none');
+      }
+    }
+
+    // MELHORIA: COMPARTILHAR NO WHATSAPP
+    function compartilharSiteWhatsApp() {
+      const texto = encodeURIComponent("Confira o Portal de Notícias de Povoação de São Lourenço (Goiana - PE) com a tábua de marés, clima ao vivo e o Dia da Consciência Negra: https://kessio12.github.io/noticias-saolourenco/");
+      window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
+    }
+
+    function compartilharMareWhatsApp() {
+      const status = document.getElementById('mare-status-texto').innerText;
+      const altura = document.getElementById('mare-altura-atual').innerText;
+      const proxima = document.getElementById('tempo-restante').innerText;
+      const desc = document.getElementById('proxima-mare-desc').innerText;
+      const texto = encodeURIComponent(`🌊 *Tábua de Marés - Povoação de São Lourenço (Goiana - PE)*\nStatus: ${status} (${altura})\n${desc} em: ${proxima}\nConfira completa no portal: https://kessio12.github.io/noticias-saolourenco/`);
+      window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
+    }
+
+    let noticiaAtualParaZap = null;
+    function compartilharNoticiaAtualWhatsApp() {
+      if(!noticiaAtualParaZap) return;
+      const texto = encodeURIComponent(`📰 *${noticiaAtualParaZap.titulo}*\n\nLeia mais no Portal São Lourenço Notícias: https://kessio12.github.io/noticias-saolourenco/`);
+      window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
+    }
+
+    // MELHORIA: CONTROLE DE TAMANHO DE FONTE
+    let zoomAtual = 100;
+    function alterarTamanhoFonte(delta) {
+      zoomAtual += delta * 5;
+      if(zoomAtual < 90) zoomAtual = 90;
+      if(zoomAtual > 125) zoomAtual = 125;
+      document.documentElement.style.fontSize = `${zoomAtual}%`;
     }
 
     const opcoesData = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -1321,8 +1404,8 @@
     setInterval(atualizarTemporizador, 1000);
     atualizarTemporizador();
 
-    // NOTÍCIAS DA COMUNIDADE QUILOMBOLA & RELIGIÕES AFRO
-    let noticias = [
+    // NOTÍCIAS PADRÃO DO POVOADO
+    const noticiasPadrao = [
       {
         id: "noticia-consciencia-negra-23nov",
         categoria: "Consciência Negra",
@@ -1385,10 +1468,26 @@
       }
     ];
 
+    // MELHORIA: CARREGAR NOTÍCIAS SALVAS PELOS MORADORES NO LOCALSTORAGE
+    function obterNoticiasTotais() {
+      const salvas = localStorage.getItem('noticias_comunitarias_sl');
+      if (salvas) {
+        try {
+          const parsed = JSON.parse(salvas);
+          return [...parsed, ...noticiasPadrao];
+        } catch(e) {
+          return noticiasPadrao;
+        }
+      }
+      return noticiasPadrao;
+    }
+
+    let noticias = obterNoticiasTotais();
+
     function renderizarNoticias(lista) {
       const feed = document.getElementById('lista-noticias');
       feed.innerHTML = '';
-      document.getElementById('contador-noticias').innerText = `${lista.length} matérias da comunidade`;
+      document.getElementById('contador-noticias').innerText = `${lista.length} matérias disponíveis`;
 
       lista.forEach(n => {
         feed.innerHTML += `
@@ -1429,6 +1528,7 @@
       renderizarNoticias(noticias.filter(n => n.titulo.toLowerCase().includes(termo) || n.resumo.toLowerCase().includes(termo)));
     });
 
+    // MELHORIA: SALVAR AVISO ENVIADO NO LOCALSTORAGE
     function enviarNoticiaComunidade(e) {
       e.preventDefault();
       const autor = document.getElementById('autor-input').value.trim();
@@ -1436,38 +1536,36 @@
       const categoria = document.getElementById('categoria-input').value;
       const texto = document.getElementById('texto-input').value.trim();
 
-      noticias.unshift({
+      const nova = {
         id: "comunidade-" + Date.now(),
         categoria: categoria,
         titulo: titulo,
         autor: autor,
-        data: "Agora mesmo",
+        data: "Publicado recentemente",
         imagem: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80",
-        resumo: texto.substring(0, 100) + "...",
+        resumo: texto.substring(0, 110) + "...",
         corpo: `<p>${texto}</p>`
-      });
+      };
+
+      // Recuperar salvas atuais
+      let salvas = [];
+      const salvasStorage = localStorage.getItem('noticias_comunitarias_sl');
+      if (salvasStorage) {
+        try { salvas = JSON.parse(salvasStorage); } catch(err) {}
+      }
+      salvas.unshift(nova);
+      localStorage.setItem('noticias_comunitarias_sl', JSON.stringify(salvas));
+
+      noticias = obterNoticiasTotais();
       renderizarNoticias(noticias);
       document.getElementById('form-noticia-comunitaria').reset();
-      alert("✅ Comunicado comunitário publicado com sucesso!");
+      alert("✅ Comunicado comunitário publicado e salvo com sucesso!");
     }
 
     function abrirNoticia(id) {
-      if(id === 'noticia-camarao-sl') {
-        document.getElementById('modal-img').src = "https://images.unsplash.com/photo-1559827291-72ee739d0d9a?auto=format&fit=crop&w=1200&q=80";
-        document.getElementById('modal-cat').innerText = "Carcinicultura • São Lourenço";
-        document.getElementById('modal-data').innerText = "Destaque";
-        document.getElementById('modal-autor').innerText = "Redação São Lourenço Notícias";
-        document.getElementById('modal-titulo').innerText = "Criadores de camarão de São Lourenço ajustam comportas e preparam despesca para o comércio local";
-        document.getElementById('modal-corpo').innerHTML = `
-          <p>Com a estabilidade das águas do estuário do Rio Goiana nesta época, os produtores de camarão dos viveiros de São Lourenço intensificaram o manejo hídrico diário.</p>
-          <p>A renovação por gravidade nas marés de sizígia garantiu ganho de peso nos lotes, que já começam a ser despescados para atender peixarias e restaurantes de Goiana e cidades vizinhas.</p>
-        `;
-        document.getElementById('modal-noticia').classList.remove('hidden');
-        document.getElementById('modal-noticia').classList.add('flex');
-        return;
-      }
       const item = noticias.find(n => n.id === id);
       if(!item) return;
+      noticiaAtualParaZap = item;
       document.getElementById('modal-img').src = item.imagem;
       document.getElementById('modal-cat').innerText = item.categoria;
       document.getElementById('modal-data').innerText = item.data;
@@ -1481,6 +1579,7 @@
     function fecharModal() {
       document.getElementById('modal-noticia').classList.add('hidden');
       document.getElementById('modal-noticia').classList.remove('flex');
+      noticiaAtualParaZap = null;
     }
 
     function abrirModalGuiaMare() {
