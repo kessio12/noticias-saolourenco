@@ -1,0 +1,21 @@
+<script>
+  function exibirSaudacao() {
+    const agora = new Date();
+    const hora = agora.getHours(); // Pega a hora atual (0 a 23)
+    let texto = "Olá!";
+
+    if (hora >= 5 && hora < 12) {
+      texto = "Bom dia!";
+    } else if (hora >= 12 && hora < 18) {
+      texto = "Boa tarde!";
+    } else {
+      texto = "Boa noite!";
+    }
+
+    // Insere o texto dentro do elemento criado
+    document.getElementById("saudacao").innerText = texto;
+  }
+
+  // Executa a função assim que o site carregar
+  exibirSaudacao();
+</script>
