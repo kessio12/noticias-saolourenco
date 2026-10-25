@@ -257,7 +257,7 @@
           ⚠️ Defeso: Aratu, Caranguejo & Guaiamum
         </button>
         <button onclick="filtrarCategoria('Satélite & Mapa')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-emerald-600 text-white font-bold hover:bg-emerald-500 whitespace-nowrap transition shadow-sm">
-          🛰️ Satélite & Território
+          🛰️ Satélite & Como Chegar
         </button>
         <button onclick="filtrarCategoria('Consciência Negra')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
           ✊ Consciência Negra (20/Nov)
@@ -534,15 +534,18 @@
             <i class="fas fa-satellite-dish text-emerald-600"></i> Localização Via Satélite de São Lourenço
           </h2>
           <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
-            Visão aérea oficial do território: curvas do Rio Goiana, esteiros, viveiros de camarão e a histórica Igreja Matriz de 1555.
+            Visão aérea oficial do território: Povoação de São Lourenço (CEP 55900-000), curvas do Rio Goiana, cais e a histórica Igreja Matriz de ~1555.
           </p>
         </div>
 
         <div class="flex items-center gap-2 flex-wrap">
-          <button onclick="obterMinhaLocalizacaoGps()" class="bg-mar-700 hover:bg-mar-800 text-white font-bold text-xs px-4 py-2 rounded-xl transition flex items-center gap-2 shadow">
-            <i class="fas fa-crosshairs"></i> Onde Estou no Satélite?
+          <button onclick="focarSaoLourenco()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-4 py-2 rounded-xl transition flex items-center gap-2 shadow">
+            <i class="fas fa-church"></i> Focar em São Lourenço
           </button>
-          <a href="https://maps.google.com/?q=-7.5583,-34.8878&t=k" target="_blank" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 text-slate-700 dark:text-slate-200 font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5">
+          <button onclick="obterMinhaLocalizacaoGps()" class="bg-mar-700 hover:bg-mar-800 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-2 shadow">
+            <i class="fas fa-crosshairs"></i> Meu GPS
+          </button>
+          <a href="https://maps.google.com/?q=-7.5857,-34.8508&z=17&t=k" target="_blank" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 text-slate-700 dark:text-slate-200 font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5">
             <i class="fas fa-external-link-alt"></i> Abrir no Google Maps
           </a>
         </div>
@@ -550,12 +553,12 @@
 
       <!-- MAPA VIA SATÉLITE INCORPORADO -->
       <div class="mt-6 rounded-3xl overflow-hidden border-2 border-slate-300 dark:border-slate-600 shadow-lg relative bg-slate-900 min-h-[380px]">
-        <iframe 
+        <iframe id="iframe-satelite"
           title="Mapa de Satélite de São Lourenço"
           class="w-full h-[400px] border-0"
           loading="lazy"
           allowfullscreen
-          src="https://maps.google.com/maps?q=-7.5583,-34.8878&t=k&z=15&ie=UTF8&iwloc=&output=embed">
+          src="https://maps.google.com/maps?q=-7.5857,-34.8508&t=k&z=17&ie=UTF8&iwloc=&output=embed">
         </iframe>
 
         <!-- PAINEL COM PONTOS CHAVE DEMARCADOS -->
@@ -568,18 +571,108 @@
               <i class="fas fa-water text-sky-400"></i> Rio Goiana & Mangue
             </span>
             <span class="flex items-center gap-1.5 text-emerald-300 font-bold">
-              <i class="fas fa-fish text-emerald-400"></i> Viveiros de Camarão
+              <i class="fas fa-users text-emerald-400"></i> Comunidade Quilombola (CEP 55900-000)
             </span>
             <span class="flex items-center gap-1.5 text-rose-300 font-bold">
               <i class="fas fa-clinic-medical text-rose-400"></i> Posto de Saúde (PSF)
             </span>
           </div>
-          <span id="status-gps" class="text-[11px] text-slate-300 font-mono">Coordenadas: 7°33'30"S 34°53'16"W</span>
+          <span id="status-gps" class="text-[11px] text-slate-300 font-mono">Povoação de São Lourenço • Goiana - PE • CEP: 55900-000</span>
+        </div>
+      </div>
+
+      <!-- GUIA DE ROTAS: COMO CHEGAR A SÃO LOURENÇO (DE CARRO, ÔNIBUS OU BARCO) -->
+      <div id="como-chegar" class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-5">
+          <div>
+            <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 dark:text-emerald-400">Guia de Acesso para Visitantes, Turistas & Pescadores</span>
+            <h3 class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white flex items-center gap-2 mt-0.5">
+              <i class="fas fa-route text-emerald-500"></i> Como Chegar em Povoação de São Lourenço
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+              Guia oficial de rotas a partir de Recife (PE), João Pessoa (PB) e travessia pelas águas do Rio Goiana.
+            </p>
+          </div>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Povoa%C3%A7%C3%A3o+de+S%C3%A3o+Louren%C3%A7o,+Goiana+-+PE,+55900-000" target="_blank" 
+             class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md hover:shadow-lg transition whitespace-nowrap transform active:scale-95">
+            <i class="fas fa-location-arrow"></i> Traçar Rota no GPS / Maps
+          </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 text-xs">
+          <!-- Rota 1: Vindo de Recife / Região Metropolitana -->
+          <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-black text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
+                  <i class="fas fa-car text-sky-500"></i> De Recife / Olinda (PE)
+                </span>
+                <span class="bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 px-2 py-0.5 rounded font-mono font-bold text-[11px]">~65 km (1h20)</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
+                Siga pela <strong>BR-101 Norte</strong> até a entrada do município de Goiana. Acesse a rodovia <strong>PE-049</strong> (sentido praias e Tejucupapo) e siga a sinalização para a <strong>Povoação de São Lourenço</strong>.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold flex items-center gap-1">
+              <i class="fas fa-check-circle"></i> Acesso fácil por pista asfaltada
+            </div>
+          </div>
+
+          <!-- Rota 2: Vindo de João Pessoa / Paraíba -->
+          <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-black text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
+                  <i class="fas fa-car text-amber-500"></i> De João Pessoa (PB)
+                </span>
+                <span class="bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 px-2 py-0.5 rounded font-mono font-bold text-[11px]">~55 km (55 min)</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
+                Desça pela <strong>BR-101 Sul</strong> cruzando a divisa PB/PE até o trevo de Goiana. Siga pela via de acesso aos distritos ribeirinhos que conduz direto à entrada principal do povoado.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1">
+              <i class="fas fa-map-marker-alt"></i> Ponto central: Igreja Matriz (~1555)
+            </div>
+          </div>
+
+          <!-- Rota 3: Travessia Fluvial / Barco & Canoa -->
+          <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="font-black text-slate-900 dark:text-white text-sm flex items-center gap-1.5">
+                  <i class="fas fa-ship text-teal-500"></i> Travessia Fluvial / Barco
+                </span>
+                <span class="bg-teal-100 dark:bg-teal-950 text-teal-800 dark:text-teal-300 px-2 py-0.5 rounded font-mono font-bold text-[11px]">Rio Goiana</span>
+              </div>
+              <p class="text-slate-600 dark:text-slate-300 leading-relaxed mt-2">
+                Passeio e travessia com canoeiros locais a partir de <strong>Acaú/Pitimbu (PB)</strong> ou portos vizinhos do estuário, com desembarque no cais comunitário e vista panorâmica dos manguezais.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-teal-700 dark:text-teal-300 font-semibold flex items-center gap-1">
+              <i class="fas fa-water"></i> Checar tábua de marés antes de zarpar
+            </div>
+          </div>
+        </div>
+
+        <!-- Dicas de Apoio ao Visitante -->
+        <div class="mt-4 bg-emerald-50 dark:bg-slate-900/60 p-4 rounded-2xl border border-emerald-200 dark:border-slate-600 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-base flex-shrink-0">
+              <i class="fas fa-info-circle"></i>
+            </div>
+            <span class="text-slate-700 dark:text-slate-300">
+              <strong>Orientações úteis para turistas:</strong> O território conta com rede de telefonia móvel e internet 4G, cobertura de PSF municipal, pequenos comércios tradicionais e comércio de marisco direto do produtor (aceitam Pix e dinheiro).
+            </span>
+          </div>
+          <a href="https://api.whatsapp.com/send?text=Veja%20como%20chegar%20em%20Povoa%C3%A7%C3%A3o%20de%20S%C3%A3o%20Louren%C3%A7o%20(Goiana%20-%20PE):%20https://kessio12.github.io/noticias-saolourenco/%23como-chegar" target="_blank" class="text-emerald-700 dark:text-emerald-300 hover:underline font-bold whitespace-nowrap flex items-center gap-1.5 flex-shrink-0">
+            <i class="fab fa-whatsapp"></i> Compartilhar Rotas
+          </a>
         </div>
       </div>
     </section>
 
-    <!-- SEÇÃO DESTAQUE: DIA DA CONSCIÊNCIA NEGRA EM SÃO LOURENÇO (23 DE NOVEMBRO) -->
+    <!-- SEÇÃO DESTAQUE: DIA DA CONSCIÊNCIA NEGRA EM SÃO LOURENÇO (20 DE NOVEMBRO) -->
     <section class="bg-gradient-to-br from-amber-700 via-orange-800 to-stone-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-amber-400 relative overflow-hidden">
       <div class="absolute -right-8 -bottom-8 opacity-10 text-9xl font-black select-none pointer-events-none">
         <i class="fas fa-fist-raised"></i>
@@ -870,7 +963,7 @@
     <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
       <div class="lg:col-span-2 space-y-8">
         
-        <!-- MATÉRIA DE DESTAQUE: DIA DA CONSCIÊNCIA NEGRA 23 DE NOVEMBRO -->
+        <!-- MATÉRIA DE DESTAQUE: DIA DA CONSCIÊNCIA NEGRA 20 DE NOVEMBRO -->
         <article class="bg-white dark:bg-slate-800 rounded-3xl overflow-hidden shadow-sm hover:shadow-md transition border border-slate-200 dark:border-slate-700 group cursor-pointer" onclick="abrirNoticia('noticia-consciencia-negra-20nov')">
           <div class="relative h-64 sm:h-80 overflow-hidden">
             <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1200&q=80" 
@@ -1020,7 +1113,16 @@
         <p class="text-slate-400">Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE | Estuário do Rio Goiana</p>
         <p class="text-[11px] text-amber-400/90 mt-1">Qualidade da Maré • Guia de Defeso do Aratu & Caranguejo • Localização Satélite • Consciência Negra (20/Nov)</p>
       </div>
-      <p class="text-slate-400">Desenvolvido com orgulho para valorizar a memória quilombola, a fé afro-brasileira e os trabalhadores de São Lourenço.</p>
+      <div class="flex flex-col sm:items-end gap-2">
+        <p class="text-slate-400">Desenvolvido com orgulho para valorizar a memória quilombola, a fé afro-brasileira e os trabalhadores de São Lourenço.</p>
+        <div class="flex items-center gap-3 text-slate-400 text-xs">
+          <button onclick="abrirModalPrivacidade()" class="hover:text-amber-300 underline transition">Política de Privacidade</button>
+          <span>•</span>
+          <button onclick="abrirModalSobre()" class="hover:text-amber-300 underline transition">Sobre o Portal</button>
+          <span>•</span>
+          <a href="#voz-do-povo" class="hover:text-amber-300 underline transition">Contato / Redação</a>
+        </div>
+      </div>
     </div>
   </footer>
 
@@ -1071,6 +1173,75 @@
       </div>
       <div class="mt-6 text-right">
         <button onclick="fecharModalGuiaMare()" class="px-5 py-2 bg-mar-700 text-white font-bold rounded-xl text-xs">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- MODAL POLÍTICA DE PRIVACIDADE (PADRÃO GOOGLE ADSENSE E LGPD) -->
+  <div id="modal-privacidade" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 max-w-2xl w-full max-h-[85vh] rounded-3xl overflow-y-auto p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs sm:text-sm space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+          <i class="fas fa-user-shield text-emerald-500"></i> Política de Privacidade
+        </h3>
+        <button onclick="fecharModalPrivacidade()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <i class="fas fa-times text-lg"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 leading-relaxed text-slate-600 dark:text-slate-300">
+        <p>Esta Política de Privacidade descreve como o <strong>Portal São Lourenço Notícias</strong> coleta, usa e protege as informações dos usuários que acessam nossa plataforma comunitária.</p>
+
+        <h4 class="font-bold text-slate-900 dark:text-white pt-2">1. Coleta e Uso de Informações</h4>
+        <p>Nosso portal é um serviço comunitário informativo e de livre acesso. Coletamos dados técnicos genéricos e anônimos (como tipo de navegador, páginas visualizadas e tempo de permanência) estritamente para medir o alcance do portal e aprimorar a entrega de dados sobre marés, clima e alertas locais.</p>
+
+        <h4 class="font-bold text-slate-900 dark:text-white pt-2">2. Cookies e Tecnologias de Terceiros</h4>
+        <p>Utilizamos serviços confiáveis de terceiros, incluindo o <strong>Google Analytics</strong> e sistemas de monetização automática como o <strong>Google AdSense</strong>. Esses fornecedores terceirizados utilizam cookies para veicular anúncios com base nas visitas anteriores do usuário a este ou outros sites na internet.</p>
+        <p>Os usuários podem optar por desativar a publicidade personalizada acessando as <a href="https://adssettings.google.com" target="_blank" class="text-sky-500 underline">Configurações de anúncios do Google</a>.</p>
+
+        <h4 class="font-bold text-slate-900 dark:text-white pt-2">3. Envio de Conteúdo Comunitário ("Voz do Povo")</h4>
+        <p>Ao enviar comunicados ou sugestões através de nossos formulários voluntários, o usuário consente com a exibição pública de seu nome e das informações prestadas para fins estritamente comunitários e informativos.</p>
+
+        <h4 class="font-bold text-slate-900 dark:text-white pt-2">4. Armazenamento e Segurança (LGPD)</h4>
+        <p>Em conformidade com a Lei Geral de Proteção de Dados (Lei nº 13.709/2018 - LGPD), garantimos que nenhum dado pessoal sensível é comercializado ou compartilhado indevidamente com terceiros.</p>
+      </div>
+
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-700 text-right">
+        <button onclick="fecharModalPrivacidade()" class="px-5 py-2.5 bg-mar-700 hover:bg-mar-800 text-white font-bold rounded-xl text-xs transition">
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL SOBRE O PORTAL -->
+  <div id="modal-sobre" class="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-800 max-w-xl w-full max-h-[85vh] rounded-3xl overflow-y-auto p-6 sm:p-8 shadow-2xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 text-xs sm:text-sm space-y-4">
+      <div class="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-slate-700">
+        <h3 class="text-lg font-black text-slate-900 dark:text-white flex items-center gap-2">
+          <i class="fas fa-drum text-amber-500"></i> Sobre o Portal São Lourenço Notícias
+        </h3>
+        <button onclick="fecharModalSobre()" class="text-slate-400 hover:text-slate-600 dark:hover:text-white">
+          <i class="fas fa-times text-lg"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 leading-relaxed text-slate-600 dark:text-slate-300">
+        <p>O <strong>Portal São Lourenço Notícias</strong> é uma iniciativa independente voltada para os moradores, catadores de caranguejo, marisqueiras, pescadores e produtores da <strong>Povoação de São Lourenço (Goiana - PE)</strong>, no estuário do Rio Goiana.</p>
+        <p>Nossa missão é unir tecnologia acessível, valorização da ancestralidade quilombola e utilidade pública diária:</p>
+        <ul class="list-disc pl-5 space-y-1">
+          <li>Monitoramento hidrográfico e tábua de marés em tempo real;</li>
+          <li>Previsão pluviométrica e alertas climáticos para os viveiros e lavouras;</li>
+          <li>Defesa ambiental através de conscientização dos períodos de defeso;</li>
+          <li>Registro e difusão das tradições do Coco de Roda, Ciranda e Consciência Negra.</li>
+        </ul>
+      </div>
+
+      <div class="pt-4 border-t border-slate-200 dark:border-slate-700 text-right">
+        <button onclick="fecharModalSobre()" class="px-5 py-2.5 bg-mar-700 hover:bg-mar-800 text-white font-bold rounded-xl text-xs transition">
+          Fechar
+        </button>
       </div>
     </div>
   </div>
@@ -1144,6 +1315,21 @@
     }
 
     // LOCALIZAÇÃO GPS DO VISITANTE
+    
+    function focarSaoLourenco() {
+      const iframe = document.getElementById('iframe-satelite');
+      const status = document.getElementById('status-gps');
+      const coordsSL = "-7.5857,-34.8508";
+      if (iframe) {
+        iframe.src = `https://maps.google.com/maps?q=${coordsSL}&t=k&z=17&ie=UTF8&iwloc=&output=embed`;
+      }
+      if (status) {
+        status.innerHTML = `<span class="text-amber-300 font-bold">📍 Focado em São Lourenço (Goiana - PE • CEP 55900-000)</span>`;
+      }
+      // Se estiver no celular, abre direto no app Maps sem precisar navegar
+      window.open(`https://maps.google.com/?q=${coordsSL}&z=17&t=k`, '_blank');
+    }
+
     function obterMinhaLocalizacaoGps() {
       const status = document.getElementById('status-gps');
       if (!navigator.geolocation) {
@@ -1516,6 +1702,24 @@
       document.getElementById('modal-noticia').classList.add('hidden');
       document.getElementById('modal-noticia').classList.remove('flex');
       noticiaAtualParaZap = null;
+    }
+
+    
+    function abrirModalPrivacidade() {
+      const modal = document.getElementById('modal-privacidade');
+      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
+    }
+    function fecharModalPrivacidade() {
+      const modal = document.getElementById('modal-privacidade');
+      if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
+    }
+    function abrirModalSobre() {
+      const modal = document.getElementById('modal-sobre');
+      if (modal) { modal.classList.remove('hidden'); modal.classList.add('flex'); }
+    }
+    function fecharModalSobre() {
+      const modal = document.getElementById('modal-sobre');
+      if (modal) { modal.classList.add('hidden'); modal.classList.remove('flex'); }
     }
 
     function abrirModalGuiaMare() {
