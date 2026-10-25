@@ -1,0 +1,24 @@
+{
+  "name": "Portal São Lourenço Notícias",
+  "short_name": "São Lourenço",
+  "description": "Portal Comunitário de Povoação de São Lourenço (Goiana - PE): Marés, Clima, Defeso, Satélite e Cultura Quilombola.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0c4a6e",
+  "theme_color": "#0c4a6e",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
