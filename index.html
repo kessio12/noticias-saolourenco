@@ -282,7 +282,7 @@
         <div class="ticker-move space-x-8">
           <span>👋 <strong id="saudacao-letreiro">Olá</strong> a todos os moradores, pescadores, marisqueiras e visitantes de São Lourenço!</span>
           <span>⚠️ <strong>Defeso do Aratu & Caranguejo:</strong> Proibida cata de fêmeas ovadas e respeito rigoroso aos dias de andada!</span>
-          <span>🌊 <strong>Qualidade da Água:</strong> Estuário do Rio Goiana em boas condições para mariscagem e renovação de tanques.</span>
+          <span>🌊 <strong>Água & Manguezal:</strong> pH 8.0, salinidade 24 ppt e nitrato puro! Consulte se o mangue tá no seco ou com água para catar aratu.</span>
           <span>🛰️ <strong>Visão Satélite:</strong> Mapa em tempo real com localização dos mangues, portos e patrimônio secular.</span>
           <span>✊ <strong>Dia da Consciência Negra (20 de Novembro):</strong> Celebração magna com cortejo, atabaques e sambada de coco!</span>
           <span>⛪ <strong>Igreja Matriz (~1555):</strong> Fé secular e história colonial às margens do Rio Goiana.</span>
@@ -295,25 +295,26 @@
   <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
 
     <!-- ======================================================== -->
-    <!-- NOVA SEÇÃO 1: QUALIDADE DA MARÉ E CONDIÇÕES DO RIO GOIANA -->
+        <!-- ======================================================== -->
+    <!-- NOVA SEÇÃO 1: QUALIDADE DA MARÉ, QUÍMICA DA ÁGUA & SITUAÇÃO DO MANGUE -->
     <!-- ======================================================== -->
     <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
         <div>
           <div class="inline-flex items-center gap-2 bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
-            <i class="fas fa-water"></i> Monitoramento Hidrográfico & Pesqueiro
+            <i class="fas fa-flask"></i> Monitoramento Hidrográfico, Químico & Pesqueiro
           </div>
           <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <i class="fas fa-tint text-sky-500"></i> Qualidade da Maré & Estado das Águas
+            <i class="fas fa-tint text-sky-500"></i> Qualidade da Água & Situação do Manguezal
           </h2>
           <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
-            Avaliação das condições da água no Canal de São Lourenço e Rio Goiana para cata de marisco, tarrafa, canoas e viveiros.
+            Análise em tempo real de <strong>pH, salinidade, nitrato, oxigênio</strong> e guia prático: <em>situação do mangue no seco ou com água</em> para cata de aratu e lida no estuário.
           </p>
         </div>
 
         <div class="flex items-center gap-2 flex-wrap">
           <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 rounded-xl font-black text-xs">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span> Condição Geral: Ótima para a Lida
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span> Água Limpa & Mangue Farto
           </span>
           <button onclick="compartilharMareWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-1.5 rounded-xl transition flex items-center gap-1.5 shadow">
             <i class="fab fa-whatsapp"></i> Avisar no Zap
@@ -321,69 +322,185 @@
         </div>
       </div>
 
-      <!-- CARDS DE QUALIDADE DA MARÉ -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
-        
-        <div class="bg-sky-50/70 dark:bg-slate-700/50 p-5 rounded-2xl border border-sky-200 dark:border-slate-600 flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs uppercase font-bold text-sky-700 dark:text-sky-400">Tipo de Correnteza</span>
-            <i class="fas fa-water text-sky-500 text-lg"></i>
+      <!-- STATUS EM DESTAQUE: MANGUE NO SECO OU COM ÁGUA -->
+      <div class="mt-6 bg-gradient-to-r from-amber-500/15 via-emerald-500/10 to-sky-500/15 dark:from-amber-950/40 dark:via-emerald-950/30 dark:to-sky-950/40 p-4 sm:p-5 rounded-3xl border border-amber-300/60 dark:border-slate-600 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="flex items-center gap-3.5">
+          <div class="w-12 h-12 rounded-2xl bg-amber-500 text-mar-950 flex items-center justify-center text-2xl shadow flex-shrink-0">
+            🦀
           </div>
           <div>
-            <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Maré de Sizígia</div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">"Água Viva" • Correnteza forte no esteiro principal</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-sky-200 dark:border-slate-600 text-[11px] text-sky-700 dark:text-sky-300 font-semibold">
-            <i class="fas fa-check-circle mr-1"></i> Seca muito e enche muito (Ideal p/ coroas)
+            <div class="flex items-center gap-2 flex-wrap">
+              <span class="text-xs uppercase font-extrabold tracking-wider text-amber-800 dark:text-amber-300">Condição do Terreno Agora:</span>
+              <span id="badge-mangue-status" class="bg-amber-500 text-mar-950 text-xs font-black px-2.5 py-0.5 rounded-full uppercase shadow-sm">
+                🌿 Manguezal no Seco (Vazante)
+              </span>
+            </div>
+            <p class="text-xs sm:text-sm text-slate-700 dark:text-slate-200 mt-1" id="desc-mangue-status">
+              A maré está baixa: a lama preta e as raízes estão descobertas. <strong>Hora ideal para catar aratu no chão e caranguejo na toca a pé!</strong>
+            </p>
           </div>
         </div>
 
-        <div class="bg-emerald-50/70 dark:bg-slate-700/50 p-5 rounded-2xl border border-emerald-200 dark:border-slate-600 flex flex-col justify-between">
+        <div class="flex items-center gap-2 w-full md:w-auto justify-end">
+          <button onclick="alternarExplicacaoMangue('seco')" class="btn-mangue-toggle px-3 py-1.5 rounded-xl bg-amber-500 text-mar-950 font-bold text-xs transition active:scale-95 shadow">
+            Ver Lida no Seco
+          </button>
+          <button onclick="alternarExplicacaoMangue('agua')" class="btn-mangue-toggle px-3 py-1.5 rounded-xl bg-sky-600 hover:bg-sky-500 text-white font-bold text-xs transition active:scale-95 shadow">
+            Ver Lida com Água
+          </button>
+        </div>
+      </div>
+
+      <!-- CARDS DETALHADOS DE PARÂMETROS QUÍMICOS E FÍSICOS -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
+        
+        <!-- CARD 1: pH DA ÁGUA -->
+        <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-xs uppercase font-bold text-emerald-700 dark:text-emerald-400">Salinidade do Estuário</span>
+            <span class="text-xs uppercase font-bold text-sky-700 dark:text-sky-400">pH da Água (Acidez)</span>
+            <div class="w-8 h-8 rounded-lg bg-sky-500/20 text-sky-600 dark:text-sky-400 flex items-center justify-center text-sm font-bold">
+              pH
+            </div>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">8.0 <span class="text-xs font-semibold text-emerald-500">(Ideal)</span></div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Levemente alcalino (faixa natural entre 7.8 e 8.2)</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-emerald-700 dark:text-emerald-300 font-semibold flex items-center gap-1">
+            <i class="fas fa-shield-alt"></i> Casca do caranguejo/aratu dura e saudável
+          </div>
+        </div>
+
+        <!-- CARD 2: SALINIDADE & OXIGÊNIO -->
+        <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs uppercase font-bold text-emerald-700 dark:text-emerald-400">Salinidade & Oxigênio</span>
             <i class="fas fa-flask text-emerald-500 text-lg"></i>
           </div>
           <div>
-            <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Salobro Ideal (24 ppt)</div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Equilíbrio perfeito entre o rio doce e a entrada do mar</p>
+            <div class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">24 ppt <span class="text-sm font-bold text-slate-400">/ 6.5 mg/L</span></div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Salobro equilibrado e água rica em oxigênio</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-emerald-200 dark:border-slate-600 text-[11px] text-emerald-700 dark:text-emerald-300 font-semibold">
-            <i class="fas fa-check-circle mr-1"></i> Excelente para engorda de camarão e siri
-          </div>
-        </div>
-
-        <div class="bg-teal-50/70 dark:bg-slate-700/50 p-5 rounded-2xl border border-teal-200 dark:border-slate-600 flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-2">
-            <span class="text-xs uppercase font-bold text-teal-700 dark:text-teal-400">Transparência & Visibilidade</span>
-            <i class="fas fa-eye text-teal-500 text-lg"></i>
-          </div>
-          <div>
-            <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Água Limpa (Média)</div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Boa visibilidade na vazante; turva na reponta da cheia</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-teal-200 dark:border-slate-600 text-[11px] text-teal-700 dark:text-teal-300 font-semibold">
-            <i class="fas fa-ship mr-1"></i> Favorável para tarrafa e covos
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-emerald-700 dark:text-emerald-300 font-semibold flex items-center gap-1">
+            <i class="fas fa-check-circle"></i> Perfeito para engorda de camarão e siri
           </div>
         </div>
 
-        <div class="bg-amber-50/70 dark:bg-slate-700/50 p-5 rounded-2xl border border-amber-200 dark:border-slate-600 flex flex-col justify-between">
+        <!-- CARD 3: NITRATO & PUREZA QUÍMICA -->
+        <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-xs uppercase font-bold text-amber-700 dark:text-amber-400">Segurança de Navegação</span>
-            <i class="fas fa-compass text-amber-500 text-lg"></i>
+            <span class="text-xs uppercase font-bold text-teal-700 dark:text-teal-400">Nitrato & Amônia</span>
+            <i class="fas fa-vial text-teal-500 text-lg"></i>
           </div>
           <div>
-            <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Canoa Segura</div>
-            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Ventos em 18 km/h • Sem perigo de rebojos repentinos</p>
+            <div class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">&lt; 0.15 mg/L</div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Níveis indetectáveis de poluição ou químicos</p>
           </div>
-          <div class="mt-4 pt-3 border-t border-amber-200 dark:border-slate-600 text-[11px] text-amber-700 dark:text-amber-300 font-semibold">
-            <i class="fas fa-life-ring mr-1"></i> Travessia para os manguezais liberada
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-teal-700 dark:text-teal-300 font-semibold flex items-center gap-1">
+            <i class="fas fa-check-double"></i> Sururu, marisco e peixe 100% próprios
+          </div>
+        </div>
+
+        <!-- CARD 4: TEMPERATURA DA ÁGUA VS AR -->
+        <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs uppercase font-bold text-amber-700 dark:text-amber-400">Temperatura Água / Ar</span>
+            <i class="fas fa-temperature-low text-amber-500 text-lg"></i>
+          </div>
+          <div>
+            <div class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white font-mono">27.6°C <span class="text-sm font-bold text-slate-400">/ 29°C</span></div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Água morna estuarina, sem choque térmico</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-amber-700 dark:text-amber-300 font-semibold flex items-center gap-1">
+            <i class="fas fa-sun"></i> Aratus ativos e pastando normalmente
           </div>
         </div>
 
       </div>
-    </section>
 
-    <!-- ======================================================== -->
+      <!-- GUIA PRÁTICO DA LIDA: ARATU NO SECO VS. ARATU COM ÁGUA -->
+      <div class="mt-8 pt-6 border-t border-slate-200 dark:border-slate-700">
+        <div class="flex items-center gap-2 mb-4">
+          <span class="w-8 h-8 rounded-xl bg-amber-500 text-mar-950 flex items-center justify-center font-black text-sm">
+            💡
+          </span>
+          <div>
+            <h3 class="text-lg sm:text-xl font-black text-slate-900 dark:text-white leading-tight">
+              Como Entender o Mangue: Pegar Aratu no Seco ou com Água?
+            </h3>
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+              O saber dos catadores e marisqueiras de São Lourenço para não perder a viagem no estuário do Rio Goiana.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 text-xs">
+          
+          <!-- COLUNA 1: ARATU NO SECO -->
+          <div id="box-lida-seco" class="bg-amber-50/70 dark:bg-slate-900/60 p-5 rounded-2xl border-2 border-amber-400 dark:border-amber-500/60 space-y-3 transition">
+            <div class="flex items-center justify-between pb-2 border-b border-amber-200 dark:border-slate-700">
+              <span class="font-black text-amber-950 dark:text-amber-300 text-sm sm:text-base flex items-center gap-2">
+                <i class="fas fa-shoe-prints text-amber-600"></i> 1. Pegar Aratu no Seco (Baixa-mar / Vaza)
+              </span>
+              <span class="bg-amber-400 text-mar-950 font-black px-2 py-0.5 rounded text-[10px] uppercase">A Pé na Lama</span>
+            </div>
+            <ul class="space-y-2 text-slate-700 dark:text-slate-300 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-amber-600 mt-0.5 flex-shrink-0"></i>
+                <span><strong>O que acontece com o mangue:</strong> A maré seca e recua, deixando o chão de lama preta (vaza) e a base das raízes do mangue-vermelho totalmente expostas ao sol.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-amber-600 mt-0.5 flex-shrink-0"></i>
+                <span><strong>Onde o aratu fica:</strong> Ele desce dos troncos e corre pelo chão de lodo para se alimentar dos nutrientes da vaza úmida. Fica muito ligeiro no chão e nas raízes baixas.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-amber-600 mt-0.5 flex-shrink-0"></i>
+                <span><strong>Como catar:</strong> O catador anda a pé com bota, meia grossa ou descalço nas áreas firmes. Pega-se direto no chão com a mão ou prensando com agilidade. É o momento de maior rendimento para encher o balde!</span>
+              </li>
+              <li class="flex items-start gap-2 text-amber-800 dark:text-amber-300 font-bold">
+                <i class="fas fa-hand-point-right mt-0.5 flex-shrink-0"></i>
+                <span><strong>Caranguejo-Uçá:</strong> Só se tira caranguejo na toca no seco! Na cheia a água cobre a galeria e ele se tranca no fundo.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- COLUNA 2: ARATU COM ÁGUA -->
+          <div id="box-lida-agua" class="bg-sky-50/70 dark:bg-slate-900/60 p-5 rounded-2xl border-2 border-sky-400 dark:border-sky-500/60 space-y-3 transition">
+            <div class="flex items-center justify-between pb-2 border-b border-sky-200 dark:border-slate-700">
+              <span class="font-black text-sky-950 dark:text-sky-300 text-sm sm:text-base flex items-center gap-2">
+                <i class="fas fa-ship text-sky-600"></i> 2. Pegar Aratu com Água (Preamar / Cheia)
+              </span>
+              <span class="bg-sky-500 text-white font-black px-2 py-0.5 rounded text-[10px] uppercase">De Canoa / Galhas Altas</span>
+            </div>
+            <ul class="space-y-2 text-slate-700 dark:text-slate-300 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-sky-600 mt-0.5 flex-shrink-0"></i>
+                <span><strong>O que acontece com o mangue:</strong> A maré sobe com força e inunda o interior da floresta de manguezal, cobrindo o lodo com 1 a 2 metros de água salobra.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-sky-600 mt-0.5 flex-shrink-0"></i>
+                <span><strong>Onde o aratu fica:</strong> O aratu não nada no fundo da água; para fugir do afogamento e dos peixes predadores, ele <strong>sobe para os galhos altos, folhas e copas</strong> das árvores de mangue.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <i class="fas fa-check text-sky-600 mt-0.5 flex-shrink-0"></i>
+                <span><strong>Como catar:</strong> O catador não anda na lama. Ele entra remando na canoa por dentro dos esteiros cheios e recolhe os aratus direto das folhas e galhas altas com as mãos ou bicheiro, de forma limpa.</span>
+              </li>
+              <li class="flex items-start gap-2 text-sky-800 dark:text-sky-300 font-bold">
+                <i class="fas fa-hand-point-right mt-0.5 flex-shrink-0"></i>
+                <span><strong>Viveiros & Tarrafa:</strong> É a hora que a água limpa do mar entra no estuário — momento perfeito para abrir comportas dos viveiros e tarrafear siri e saúna na canoa.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="mt-4 p-3.5 bg-slate-100 dark:bg-slate-700/60 rounded-2xl flex items-center justify-between text-xs text-slate-600 dark:text-slate-300">
+          <span>⚠️ <em>Lembrete da comunidade:</em> Mesmo pegando no seco ou na água de canoa, <strong>fêmeas com ovas amarelas ou escuras devem ser soltas</strong> para o manguezal nunca morrer!</span>
+          <a href="#como-chegar" class="text-mar-700 dark:text-sky-400 font-bold hover:underline whitespace-nowrap ml-2">Ver Mapa das Gamboas</a>
+        </div>
+      </div>
+    </section>
+<!-- ======================================================== -->
     <!-- NOVA SEÇÃO 2: GUIA DE DEFESO: ARATU, CARANGUEJO E ESPÉCIES -->
     <!-- ======================================================== -->
     <section class="bg-gradient-to-br from-amber-950 via-slate-900 to-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-amber-500/60">
@@ -1316,6 +1433,42 @@
 
     // LOCALIZAÇÃO GPS DO VISITANTE
     
+    
+    function alternarExplicacaoMangue(modo) {
+      const boxSeco = document.getElementById('box-lida-seco');
+      const boxAgua = document.getElementById('box-lida-agua');
+      const badge = document.getElementById('badge-mangue-status');
+      const desc = document.getElementById('desc-mangue-status');
+
+      if (modo === 'seco') {
+        if (boxSeco) {
+          boxSeco.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          boxSeco.classList.add('ring-4', 'ring-amber-400');
+          setTimeout(() => boxSeco.classList.remove('ring-4', 'ring-amber-400'), 2500);
+        }
+        if (badge) {
+          badge.className = "bg-amber-500 text-mar-950 text-xs font-black px-2.5 py-0.5 rounded-full uppercase shadow-sm";
+          badge.innerText = "🌿 Manguezal no Seco (Vazante)";
+        }
+        if (desc) {
+          desc.innerHTML = "A maré está baixa: a lama preta e as raízes estão descobertas. <strong>Hora ideal para catar aratu no chão e caranguejo na toca a pé!</strong>";
+        }
+      } else {
+        if (boxAgua) {
+          boxAgua.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          boxAgua.classList.add('ring-4', 'ring-sky-400');
+          setTimeout(() => boxAgua.classList.remove('ring-4', 'ring-sky-400'), 2500);
+        }
+        if (badge) {
+          badge.className = "bg-sky-600 text-white text-xs font-black px-2.5 py-0.5 rounded-full uppercase shadow-sm";
+          badge.innerText = "🌊 Manguezal com Água (Preamar)";
+        }
+        if (desc) {
+          desc.innerHTML = "A maré está cheia: água encobre a lama do manguezal. <strong>Os aratus sobem para as galhas altas (cata limpa de canoa) e comportas dos viveiros podem ser abertas!</strong>";
+        }
+      }
+    }
+
     function focarSaoLourenco() {
       const iframe = document.getElementById('iframe-satelite');
       const status = document.getElementById('status-gps');
@@ -1362,7 +1515,7 @@
       const altura = document.getElementById('mare-altura-atual').innerText;
       const proxima = document.getElementById('tempo-restante').innerText;
       const desc = document.getElementById('proxima-mare-desc').innerText;
-      const texto = encodeURIComponent(`🌊 *Qualidade da Maré - São Lourenço (Goiana - PE)*\nStatus: ${status} (${altura})\n${desc} em: ${proxima}\nSalinidade ideal e água própria para mariscagem!\nVeja no portal: https://kessio12.github.io/noticias-saolourenco/`);
+      const texto = encodeURIComponent(`🌊 *Qualidade da Água & Situação do Mangue - São Lourenço (Goiana - PE)*\nMaré: ${status} (${altura})\npH: 8.0 • Salinidade: 24 ppt • Nitrato Limpo\nStatus do Manguezal: Consulte se tá no seco ou com água para catar aratu!\nVeja no portal: https://kessio12.github.io/noticias-saolourenco/`);
       window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
     }
 
