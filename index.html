@@ -82,11 +82,69 @@
 </head>
 <body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-sans">
 
+  <!-- ========================================== -->
+  <!-- ANÚNCIO GRANDE / MODAL DE BOAS-VINDAS EM DESTAQUE -->
+  <!-- ========================================== -->
+  <div id="modal-anuncio-grande" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md flex items-center justify-center p-4 transition-opacity duration-300">
+    <div class="bg-white dark:bg-slate-800 max-w-lg w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-400 relative transform transition-all scale-100">
+      
+      <!-- BOTÃO FECHAR 'X' -->
+      <button onclick="fecharAnuncioGrande()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition shadow-lg">
+        <i class="fas fa-times text-lg"></i>
+      </button>
+
+      <!-- IMAGEM / CABEÇALHO DO ANÚNCIO -->
+      <div class="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-r from-amber-600 via-orange-600 to-mar-800">
+        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80" 
+             alt="São Lourenço Goiana" class="w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent"></div>
+        
+        <div class="absolute bottom-4 left-6 right-6 text-white">
+          <span class="inline-flex items-center gap-1.5 bg-amber-400 text-stone-950 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider mb-2 shadow">
+            <i class="fas fa-bullhorn"></i> Comunicado Oficial
+          </span>
+          <h2 id="anuncio-saudacao" class="text-3xl sm:text-4xl font-black text-white tracking-tight flex items-center gap-2">
+            <span id="anuncio-icone">☀️</span> <span id="anuncio-texto-saudacao">Bom dia!</span>
+          </h2>
+        </div>
+      </div>
+
+      <!-- CORPO DO ANÚNCIO GRANDE -->
+      <div class="p-6 sm:p-7 space-y-4">
+        <div>
+          <h3 class="text-lg font-black text-slate-900 dark:text-white leading-snug">
+            Seja bem-vindo ao Portal de São Lourenço!
+          </h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
+            Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE
+          </p>
+        </div>
+
+        <div class="bg-amber-50 dark:bg-slate-700/60 p-4 rounded-2xl border border-amber-200 dark:border-slate-600 space-y-2 text-xs">
+          <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
+            Fique por dentro das novidades do nosso povoado, marés do Rio Goiana, clima ao vivo, pescarias e a grande celebração do <strong>Dia da Consciência Negra em 23 de Novembro</strong>.
+          </p>
+          <div class="flex items-center gap-2 text-amber-700 dark:text-amber-300 font-bold text-[11px] pt-1">
+            <i class="fas fa-drum text-amber-500"></i> Ancestralidade, Coco de Roda e Resistência Quilombola!
+          </div>
+        </div>
+
+        <!-- BOTÕES DE AÇÃO -->
+        <div class="flex items-center gap-3 pt-2">
+          <button onclick="fecharAnuncioGrande()" class="flex-1 py-3.5 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-sm text-center shadow-lg hover:shadow-xl transition transform active:scale-95 flex items-center justify-center gap-2">
+            <span>Acessar o Portal Agora</span>
+            <i class="fas fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- BARRA DE TOPO COM SAUDAÇÃO AUTOMÁTICA, IDENTIFICAÇÃO QUILOMBOLA & ESTAÇÃO DO CLIMA -->
   <header class="bg-mar-800 text-slate-100 border-b border-mar-700">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-xs sm:text-sm gap-2">
       <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
-        <!-- SAUDAÇÃO DINÂMICA AUTOMÁTICA -->
         <span id="saudacao-topo" class="bg-amber-400 text-mar-950 font-black px-2.5 py-0.5 rounded-full text-xs flex items-center gap-1 shadow-sm">
           <i class="fas fa-sun"></i> Olá!
         </span>
@@ -1028,30 +1086,56 @@
       const agora = new Date();
       const hora = agora.getHours();
       let texto = "Olá!";
-      let icone = "fa-hand-sparkles";
+      let iconeClasse = "fa-hand-sparkles";
+      let iconeEmoji = "👋";
 
       if (hora >= 5 && hora < 12) {
         texto = "Bom dia!";
-        icone = "fa-sun";
+        iconeClasse = "fa-sun";
+        iconeEmoji = "☀️";
       } else if (hora >= 12 && hora < 18) {
         texto = "Boa tarde!";
-        icone = "fa-cloud-sun";
+        iconeClasse = "fa-cloud-sun";
+        iconeEmoji = "🌤️";
       } else {
         texto = "Boa noite!";
-        icone = "fa-moon";
+        iconeClasse = "fa-moon";
+        iconeEmoji = "🌙";
       }
 
+      // No topo da barra
       const elTopo = document.getElementById('saudacao-topo');
       if (elTopo) {
-        elTopo.innerHTML = `<i class="fas ${icone}"></i> ${texto}`;
+        elTopo.innerHTML = `<i class="fas ${iconeClasse}"></i> ${texto}`;
       }
 
+      // No letreiro
       const elLetreiro = document.getElementById('saudacao-letreiro');
       if (elLetreiro) {
         elLetreiro.innerText = texto;
       }
+
+      // NO ANÚNCIO GRANDE / POP-UP DE BOAS-VINDAS
+      const elAnuncioTexto = document.getElementById('anuncio-texto-saudacao');
+      const elAnuncioIcone = document.getElementById('anuncio-icone');
+      if (elAnuncioTexto && elAnuncioIcone) {
+        elAnuncioTexto.innerText = texto;
+        elAnuncioIcone.innerText = iconeEmoji;
+      }
     }
     atualizarSaudacaoAutomatica();
+
+    // FUNÇÃO PARA FECHAR O ANÚNCIO GRANDE
+    function fecharAnuncioGrande() {
+      const modal = document.getElementById('modal-anuncio-grande');
+      if (modal) {
+        modal.classList.add('opacity-0');
+        modal.classList.add('pointer-events-none');
+        setTimeout(() => {
+          modal.style.display = 'none';
+        }, 300);
+      }
+    }
 
     const opcoesData = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const hojeFormatado = new Date().toLocaleDateString('pt-BR', opcoesData);
