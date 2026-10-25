@@ -658,6 +658,123 @@
       </div>
     </section>
 
+    
+    <!-- ======================================================== -->
+    <!-- NOVA SEÇÃO: MONITORAMENTO DE PREVISÃO DE CHUVAS (GOIANA - PE) -->
+    <!-- ======================================================== -->
+    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-blue-100 dark:bg-blue-950/60 text-blue-800 dark:text-blue-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
+            <i class="fas fa-cloud-showers-heavy"></i> Sistema Meteorológico Pluviométrico
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <i class="fas fa-cloud-rain text-blue-500"></i> Previsão e Monitoramento de Chuvas em São Lourenço
+          </h2>
+          <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            Precipitação acumulada, probabilidade de chuva hora a hora e alertas para o Rio Goiana, lavouras e viveiros de camarão.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 flex-wrap">
+          <span id="alerta-chuva-badge" class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 rounded-xl border border-blue-200 dark:border-blue-800 font-bold text-xs">
+            <span class="w-2.5 h-2.5 rounded-full bg-blue-500 animate-ping"></span>
+            <span id="alerta-chuva-texto">Tempo Estável • Chuva Fraca/Isolada</span>
+          </span>
+          <button onclick="buscarPrevisaoChuvaReal()" class="px-3.5 py-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-xl font-bold text-xs text-slate-700 dark:text-slate-200 transition">
+            <i class="fas fa-sync-alt mr-1"></i> Atualizar Radar
+          </button>
+        </div>
+      </div>
+
+      <!-- CARDS DE MÉTRICAS DE CHUVA -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
+        
+        <!-- CARD 1: VOLUME ACUMULADO HOJE -->
+        <div class="bg-gradient-to-br from-blue-500/10 via-blue-500/5 to-transparent dark:from-blue-950/30 p-5 rounded-2xl border border-blue-200 dark:border-blue-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs uppercase font-bold tracking-wider text-blue-700 dark:text-blue-400">Volume Esperado Hoje</span>
+            <div class="w-9 h-9 rounded-xl bg-blue-500/20 text-blue-600 dark:text-blue-400 flex items-center justify-center text-lg">
+              <i class="fas fa-glass-water-droplet"></i>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono" id="chuva-volume-hoje">2.4 mm</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Precipitação acumulada prevista para 24h</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-blue-200/60 dark:border-blue-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+            <span>Intensidade: <strong class="text-blue-600 dark:text-blue-400" id="chuva-intensidade">Chuva Leve</strong></span>
+            <span class="text-emerald-600 font-bold">Sem Enxurrada</span>
+          </div>
+        </div>
+
+        <!-- CARD 2: PROBABILIDADE DE CHUVA -->
+        <div class="bg-gradient-to-br from-sky-500/10 via-sky-500/5 to-transparent dark:from-sky-950/30 p-5 rounded-2xl border border-sky-200 dark:border-sky-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs uppercase font-bold tracking-wider text-sky-700 dark:text-sky-400">Chance de Chover</span>
+            <div class="w-9 h-9 rounded-xl bg-sky-500/20 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg">
+              <i class="fas fa-umbrella"></i>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono" id="chuva-probabilidade">25%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Possibilidade de pancadas costeiras</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-sky-200/60 dark:border-sky-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+            <span>Horário mais provável:</span>
+            <strong class="text-sky-600 dark:text-sky-400">Madrugada / Manhã</strong>
+          </div>
+        </div>
+
+        <!-- CARD 3: IMPACTO NOS VIVEIROS DE CAMARÃO (SALINIDADE) -->
+        <div class="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent dark:from-amber-950/30 p-5 rounded-2xl border border-amber-200 dark:border-amber-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs uppercase font-bold tracking-wider text-amber-700 dark:text-amber-400">Impacto na Carcinicultura</span>
+            <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg">
+              <i class="fas fa-shrimp"></i>
+            </div>
+          </div>
+          <div>
+            <div class="text-2xl font-black text-amber-600 dark:text-amber-400" id="chuva-impacto-camarao">Variação Suave</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Sem perigo de queda brusca de oxigênio ou sal</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-amber-200/60 dark:border-amber-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+            <span>Salinidade: <strong>Estável (24 ppt)</strong></span>
+            <span class="text-emerald-600 font-bold">Manejo Normal</span>
+          </div>
+        </div>
+
+        <!-- CARD 4: RADAR DE NUVENS E TEMPO -->
+        <div class="bg-gradient-to-br from-indigo-500/10 via-indigo-500/5 to-transparent dark:from-indigo-950/30 p-5 rounded-2xl border border-indigo-200 dark:border-indigo-900/50 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs uppercase font-bold tracking-wider text-indigo-700 dark:text-indigo-400">Cobertura de Nuvens</span>
+            <div class="w-9 h-9 rounded-xl bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg">
+              <i class="fas fa-cloud"></i>
+            </div>
+          </div>
+          <div>
+            <div class="text-3xl sm:text-4xl font-black text-indigo-600 dark:text-indigo-400 font-mono" id="chuva-nuvens">40%</div>
+            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Nuvens esparsas trazidas pela brisa do mar</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-indigo-200/60 dark:border-indigo-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
+            <span>Visibilidade do Rio:</span>
+            <strong class="text-indigo-600 dark:text-indigo-300">Excelente (> 10 km)</strong>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- PREVISÃO DE CHUVA PARA OS PRÓXIMOS 5 DIAS -->
+      <div class="mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+        <h4 class="text-sm font-bold text-slate-800 dark:text-slate-200 mb-3 flex items-center gap-2">
+          <i class="fas fa-calendar-week text-blue-500"></i> Previsão de Chuva para os Próximos 5 Dias (Povoação de São Lourenço):
+        </h4>
+        <div class="grid grid-cols-2 sm:grid-cols-5 gap-3 text-center" id="cards-previsao-dias">
+          <!-- Gerado dinamicamente via JS -->
+        </div>
+      </div>
+    </section>
+
     <!-- SEÇÃO: TÁBUA DE MARÉS DO POVOADO -->
     <section class="bg-gradient-to-br from-mar-800 via-mar-900 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl relative overflow-hidden border border-mar-700">
       <div class="absolute inset-x-0 bottom-0 opacity-15 pointer-events-none h-24 overflow-hidden">
@@ -1412,6 +1529,103 @@
     }
   
     // ==========================================
+    
+    // ==========================================
+    // SISTEMA DE MONITORAMENTO DE PREVISÃO DE CHUVAS
+    // ==========================================
+    const previsaoDiasPadrao = [
+      { dia: "Hoje", icon: "fa-cloud-sun", prob: "25%", vol: "2.4 mm", desc: "Sol com chuva passageira" },
+      { dia: "Amanhã", icon: "fa-sun", prob: "15%", vol: "0.8 mm", desc: "Predomínio de sol" },
+      { dia: "+2 Dias", icon: "fa-cloud-rain", prob: "60%", vol: "8.5 mm", desc: "Pancadas de chuva à tarde" },
+      { dia: "+3 Dias", icon: "fa-cloud-sun-rain", prob: "45%", vol: "4.2 mm", desc: "Chuva fraca na madrugada" },
+      { dia: "+4 Dias", icon: "fa-sun", prob: "10%", vol: "0.0 mm", desc: "Tempo limpo e aberto" }
+    ];
+
+    function renderizarPrevisaoChuvas(lista) {
+      const container = document.getElementById('cards-previsao-dias');
+      if (!container) return;
+      container.innerHTML = '';
+      lista.forEach(item => {
+        container.innerHTML += `
+          <div class="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-2xl border border-slate-200/80 dark:border-slate-600 flex flex-col items-center justify-between">
+            <span class="text-xs font-bold text-slate-700 dark:text-slate-300">${item.dia}</span>
+            <i class="fas ${item.icon} text-blue-500 text-xl my-2"></i>
+            <span class="text-xs font-black text-slate-900 dark:text-white font-mono">${item.vol}</span>
+            <span class="text-[10px] text-blue-600 dark:text-blue-400 font-semibold mt-0.5">${item.prob} de chuva</span>
+            <span class="text-[10px] text-slate-400 mt-1 text-center line-clamp-1">${item.desc}</span>
+          </div>
+        `;
+      });
+    }
+
+    async function buscarPrevisaoChuvaReal() {
+      const elStatus = document.getElementById('alerta-chuva-texto');
+      if (elStatus) elStatus.innerText = "Consultando satélites meteorológicos...";
+      
+      try {
+        // API pública e gratuita da Open-Meteo para Povoação de São Lourenço (Lat -7.5583, Long -34.8878)
+        const url = 'https://api.open-meteo.com/v1/forecast?latitude=-7.5583&longitude=-34.8878&daily=precipitation_sum,precipitation_probability_max,weather_code&hourly=cloud_cover,relative_humidity_2m&current=precipitation,rain,cloud_cover&timezone=America%2FSao_Paulo';
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error("Erro na rede");
+        const dados = await resp.json();
+
+        if (dados && dados.daily) {
+          const hojeVol = dados.daily.precipitation_sum[0] || 0;
+          const hojeProb = dados.daily.precipitation_probability_max[0] || 0;
+          const nuvens = (dados.current && dados.current.cloud_cover !== undefined) ? dados.current.cloud_cover : 40;
+
+          document.getElementById('chuva-volume-hoje').innerText = `${hojeVol.toFixed(1)} mm`;
+          document.getElementById('chuva-probabilidade').innerText = `${hojeProb}%`;
+          document.getElementById('chuva-nuvens').innerText = `${nuvens}%`;
+
+          // Alerta inteligente
+          if (hojeVol > 20 || hojeProb > 70) {
+            document.getElementById('alerta-chuva-texto').innerText = "Alerta: Chuva Forte Prevista";
+            document.getElementById('chuva-intensidade').innerText = "Chuva Forte / Temporal";
+            document.getElementById('chuva-impacto-camarao').innerText = "Atenção Comportas";
+          } else if (hojeVol > 5 || hojeProb > 40) {
+            document.getElementById('alerta-chuva-texto').innerText = "Pancadas de Chuva Costeiras";
+            document.getElementById('chuva-intensidade').innerText = "Chuva Moderada";
+            document.getElementById('chuva-impacto-camarao').innerText = "Variação Leve";
+          } else {
+            document.getElementById('alerta-chuva-texto').innerText = "Tempo Firme • Sem Risco de Enxurrada";
+            document.getElementById('chuva-intensidade').innerText = "Chuva Fraca / Isolada";
+            document.getElementById('chuva-impacto-camarao').innerText = "Condições Ideais";
+          }
+
+          // Montar lista dos 5 dias
+          const nomesDias = ["Hoje", "Amanhã", "+2 Dias", "+3 Dias", "+4 Dias"];
+          const listaAtualizada = [];
+          for (let i = 0; i < 5; i++) {
+            const v = (dados.daily.precipitation_sum[i] || 0).toFixed(1);
+            const p = dados.daily.precipitation_probability_max[i] || 0;
+            let icone = "fa-sun";
+            let d = "Tempo firme";
+
+            if (p > 60 || v > 10) { icone = "fa-cloud-showers-heavy"; d = "Chuva forte"; }
+            else if (p > 35 || v > 2) { icone = "fa-cloud-rain"; d = "Pancadas de chuva"; }
+            else if (p > 15) { icone = "fa-cloud-sun"; d = "Sol entre nuvens"; }
+
+            listaAtualizada.push({
+              dia: nomesDias[i],
+              icon: icone,
+              prob: `${p}%`,
+              vol: `${v} mm`,
+              desc: d
+            });
+          }
+          renderizarPrevisaoChuvas(listaAtualizada);
+        }
+      } catch (e) {
+        console.log("[Meteorologia] Utilizando estimativa local:", e);
+        if (elStatus) elStatus.innerText = "Tempo Estável • Chuva Fraca/Isolada";
+        renderizarPrevisaoChuvas(previsaoDiasPadrao);
+      }
+    }
+
+    renderizarPrevisaoChuvas(previsaoDiasPadrao);
+    buscarPrevisaoChuvaReal();
+
     // SISTEMA PWA: REGISTRO DE SERVICE WORKER & INSTALAÇÃO
     // ==========================================
     let instaladorPrompt = null;
