@@ -1,0 +1,29 @@
+<!-- MAPA VIA SATÉLITE INCORPORADO -->
+      <div class="mt-6 rounded-3xl overflow-hidden border-2 border-slate-300 dark:border-slate-600 shadow-lg relative bg-slate-900 min-h-[380px]">
+        <iframe 
+          title="Mapa de Satélite de São Lourenço"
+          class="w-full h-[400px] border-0"
+          loading="lazy"
+          allowfullscreen
+          src="https://maps.google.com/maps?q=-7.5857,-34.8508&t=k&z=16&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+
+        <!-- PAINEL COM PONTOS CHAVE DEMARCADOS -->
+        <div class="absolute bottom-4 left-4 right-4 bg-slate-950/85 backdrop-blur-md p-3.5 rounded-2xl border border-slate-700 text-white text-xs flex flex-wrap items-center justify-between gap-3 shadow-xl">
+          <div class="flex items-center gap-4 flex-wrap">
+            <span class="flex items-center gap-1.5 text-amber-300 font-bold">
+              <i class="fas fa-church text-amber-400"></i> Igreja Matriz (~1555)
+            </span>
+            <span class="flex items-center gap-1.5 text-sky-300 font-bold">
+              <i class="fas fa-water text-sky-400"></i> Rio Goiana & Mangue
+            </span>
+            <span class="flex items-center gap-1.5 text-emerald-300 font-bold">
+              <i class="fas fa-users text-emerald-400"></i> Comunidade de São Lourenço
+            </span>
+            <span class="flex items-center gap-1.5 text-rose-300 font-bold">
+              <i class="fas fa-clinic-medical text-rose-400"></i> Posto de Saúde (PSF)
+            </span>
+          </div>
+          <span id="status-gps" class="text-[11px] text-slate-300 font-mono">Povoação de São Lourenço • Goiana - PE • CEP: 55900-000</span>
+        </div>
+      </div>
