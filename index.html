@@ -63,7 +63,7 @@
     }
     .ticker-move {
       display: inline-block;
-      animation: ticker 38s linear infinite;
+      animation: ticker 42s linear infinite;
     }
     .ticker-move:hover {
       animation-play-state: paused;
@@ -77,17 +77,15 @@
 <body class="bg-slate-100 text-slate-800 dark:bg-slate-900 dark:text-slate-100 min-h-screen transition-colors duration-300 font-sans">
 
   <!-- ========================================== -->
-  <!-- MELHORIA 1: ANÚNCIO GRANDE POP-UP INTELIGENTE COM OPÇÃO 'NÃO MOSTRAR HOJE' -->
+  <!-- ANÚNCIO GRANDE POP-UP INTELIGENTE COM OPÇÃO 'NÃO MOSTRAR HOJE' -->
   <!-- ========================================== -->
   <div id="modal-anuncio-grande" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300">
     <div class="bg-white dark:bg-slate-800 max-w-lg w-full rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-400 relative transform transition-all">
       
-      <!-- BOTÃO FECHAR 'X' -->
       <button onclick="fecharAnuncioGrande()" class="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition shadow-lg">
         <i class="fas fa-times text-lg"></i>
       </button>
 
-      <!-- CABEÇALHO DO ANÚNCIO -->
       <div class="relative h-48 sm:h-56 overflow-hidden bg-gradient-to-r from-amber-600 via-orange-600 to-mar-800">
         <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=1000&q=80" 
              alt="São Lourenço Goiana" class="w-full h-full object-cover opacity-35">
@@ -95,7 +93,7 @@
         
         <div class="absolute bottom-4 left-6 right-6 text-white">
           <span class="inline-flex items-center gap-1.5 bg-amber-400 text-stone-950 text-xs font-black px-3 py-1 rounded-full uppercase tracking-wider mb-2 shadow">
-            <i class="fas fa-bullhorn"></i> Comunicado Oficial
+            <i class="fas fa-bullhorn"></i> Comunicado Oficial da Comunidade
           </span>
           <h2 id="anuncio-saudacao" class="text-3xl sm:text-4xl font-black text-white tracking-tight flex items-center gap-2">
             <span id="anuncio-icone">☀️</span> <span id="anuncio-texto-saudacao">Bom dia!</span>
@@ -103,27 +101,25 @@
         </div>
       </div>
 
-      <!-- CORPO DO ANÚNCIO GRANDE -->
       <div class="p-6 sm:p-7 space-y-4">
         <div>
           <h3 class="text-lg font-black text-slate-900 dark:text-white leading-snug">
             Bem-vindo ao Portal de Povoação de São Lourenço!
           </h3>
           <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Comunidade Quilombola • Goiana - PE | Estuário do Rio Goiana
+            Território Quilombola • Goiana - PE | Estuário do Rio Goiana
           </p>
         </div>
 
         <div class="bg-amber-50 dark:bg-slate-700/60 p-4 rounded-2xl border border-amber-200 dark:border-slate-600 space-y-2 text-xs">
           <p class="text-slate-700 dark:text-slate-200 leading-relaxed">
-            Fique por dentro das marés do dia, avisos do manguezal, previsão do tempo para navegação e a celebração magna do <strong>Dia da Consciência Negra em 23 de Novembro</strong>.
+            Consulte a <strong>qualidade da maré</strong>, o guia de <strong>defeso do aratu e caranguejo</strong>, mapa via satélite e a festa do <strong>Dia da Consciência Negra em 23 de Novembro</strong>.
           </p>
           <div class="flex items-center gap-2 text-amber-700 dark:text-amber-300 font-bold text-[11px] pt-1">
-            <i class="fas fa-drum text-amber-500"></i> Ancestralidade, Coco de Roda e Resistência Quilombola!
+            <i class="fas fa-drum text-amber-500"></i> Tradição viva, respeito ao manguezal e pesca sustentável!
           </div>
         </div>
 
-        <!-- AÇÕES DO ANÚNCIO -->
         <div class="space-y-3 pt-2">
           <button onclick="fecharAnuncioGrande()" class="w-full py-3.5 px-4 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-white font-black text-sm text-center shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2">
             <span>Acessar o Portal Agora</span>
@@ -133,7 +129,7 @@
           <div class="flex items-center justify-between text-xs text-slate-500 dark:text-slate-400 px-1">
             <label class="flex items-center gap-2 cursor-pointer select-none">
               <input type="checkbox" id="check-nao-mostrar-hoje" class="rounded text-amber-600 focus:ring-amber-500">
-              <span>Não mostrar mais este aviso hoje</span>
+              <span>Não mostrar hoje</span>
             </label>
             <button onclick="compartilharSiteWhatsApp()" class="text-emerald-600 dark:text-emerald-400 font-bold hover:underline flex items-center gap-1">
               <i class="fab fa-whatsapp"></i> Compartilhar
@@ -145,7 +141,7 @@
     </div>
   </div>
 
-  <!-- BARRA DE TOPO COM SAUDAÇÃO AUTOMÁTICA, IDENTIFICAÇÃO QUILOMBOLA & ESTAÇÃO DO CLIMA -->
+  <!-- BARRA DE TOPO COM SAUDAÇÃO AUTOMÁTICA & CLIMA -->
   <header class="bg-mar-800 text-slate-100 border-b border-mar-700">
     <div class="max-w-7xl mx-auto px-4 py-2 flex flex-wrap justify-between items-center text-xs sm:text-sm gap-2">
       <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
@@ -159,7 +155,6 @@
         </span>
       </div>
       
-      <!-- MINI RESUMO DO CLIMA E CONTROLES DE ACESSIBILIDADE -->
       <div class="flex items-center gap-2 sm:gap-3 flex-wrap">
         <div class="bg-mar-900/70 px-2.5 py-1 rounded-full text-xs font-semibold text-amber-300 flex items-center gap-1.5 border border-mar-700">
           <i class="fas fa-temperature-high text-amber-400"></i> <span id="topo-temp">28.4°C</span>
@@ -172,7 +167,6 @@
           Maré: <span id="resumo-mare-topo">Vazante (1.2m)</span>
         </div>
         
-        <!-- MELHORIA 2: CONTROLE DE TAMANHO DE FONTE (ACESSIBILIDADE PARA OS MAIS VELHOS) -->
         <div class="flex items-center bg-mar-900/80 rounded-lg border border-mar-700 text-xs px-1">
           <button onclick="alterarTamanhoFonte(-1)" class="px-1.5 py-1 hover:text-amber-300 transition" title="Diminuir texto">A-</button>
           <button onclick="alterarTamanhoFonte(1)" class="px-1.5 py-1 hover:text-amber-300 font-bold transition" title="Aumentar texto">A+</button>
@@ -199,7 +193,7 @@
                 SÃO LOURENÇO <span class="text-coral-500">NOTÍCIAS</span>
               </h1>
               <p class="text-xs text-slate-500 dark:text-slate-400 font-medium tracking-wide uppercase mt-1">
-                Dia da Consciência Negra (23/Nov), Herança do Catucá, Matriz Afro, Pesca e Marés • Goiana - PE
+                Qualidade da Maré, Defeso do Aratu/Caranguejo, Satélite, Cultura & Vivências • Goiana - PE
               </p>
             </div>
           </a>
@@ -208,10 +202,10 @@
         <div class="flex items-center gap-2">
           <div class="relative flex-1 md:w-72">
             <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-            <input type="text" id="campo-busca" placeholder="Buscar notícia, maré, clima..." 
+            <input type="text" id="campo-busca" placeholder="Buscar defeso, aratu, maré, satélite..." 
               class="w-full pl-10 pr-4 py-2 text-sm bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 rounded-full focus:outline-none focus:ring-2 focus:ring-mar-500 dark:text-white">
           </div>
-          <button onclick="reabrirAnuncioGrande()" class="p-2 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 hover:bg-amber-200 transition" title="Ver comunicado oficial">
+          <button onclick="reabrirAnuncioGrande()" class="p-2 rounded-full bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 hover:bg-amber-200 transition" title="Ver comunicado">
             <i class="fas fa-bell"></i>
           </button>
           <a href="#voz-do-povo" class="bg-coral-500 hover:bg-coral-600 text-white text-sm font-semibold px-4 py-2 rounded-full transition shadow-sm flex items-center gap-1.5 whitespace-nowrap">
@@ -223,23 +217,20 @@
       <!-- NAVEGAÇÃO DE CATEGORIAS -->
       <nav class="flex items-center gap-2 overflow-x-auto pt-3 mt-2 border-t border-slate-100 dark:border-slate-700 text-sm font-medium no-scrollbar">
         <button onclick="filtrarCategoria('todas')" class="btn-filtro active px-3.5 py-1.5 rounded-full bg-mar-600 text-white whitespace-nowrap transition">Todas</button>
-        <button onclick="filtrarCategoria('Consciência Negra')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-amber-500 text-mar-950 font-bold hover:bg-amber-400 whitespace-nowrap transition shadow-sm">
-          ✊ Dia da Consciência Negra (23 de Novembro)
+        <button onclick="filtrarCategoria('Qualidade da Maré')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-sky-600 text-white font-bold hover:bg-sky-500 whitespace-nowrap transition shadow-sm">
+          🌊 Qualidade da Maré & Águas
         </button>
-        <button onclick="filtrarCategoria('Tradição & Matriz Afro')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🔥 Quilombo do Catucá & Matriz Afro
+        <button onclick="filtrarCategoria('Defeso & Espécies')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-amber-500 text-mar-950 font-bold hover:bg-amber-400 whitespace-nowrap transition shadow-sm">
+          ⚠️ Defeso: Aratu, Caranguejo & Guaiamum
+        </button>
+        <button onclick="filtrarCategoria('Satélite & Mapa')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-emerald-600 text-white font-bold hover:bg-emerald-500 whitespace-nowrap transition shadow-sm">
+          🛰️ Satélite & Território
+        </button>
+        <button onclick="filtrarCategoria('Consciência Negra')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
+          ✊ Consciência Negra (23/Nov)
         </button>
         <button onclick="filtrarCategoria('Cultura & Coco')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🪘 Coco de Roda, Ciranda & Tradições
-        </button>
-        <button onclick="filtrarCategoria('Pesca & Manguezal')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          🦀 Pesca, Siri, Marisco & Sururu
-        </button>
-        <button onclick="filtrarCategoria('Andada do Caranguejo')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          ⚠️ Andada & Defeso
-        </button>
-        <button onclick="filtrarCategoria('História & Fé')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
-          ⛪ Igreja de 1555 & Padroeiro
+          🪘 Coco de Roda & Tradições
         </button>
         <button onclick="filtrarCategoria('Economia & Viveiros')" class="btn-filtro px-3.5 py-1.5 rounded-full bg-slate-200 dark:bg-slate-700 text-slate-700 dark:text-slate-200 hover:bg-mar-100 dark:hover:bg-slate-600 whitespace-nowrap transition">
           🦐 Viveiros de Camarão
@@ -257,11 +248,10 @@
       <div class="ticker-wrap flex-1">
         <div class="ticker-move space-x-8">
           <span>👋 <strong id="saudacao-letreiro">Olá</strong> a todos os moradores, pescadores, marisqueiras e visitantes de São Lourenço!</span>
-          <span>✊ <strong>Dia da Consciência Negra (23 de Novembro):</strong> Celebração magna com cortejo histórico, atabaques e sambada de coco!</span>
-          <span>🔥 <strong>Herança de Malunguinho & Catucá:</strong> Resistência quilombola viva nas matas e águas do estuário de Goiana.</span>
-          <span>🌊 <strong>Axé dos Orixás & Jurema Sagrada:</strong> Gratidão às águas que sustentam a nossa comunidade.</span>
-          <span>🦀 <strong>Fartura do Mangue:</strong> Safra de caranguejo-uçá, siri-azul, marisco unha-de-velho e sururu.</span>
-          <span>⚠️ <strong>Atenção ao Defeso:</strong> Respeite os períodos de andada nas luas cheia e nova.</span>
+          <span>⚠️ <strong>Defeso do Aratu & Caranguejo:</strong> Proibida cata de fêmeas ovadas e respeito rigoroso aos dias de andada!</span>
+          <span>🌊 <strong>Qualidade da Água:</strong> Estuário do Rio Goiana em boas condições para mariscagem e renovação de tanques.</span>
+          <span>🛰️ <strong>Visão Satélite:</strong> Mapa em tempo real com localização dos mangues, portos e patrimônio secular.</span>
+          <span>✊ <strong>Dia da Consciência Negra (23 de Novembro):</strong> Celebração magna com cortejo, atabaques e sambada de coco!</span>
           <span>⛪ <strong>Igreja Matriz (~1555):</strong> Fé secular e história colonial às margens do Rio Goiana.</span>
         </div>
       </div>
@@ -270,6 +260,291 @@
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="max-w-7xl mx-auto px-4 py-8 space-y-8">
+
+    <!-- ======================================================== -->
+    <!-- NOVA SEÇÃO 1: QUALIDADE DA MARÉ E CONDIÇÕES DO RIO GOIANA -->
+    <!-- ======================================================== -->
+    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
+            <i class="fas fa-water"></i> Monitoramento Hidrográfico & Pesqueiro
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <i class="fas fa-tint text-sky-500"></i> Qualidade da Maré & Estado das Águas
+          </h2>
+          <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            Avaliação das condições da água no Canal de São Lourenço e Rio Goiana para cata de marisco, tarrafa, canoas e viveiros.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 flex-wrap">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 rounded-xl font-black text-xs">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span> Condição Geral: Ótima para a Lida
+          </span>
+          <button onclick="compartilharMareWhatsApp()" class="bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-1.5 rounded-xl transition flex items-center gap-1.5 shadow">
+            <i class="fab fa-whatsapp"></i> Avisar no Zap
+          </button>
+        </div>
+      </div>
+
+      <!-- CARDS DE QUALIDADE DA MARÉ -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
+        
+        <div class="bg-sky-50/70 dark:bg-slate-700/50 p-5 rounded-2xl border border-sky-200 dark:border-slate-600 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs uppercase font-bold text-sky-700 dark:text-sky-400">Tipo de Correnteza</span>
+            <i class="fas fa-water text-sky-500 text-lg"></i>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Maré de Sizígia</div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">"Água Viva" • Correnteza forte no esteiro principal</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-sky-200 dark:border-slate-600 text-[11px] text-sky-700 dark:text-sky-300 font-semibold">
+            <i class="fas fa-check-circle mr-1"></i> Seca muito e enche muito (Ideal p/ coroas)
+          </div>
+        </div>
+
+        <div class="bg-emerald-50/70 dark:bg-slate-700/50 p-5 rounded-2xl border border-emerald-200 dark:border-slate-600 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs uppercase font-bold text-emerald-700 dark:text-emerald-400">Salinidade do Estuário</span>
+            <i class="fas fa-flask text-emerald-500 text-lg"></i>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Salobro Ideal (24 ppt)</div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Equilíbrio perfeito entre o rio doce e a entrada do mar</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-emerald-200 dark:border-slate-600 text-[11px] text-emerald-700 dark:text-emerald-300 font-semibold">
+            <i class="fas fa-check-circle mr-1"></i> Excelente para engorda de camarão e siri
+          </div>
+        </div>
+
+        <div class="bg-teal-50/70 dark:bg-slate-700/50 p-5 rounded-2xl border border-teal-200 dark:border-slate-600 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs uppercase font-bold text-teal-700 dark:text-teal-400">Transparência & Visibilidade</span>
+            <i class="fas fa-eye text-teal-500 text-lg"></i>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Água Limpa (Média)</div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Boa visibilidade na vazante; turva na reponta da cheia</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-teal-200 dark:border-slate-600 text-[11px] text-teal-700 dark:text-teal-300 font-semibold">
+            <i class="fas fa-ship mr-1"></i> Favorável para tarrafa e covos
+          </div>
+        </div>
+
+        <div class="bg-amber-50/70 dark:bg-slate-700/50 p-5 rounded-2xl border border-amber-200 dark:border-slate-600 flex flex-col justify-between">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs uppercase font-bold text-amber-700 dark:text-amber-400">Segurança de Navegação</span>
+            <i class="fas fa-compass text-amber-500 text-lg"></i>
+          </div>
+          <div>
+            <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white">Canoa Segura</div>
+            <p class="text-xs text-slate-600 dark:text-slate-300 mt-1">Ventos em 18 km/h • Sem perigo de rebojos repentinos</p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-amber-200 dark:border-slate-600 text-[11px] text-amber-700 dark:text-amber-300 font-semibold">
+            <i class="fas fa-life-ring mr-1"></i> Travessia para os manguezais liberada
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- NOVA SEÇÃO 2: GUIA DE DEFESO: ARATU, CARANGUEJO E ESPÉCIES -->
+    <!-- ======================================================== -->
+    <section class="bg-gradient-to-br from-amber-950 via-slate-900 to-stone-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-amber-500/60">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-amber-700/60">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-rose-500/20 text-rose-300 border border-rose-400/40 text-xs px-3 py-1 rounded-full font-bold mb-2">
+            <i class="fas fa-shield-alt"></i> Proteção Ambiental & Sustento Familiar
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-white flex items-center gap-2">
+            <i class="fas fa-hand-paper text-amber-400"></i> Guia de Defeso: Aratu, Caranguejo, Guaiamum & Siri
+          </h2>
+          <p class="text-amber-100/90 text-sm mt-1">
+            Entenda quando <strong>PODE PEGAR</strong> e quando <strong>É PROIBIDO (TEMPO DE DEFESO)</strong> para garantir a fartura dos nossos filhos e netos em São Lourenço.
+          </p>
+        </div>
+
+        <div class="bg-stone-950/80 px-4 py-2 rounded-2xl border border-amber-400/40 text-xs text-amber-300 font-mono">
+          <i class="fas fa-info-circle mr-1"></i> Fêmeas com ovas: <strong>PROIBIÇÃO PERMANENTE</strong>
+        </div>
+      </div>
+
+      <!-- CARDS DE ESPÉCIES E STATUS DE PESCA -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
+        
+        <!-- CARD ARATU -->
+        <div class="bg-stone-900/90 p-5 rounded-2xl border border-amber-700/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">🦀</span>
+              <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-black uppercase px-2 py-0.5 rounded-full">
+                Cata Permitida com Regras
+              </span>
+            </div>
+            <h3 class="font-bold text-white text-lg">Aratu-do-Mangue / Aratu-Vermelho</h3>
+            <p class="text-xs text-amber-300 font-semibold mb-2">(*Goniopsis cruentata*)</p>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Vive subindo nos troncos e raízes aéreas do mangue-vermelho. Muito apreciado no ensopado e na cata tradicional por marisqueiras.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-stone-800 space-y-1.5 text-[11px]">
+            <div class="text-rose-400 font-bold flex items-center gap-1">
+              <i class="fas fa-ban"></i> NUNCA pegar aratu com ovas!
+            </div>
+            <div class="text-slate-400">
+              Deixe os filhotes pequenos crescerem nos esteiros.
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD CARANGUEJO-UÇÁ -->
+        <div class="bg-stone-900/90 p-5 rounded-2xl border border-amber-700/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">⚠️</span>
+              <span class="bg-amber-500/20 text-amber-300 border border-amber-500/40 text-[10px] font-black uppercase px-2 py-0.5 rounded-full">
+                Alerta de Andada
+              </span>
+            </div>
+            <h3 class="font-bold text-white text-lg">Caranguejo-Uçá</h3>
+            <p class="text-xs text-amber-300 font-semibold mb-2">(*Ucides cordatus*)</p>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              O principal sustento de dezenas de catadores da comunidade. Retirado na lama funda das tocas de mangue.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-stone-800 space-y-1.5 text-[11px]">
+            <div class="text-rose-400 font-bold flex items-center gap-1">
+              <i class="fas fa-times-circle"></i> Defeso nas luas Nova e Cheia
+            </div>
+            <div class="text-slate-400">
+              Período de Janeiro a Abril: proibido catar na andada! Tamanho mínimo: carapaça acima de 6 cm.
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD GUAIAMUM -->
+        <div class="bg-stone-900/90 p-5 rounded-2xl border border-rose-700/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">🛑</span>
+              <span class="bg-rose-500/20 text-rose-300 border border-rose-500/40 text-[10px] font-black uppercase px-2 py-0.5 rounded-full">
+                Espécie Sob Proteção
+              </span>
+            </div>
+            <h3 class="font-bold text-white text-lg">Guaiamum Azul</h3>
+            <p class="text-xs text-amber-300 font-semibold mb-2">(*Cardisoma guanhumi*)</p>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Mora nas partes mais secas e terra firme próximas ao mangue (apicum). Por causa da captura excessiva, sofreu grande risco de sumir da nossa região.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-stone-800 space-y-1.5 text-[11px]">
+            <div class="text-rose-400 font-bold flex items-center gap-1">
+              <i class="fas fa-exclamation-triangle"></i> Proibida captura de fêmeas
+            </div>
+            <div class="text-slate-400">
+              Cata estritamente restrita por normas federais do IBAMA/ICMBio. Machos só acima de 7 cm.
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD SIRI & CAMARÃO -->
+        <div class="bg-stone-900/90 p-5 rounded-2xl border border-sky-700/40 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-2xl">🦐</span>
+              <span class="bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 text-[10px] font-black uppercase px-2 py-0.5 rounded-full">
+                Pesca Liberada
+              </span>
+            </div>
+            <h3 class="font-bold text-white text-lg">Siri-Azul & Camarão Estuarino</h3>
+            <p class="text-xs text-sky-300 font-semibold mb-2">Pesca Artesanal e Cultivo</p>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Pescados nas gamboas e esteiros com puçás e tarrafas, além dos viveiros de carcinicultura do povoado.
+            </p>
+          </div>
+          <div class="mt-4 pt-3 border-t border-stone-800 space-y-1.5 text-[11px]">
+            <div class="text-emerald-400 font-bold flex items-center gap-1">
+              <i class="fas fa-check"></i> Aberto com tarrafa de malha regular
+            </div>
+            <div class="text-slate-400">
+              Soltar fêmeas de siri que estiverem carregando ovas amarelas ou escuras.
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RECOMENDAÇÕES DA COMUNIDADE QUILOMBOLA -->
+      <div class="mt-6 bg-stone-950/70 p-4 rounded-2xl border border-amber-600/40 text-xs space-y-2">
+        <strong class="text-amber-300 flex items-center gap-1.5 text-sm">
+          <i class="fas fa-heart text-rose-400"></i> O Saber Ancestral das Águas:
+        </strong>
+        <p class="text-slate-300 leading-relaxed">
+          Os mestres do mangue de São Lourenço sempre guardaram o respeito à vida: <em>"Bicho de mangue que tá com ovas na barriga é sagrado, é a semente de amanhã"</em>. Ao encontrar <strong>aratu ovado</strong> ou <strong>caranguejo na andada</strong>, não capture. Preservar o manguezal é proteger o prato de comida e o futuro do nosso povoado.
+        </p>
+      </div>
+    </section>
+
+    <!-- ======================================================== -->
+    <!-- NOVA SEÇÃO 3: LOCALIZAÇÃO VIA SATÉLITE DE SÃO LOURENÇO -->
+    <!-- ======================================================== -->
+    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
+        <div>
+          <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
+            <i class="fas fa-satellite"></i> Mapeamento Geográfico em Alta Resolução
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+            <i class="fas fa-satellite-dish text-emerald-600"></i> Localização Via Satélite de São Lourenço
+          </h2>
+          <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+            Visão aérea oficial do território: curvas do Rio Goiana, esteiros, viveiros de camarão e a histórica Igreja Matriz de 1555.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-2 flex-wrap">
+          <button onclick="obterMinhaLocalizacaoGps()" class="bg-mar-700 hover:bg-mar-800 text-white font-bold text-xs px-4 py-2 rounded-xl transition flex items-center gap-2 shadow">
+            <i class="fas fa-crosshairs"></i> Onde Estou no Satélite?
+          </button>
+          <a href="https://maps.google.com/?q=-7.5583,-34.8878&t=k" target="_blank" class="bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 text-slate-700 dark:text-slate-200 font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5">
+            <i class="fas fa-external-link-alt"></i> Abrir no Google Maps
+          </a>
+        </div>
+      </div>
+
+      <!-- MAPA VIA SATÉLITE INCORPORADO -->
+      <div class="mt-6 rounded-3xl overflow-hidden border-2 border-slate-300 dark:border-slate-600 shadow-lg relative bg-slate-900 min-h-[380px]">
+        <iframe 
+          title="Mapa de Satélite de São Lourenço"
+          class="w-full h-[400px] border-0"
+          loading="lazy"
+          allowfullscreen
+          src="https://maps.google.com/maps?q=-7.5583,-34.8878&t=k&z=15&ie=UTF8&iwloc=&output=embed">
+        </iframe>
+
+        <!-- PAINEL COM PONTOS CHAVE DEMARCADOS -->
+        <div class="absolute bottom-4 left-4 right-4 bg-slate-950/85 backdrop-blur-md p-3.5 rounded-2xl border border-slate-700 text-white text-xs flex flex-wrap items-center justify-between gap-3 shadow-xl">
+          <div class="flex items-center gap-4 flex-wrap">
+            <span class="flex items-center gap-1.5 text-amber-300 font-bold">
+              <i class="fas fa-church text-amber-400"></i> Igreja Matriz (~1555)
+            </span>
+            <span class="flex items-center gap-1.5 text-sky-300 font-bold">
+              <i class="fas fa-water text-sky-400"></i> Rio Goiana & Mangue
+            </span>
+            <span class="flex items-center gap-1.5 text-emerald-300 font-bold">
+              <i class="fas fa-fish text-emerald-400"></i> Viveiros de Camarão
+            </span>
+            <span class="flex items-center gap-1.5 text-rose-300 font-bold">
+              <i class="fas fa-clinic-medical text-rose-400"></i> Posto de Saúde (PSF)
+            </span>
+          </div>
+          <span id="status-gps" class="text-[11px] text-slate-300 font-mono">Coordenadas: 7°33'30"S 34°53'16"W</span>
+        </div>
+      </div>
+    </section>
 
     <!-- SEÇÃO DESTAQUE: DIA DA CONSCIÊNCIA NEGRA EM SÃO LOURENÇO (23 DE NOVEMBRO) -->
     <section class="bg-gradient-to-br from-amber-700 via-orange-800 to-stone-950 text-white rounded-3xl p-6 sm:p-8 shadow-xl border-2 border-amber-400 relative overflow-hidden">
@@ -345,456 +620,6 @@
               </p>
             </div>
 
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SEÇÃO: ESTAÇÃO COMPLETA DO CLIMA (TEMPERATURA, VENTO, OXIGÊNIO E UMIDADE) -->
-    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
-      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
-        <div>
-          <div class="inline-flex items-center gap-2 bg-sky-100 dark:bg-sky-950/60 text-sky-800 dark:text-sky-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
-            <i class="fas fa-cloud-sun"></i> Monitoramento Atmosférico e Ambiental em Tempo Real
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-2">
-            <i class="fas fa-wind text-sky-500"></i> Estação do Clima de São Lourenço (Goiana - PE)
-          </h2>
-          <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
-            Condições do ar, ventos para navegação no Rio Goiana, umidade e índice de pureza/oxigênio do manguezal.
-          </p>
-        </div>
-
-        <div class="flex items-center gap-2 text-xs">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1.5 bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 rounded-xl border border-emerald-200 dark:border-emerald-800 font-bold">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span> Ar Limpo Estuarino
-          </span>
-          <button onclick="atualizarMetricasClima()" class="px-3 py-1.5 bg-slate-100 dark:bg-slate-700 hover:bg-slate-200 dark:hover:bg-slate-600 rounded-xl font-semibold text-slate-600 dark:text-slate-200 transition" title="Atualizar medições">
-            <i class="fas fa-sync-alt mr-1"></i> Atualizar
-          </button>
-        </div>
-      </div>
-
-      <!-- GRID DOS MEDIDORES -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 mt-6">
-        
-        <!-- MEDIDOR 1: TEMPERATURA -->
-        <div class="bg-gradient-to-br from-amber-500/10 via-amber-500/5 to-transparent dark:from-amber-950/30 p-5 rounded-2xl border border-amber-200 dark:border-amber-900/50 flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs uppercase font-bold tracking-wider text-amber-700 dark:text-amber-400">Temperatura do Ar</span>
-            <div class="w-9 h-9 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg">
-              <i class="fas fa-temperature-high"></i>
-            </div>
-          </div>
-          <div>
-            <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono" id="card-temp">28.4°C</div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Sensação térmica de <span class="font-bold text-amber-600" id="card-sensacao">31.2°C</span></p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-amber-200/60 dark:border-amber-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
-            <span>Mín: <strong>23°C</strong></span>
-            <span>Máx: <strong>32°C</strong></span>
-            <span class="text-amber-600 font-bold">Sol com Brisa</span>
-          </div>
-        </div>
-
-        <!-- MEDIDOR 2: VENTO DO AR -->
-        <div class="bg-gradient-to-br from-sky-500/10 via-sky-500/5 to-transparent dark:from-sky-950/30 p-5 rounded-2xl border border-sky-200 dark:border-sky-900/50 flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs uppercase font-bold tracking-wider text-sky-700 dark:text-sky-400">Vento do Ar & Navegação</span>
-            <div class="w-9 h-9 rounded-xl bg-sky-500/20 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg">
-              <i class="fas fa-wind"></i>
-            </div>
-          </div>
-          <div>
-            <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono" id="card-vento">18 km/h</div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Direção: <strong class="text-sky-600 dark:text-sky-400" id="card-direcao">Leste-Nordeste (ENE)</strong></p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-sky-200/60 dark:border-sky-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
-            <span>Rajadas: <strong>26 km/h</strong></span>
-            <span class="text-emerald-600 font-bold"><i class="fas fa-ship mr-1"></i> Canoa Segura</span>
-          </div>
-        </div>
-
-        <!-- MEDIDOR 3: UMIDADE RELATIVA DO AR -->
-        <div class="bg-gradient-to-br from-teal-500/10 via-teal-500/5 to-transparent dark:from-teal-950/30 p-5 rounded-2xl border border-teal-200 dark:border-teal-900/50 flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs uppercase font-bold tracking-wider text-teal-700 dark:text-teal-400">Umidade Relativa do Ar</span>
-            <div class="w-9 h-9 rounded-xl bg-teal-500/20 text-teal-600 dark:text-teal-400 flex items-center justify-center text-lg">
-              <i class="fas fa-droplet"></i>
-            </div>
-          </div>
-          <div>
-            <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white font-mono" id="card-umidade">76%</div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Influência direta das marés do Rio Goiana</p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-teal-200/60 dark:border-teal-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
-            <span>Orvalho: <strong>22°C</strong></span>
-            <span class="text-teal-600 font-bold">Faixa Ideal</span>
-          </div>
-        </div>
-
-        <!-- MEDIDOR 4: OXIGÊNIO / QUALIDADE DO AR -->
-        <div class="bg-gradient-to-br from-emerald-500/10 via-emerald-500/5 to-transparent dark:from-emerald-950/30 p-5 rounded-2xl border border-emerald-200 dark:border-emerald-900/50 flex flex-col justify-between">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs uppercase font-bold tracking-wider text-emerald-700 dark:text-emerald-400">Oxigênio & Pureza do Ar</span>
-            <div class="w-9 h-9 rounded-xl bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg">
-              <i class="fas fa-lungs"></i>
-            </div>
-          </div>
-          <div>
-            <div class="text-3xl sm:text-4xl font-black text-emerald-600 dark:text-emerald-400 font-mono" id="card-oxigenio">AQI 18</div>
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Índice: <strong class="text-emerald-600">Excelente (Ar 100% Puro)</strong></p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-emerald-200/60 dark:border-emerald-900/40 flex items-center justify-between text-[11px] text-slate-500 dark:text-slate-400">
-            <span>Mata & Mangue</span>
-            <span class="text-emerald-600 font-bold"><i class="fas fa-check-circle mr-1"></i> Livre de Poluição</span>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SEÇÃO: QUILOMBO DO CATUCÁ, RELIGIÕES DE MATRIZ AFRO & ANCESTRALIDADE -->
-    <section class="bg-gradient-to-br from-stone-950 via-amber-950 to-slate-900 text-white rounded-3xl p-6 sm:p-8 shadow-xl border border-amber-800/60">
-      <div class="flex flex-col lg:flex-row items-center gap-8">
-        <div class="w-full lg:w-7/12 space-y-4">
-          <div class="inline-flex items-center gap-2 bg-amber-500/20 text-amber-300 text-xs px-3.5 py-1.5 rounded-full border border-amber-400/40 font-bold uppercase tracking-wider">
-            <i class="fas fa-fire text-amber-400"></i> Memória Afro-Indígena & Resistência Histórica
-          </div>
-          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-black text-white leading-tight">
-            Herança do Quilombo do Catucá, Religiões Afro & Ancestralidade em São Lourenço
-          </h2>
-          <p class="text-amber-100/90 text-sm leading-relaxed">
-            As matas e esteiros que abraçam a <strong>Povoação de São Lourenço</strong>, em Goiana, guardam a memória indelével do histórico <strong>Quilombo do Catucá</strong> — uma das maiores confederações quilombolas do início do século XIX em Pernambuco, liderada pelo guerreiro lendário <strong>Malunguinho</strong>. Esse cinturão de liberdade se estendia pelas densas florestas e caminhos fluviais até a Zona da Mata Norte, tornando o nosso estuário um ponto estratégico de refúgio e proteção das famílias negras.
-          </p>
-          <p class="text-slate-300 text-sm leading-relaxed">
-            Com essa herança, floresceram as <strong>religiões de matriz afro-brasileira e a Jurema Sagrada</strong>. Na nossa terra, o toque dos atabaques, o culto aos Orixás (especialmente as forças das águas, como Iemanjá, Oxum e Nanã que zelam pela lama fértil do manguezal) e os mestres juremeiros mantiveram viva a espiritualidade que curou e sustentou os nossos mais velhos contra o preconceito e o isolamento.
-          </p>
-
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
-            <div class="bg-amber-900/40 p-3.5 rounded-2xl border border-amber-700/50">
-              <strong class="block text-amber-300 font-bold text-base">Rei Malunguinho</strong>
-              <span class="text-amber-100/80">Símbolo do Catucá e Jurema</span>
-            </div>
-            <div class="bg-amber-900/40 p-3.5 rounded-2xl border border-amber-700/50">
-              <strong class="block text-amber-300 font-bold text-base">Xangô & Candomblé</strong>
-              <span class="text-amber-100/80">Respeito e louvação aos Orixás</span>
-            </div>
-            <div class="bg-amber-900/40 p-3.5 rounded-2xl border border-amber-700/50 col-span-2 sm:col-span-1">
-              <strong class="block text-amber-300 font-bold text-base">Jurema Sagrada</strong>
-              <span class="text-amber-100/80">Ciência ancestral das matas</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- PAINEL LATERAL DE ELEMENTOS SAGRADOS -->
-        <div class="w-full lg:w-5/12 grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div class="bg-stone-900/90 p-5 rounded-2xl border border-amber-700/40 space-y-2">
-            <div class="w-10 h-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center text-lg">
-              <i class="fas fa-drum"></i>
-            </div>
-            <h3 class="font-bold text-white text-base">Toques & Atabaques</h3>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              O ritmo sagrado dos ilús e atabaques que ecoam na comunidade em honra aos orixás, invocando paz, fartura nas pescarias e saúde para a comunidade.
-            </p>
-          </div>
-
-          <div class="bg-stone-900/90 p-5 rounded-2xl border border-amber-700/40 space-y-2">
-            <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-lg">
-              <i class="fas fa-seedling"></i>
-            </div>
-            <h3 class="font-bold text-white text-base">Folhas & Reza Forte</h3>
-            <p class="text-xs text-slate-300 leading-relaxed">
-              As rezas de proteção das benzedeiras tradicionais, o preparo de banhos com ervas do mangue e da mata e o respeito à medicina dos ancestrais.
-            </p>
-          </div>
-
-          <div class="bg-stone-900/90 p-5 rounded-2xl border border-amber-700/40 space-y-2 sm:col-span-2">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center text-lg flex-shrink-0">
-                <i class="fas fa-water"></i>
-              </div>
-              <div>
-                <h3 class="font-bold text-white text-sm">Orixás das Águas Doces e Salgadas</h3>
-                <p class="text-xs text-slate-300 mt-0.5">
-                  No encontro do rio com o mar em São Lourenço, pescadores e marisqueiras rendem reverência às divindades das águas pedindo licença para adentrar o mangue.
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SEÇÃO: TRADIÇÕES, CULTURA VIVA, COCO DE RODA & ARTESANATO -->
-    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
-      <div class="pb-6 border-b border-slate-200 dark:border-slate-700">
-        <div class="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
-          <i class="fas fa-compact-disc"></i> Expressão Popular de São Lourenço
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-          Tradições e Cultura Viva da Povoação de São Lourenço
-        </h2>
-        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
-          A pisada ritmada do Coco de Roda, os cantos de beira de rio, a ciranda praieira, o artesanato de taboa e a mestria dos canoeiros.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-        
-        <!-- TRADIÇÃO 1: COCO DE RODA -->
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-3">
-              🪘
-            </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Coco de Roda de Povoação</h3>
-            <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-2">A Batida dos Pés na Terra Batida</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              O coco de roda é a maior expressão musical do povoado. Nascido nas reuniões noturnas após a lida pesada no manguezal e no corte de cana, os versos improvisados contam causos da comunidade e desafios das marés.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Instrumentos:</strong> Ganzá, surdo, pandeiro e palmas.
-          </div>
-        </div>
-
-        <!-- TRADIÇÃO 2: CIRANDA PRAIEIRA -->
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-2xl mb-3">
-              ⭕
-            </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Ciranda Praieira do Litoral</h3>
-            <p class="text-xs font-semibold text-sky-600 dark:text-sky-400 mb-2">União de Mãos Dadas</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              De mãos dadas em grandes rodas abertas, jovens e anciãos cantam as melodias que saúdam o mar aberto, os barcos de pesca e a brisa do Rio Goiana, criando uma corrente de fraternidade.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Compasso:</strong> Passadas ritmadas marcadas pelo bumbo.
-          </div>
-        </div>
-
-        <!-- TRADIÇÃO 3: ARTESANATO DE TABOA & CIPÓ -->
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-3">
-              🧺
-            </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Artesanato de Taboa & Palha</h3>
-            <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2">Mãos que Trançam a Natureza</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Esteiras trançadas com fibras do brejo, balaios para carregar marisco, chapéus de palha e pequenas canoas esculpidas em madeira tradicional pelos artesãos quilombolas da comunidade.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Produção:</strong> Trabalho manual ecológico e sustentável.
-          </div>
-        </div>
-
-        <!-- TRADIÇÃO 4: CULINÁRIA SAGRADA & DE TERREIRO -->
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mb-3">
-              🍲
-            </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Culinária de Terreiro & Mangue</h3>
-            <p class="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-2">Dendê, Coco e Frutos da Lama</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              A cozinha de São Lourenço mescla os sabores do mangue com os temperos sagrados da África: pirões encorpados, ensopados de caranguejo no leite de coco fresco, moquecas e o mungunzá comunitário.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Identidade:</strong> Comida feita no fogão de barro e lenha.
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SEÇÃO: TUDO QUE EXISTE NO NOSSO MANGUEZAL E NA NOSSA PESCA -->
-    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
-      <div class="pb-6 border-b border-slate-200 dark:border-slate-700">
-        <div class="inline-flex items-center gap-2 bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
-          <i class="fas fa-water"></i> Riqueza e Sustento de São Lourenço
-        </div>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white">
-          A Vida no Manguezal: Caranguejo, Siri, Marisco e Sururu
-        </h2>
-        <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
-          Conheça as quatro forças do extrativismo artesanal que alimentam e sustentam as famílias da Povoação de São Lourenço.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
-        
-        <!-- CARD 1: CARANGUEJO-UÇÁ -->
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400 flex items-center justify-center text-2xl mb-3">
-              🦀
-            </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Caranguejo-Uçá</h3>
-            <p class="text-xs font-semibold text-amber-600 dark:text-amber-400 mb-2">O Rei do Manguezal de Goiana</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Catado no braço nas raízes do mangue-vermelho e mangue-branco. Nossos catadores entram com destreza na lama funda para tirar os maiores espécimes, que abastecem bares, quiosques e feiras de Goiana e do litoral pernambucano.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Manejo:</strong> Apenas machos acima de 6cm de carapaça.
-          </div>
-        </div>
-
-        <!-- CARD 2: SIRI -->
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-sky-500/10 text-sky-600 dark:text-sky-400 flex items-center justify-center text-2xl mb-3">
-              🌊
-            </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Siri de Mangue & Siri-Azul</h3>
-            <p class="text-xs font-semibold text-sky-600 dark:text-sky-400 mb-2">Sabor Marcante das Correntes</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Pescado nas margens do esteiro com puçás, covos ou manualmente nas gamboas de maré baixa. A carne desfiada e a famosa casquinha de siri temperada no coco são tradições gastronômicas consagradas na comunidade.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Pesca:</strong> Atividade diária nas marés calmas de quadratura.
-          </div>
-        </div>
-
-        <!-- CARD 3: MARISCO / UNHA-DE-VELHO -->
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-2xl mb-3">
-              🐚
-            </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Marisco & Unha-de-Velho</h3>
-            <p class="text-xs font-semibold text-emerald-600 dark:text-emerald-400 mb-2">A Fartura das Coroas de Areia</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Quando a maré vaza e expõe os bancos arenosos de São Lourenço, as marisqueiras entram em ação com pequenas colheres e facas para recolher marisco-branco e unhas-de-velho, preparados no caldo verde ou ensopados.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Horário:</strong> Picos de baixa-mar nas marés de sizígia.
-          </div>
-        </div>
-
-        <!-- CARD 4: SURURU -->
-        <div class="bg-slate-50 dark:bg-slate-700/40 rounded-2xl p-5 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between hover:shadow-md transition">
-          <div>
-            <div class="w-12 h-12 rounded-2xl bg-rose-500/10 text-rose-600 dark:text-rose-400 flex items-center justify-center text-2xl mb-3">
-              🥣
-            </div>
-            <h3 class="font-bold text-slate-900 dark:text-white text-lg mb-1">Sururu de Mangue</h3>
-            <p class="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-2">Tradição das Pedras e Troncos</p>
-            <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-              Encontrado fixado em pedrais submersos e raízes do Rio Goiana. Após a apanha, é cozido e catado manualmente com enorme carinho pelas famílias locais para dar origem ao tradicional caldinho de sururu quilombola.
-            </p>
-          </div>
-          <div class="mt-4 pt-3 border-t border-slate-200 dark:border-slate-600 text-[11px] text-slate-500 dark:text-slate-400">
-            <strong>Beneficiamento:</strong> Fervura comunitária no fogo a lenha.
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- SEÇÃO: O FENÔMENO DA ANDADA DO CARANGUEJO -->
-    <section class="bg-amber-50 dark:bg-slate-800/80 rounded-3xl p-6 sm:p-8 border border-amber-200 dark:border-slate-700">
-      <div class="flex flex-col lg:flex-row items-center justify-between gap-6 pb-6 border-b border-amber-200 dark:border-slate-700">
-        <div>
-          <div class="inline-flex items-center gap-2 bg-rose-100 dark:bg-rose-950/60 text-rose-800 dark:text-rose-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
-            <i class="fas fa-exclamation-triangle"></i> Ciclo de Reprodução da Natureza
-          </div>
-          <h2 class="text-2xl font-black text-slate-900 dark:text-white">
-            A Andada do Caranguejo-Uçá: Entenda o Fenômeno e o Defeso
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">
-            Por que os caranguejos saem das tocas e como a comunidade de São Lourenço protege a espécie.
-          </p>
-        </div>
-
-        <div class="bg-white dark:bg-slate-700 px-5 py-3 rounded-2xl shadow-sm border border-amber-200 dark:border-slate-600">
-          <span class="text-[11px] uppercase tracking-wider font-bold text-slate-500 dark:text-slate-400 block">Período Crítico</span>
-          <strong class="text-amber-700 dark:text-amber-300 text-base font-black">Janeiro a Abril (Luas Cheia e Nova)</strong>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-6">
-        <div class="space-y-2">
-          <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-            <i class="fas fa-venus-mars text-rose-500"></i> O Ritual de Acasalamento
-          </h4>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            Durante a <em>andada</em>, os machos e fêmeas abandonam suas tocas e caminham livremente pelo manguezal para acasalar e liberar os ovos na água salgada. Eles ficam indefesos, sem instinto de fuga.
-          </p>
-        </div>
-
-        <div class="space-y-2">
-          <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-            <i class="fas fa-balance-scale text-amber-500"></i> A Importância do Defeso
-          </h4>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            Se capturados na andada, milhões de filhotes deixam de nascer, esgotando o mangue nos anos seguintes. O defeso garante que o caranguejo continue abundante para as próximas gerações do povoado.
-          </p>
-        </div>
-
-        <div class="space-y-2">
-          <h4 class="font-bold text-slate-900 dark:text-white text-sm flex items-center gap-2">
-            <i class="fas fa-hand-holding-heart text-emerald-500"></i> Consciência Quilombola
-          </h4>
-          <p class="text-xs text-slate-600 dark:text-slate-300 leading-relaxed">
-            Os pescadores mais velhos de São Lourenço sempre ensinaram: <em>"Quem ama a maré sabe a hora de esperar"</em>. Respeitar o defeso é um ato de respeito à nossa própria mãe natureza.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SEÇÃO: HISTÓRIA DA IGREJA MATRIZ (~1555) & PADROEIRO SÃO LOURENÇO -->
-    <section class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
-      <div class="flex flex-col lg:flex-row items-center gap-8 pb-8 border-b border-slate-200 dark:border-slate-700">
-        <div class="w-full lg:w-1/2 rounded-2xl overflow-hidden shadow-md relative h-72 sm:h-80 border border-slate-200 dark:border-slate-700 group">
-          <img src="https://images.unsplash.com/photo-1548625361-16ef7ef7fe0f?auto=format&fit=crop&w=1200&q=80" 
-               alt="Igreja Matriz de São Lourenço" 
-               class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent"></div>
-          <div class="absolute bottom-4 left-4 right-4 text-white">
-            <span class="bg-amber-500 text-mar-900 font-black text-xs uppercase px-2.5 py-1 rounded-lg shadow">
-              Patrimônio Nacional Tombado (IPHAN / FUNDARPE)
-            </span>
-            <h3 class="text-lg font-bold mt-2">Igreja Matriz de São Lourenço • Goiana - PE</h3>
-            <p class="text-xs text-slate-300">Fundada por volta de 1555 • Século XVI (~470 Anos)</p>
-          </div>
-        </div>
-
-        <div class="w-full lg:w-1/2 space-y-4">
-          <div class="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-xs px-3 py-1 rounded-full font-bold">
-            <i class="fas fa-church"></i> História Secular da Povoação
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white leading-tight">
-            Igreja de São Lourenço (1555): Testemunha de Quase Cinco Séculos
-          </h2>
-          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-            Erguida nas margens do Rio Goiana por volta de <strong>1555</strong>, a Igreja de São Lourenço foi sede da freguesia mais antiga da comarca de Goiana. Suas paredes resistentes de pedra colonial atravessaram invasões holandesas, o ciclo do açúcar e abrigaram as primeiras famílias que deram origem ao nosso povoado quilombola.
-          </p>
-          <p class="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
-            O padroeiro, <strong>São Lourenço</strong>, diácono martirizado em Roma no ano 258 d.C., celebrizou-se pela defesa incondicional dos pobres e necessitados. A sua festa tradicional, comemorada anualmente a <strong>10 de Agosto</strong>, reúne a comunidade em profunda oração, procissão e confraternização popular.
-          </p>
-
-          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 pt-2 text-xs">
-            <div class="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-xl border border-slate-200 dark:border-slate-600">
-              <strong class="block text-slate-900 dark:text-white font-bold text-base">~1555</strong>
-              <span class="text-slate-500 dark:text-slate-400">Origem colonial</span>
-            </div>
-            <div class="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-xl border border-slate-200 dark:border-slate-600">
-              <strong class="block text-slate-900 dark:text-white font-bold text-base">10 de Agosto</strong>
-              <span class="text-slate-500 dark:text-slate-400">Festa do Padroeiro</span>
-            </div>
-            <div class="bg-slate-50 dark:bg-slate-700/50 p-3 rounded-xl border border-slate-200 dark:border-slate-600 col-span-2 sm:col-span-1">
-              <strong class="block text-emerald-600 dark:text-emerald-400 font-bold text-base">Tombada</strong>
-              <span class="text-slate-500 dark:text-slate-400">Patrimônio Histórico</span>
-            </div>
           </div>
         </div>
       </div>
@@ -945,7 +770,7 @@
       <!-- LATERAL: VOZ DO POVO & TELEFONES ÚTEIS -->
       <aside class="space-y-6">
         
-        <!-- MELHORIA 3: ENVIAR PAUTA COM SALVAMENTO REAL NO NAVEGADOR (LOCALSTORAGE) -->
+        <!-- ENVIAR PAUTA COM SALVAMENTO REAL NO NAVEGADOR -->
         <div id="voz-do-povo" class="bg-white dark:bg-slate-800 rounded-3xl p-6 shadow-sm border border-slate-200 dark:border-slate-700">
           <div class="flex items-center gap-3 mb-3">
             <div class="w-10 h-10 rounded-2xl bg-coral-500 text-white flex items-center justify-center text-lg shadow-sm">
@@ -971,12 +796,12 @@
             <div>
               <label class="block font-semibold mb-1 text-slate-700 dark:text-slate-300">Categoria:</label>
               <select id="categoria-input" class="w-full px-3 py-2 rounded-xl bg-slate-50 dark:bg-slate-700 border border-slate-300 dark:border-slate-600 dark:text-white">
+                <option value="Qualidade da Maré">Qualidade da Maré & Águas</option>
+                <option value="Defeso & Espécies">Defeso: Aratu, Caranguejo & Guaiamum</option>
+                <option value="Satélite & Mapa">Satélite & Território</option>
                 <option value="Consciência Negra">Dia da Consciência Negra (23/Nov)</option>
                 <option value="Tradição & Matriz Afro">Quilombo do Catucá & Matriz Afro</option>
                 <option value="Cultura & Coco">Coco de Roda, Ciranda & Tradições</option>
-                <option value="Pesca & Manguezal">Pesca, Siri, Marisco & Sururu</option>
-                <option value="Andada do Caranguejo">Andada do Caranguejo</option>
-                <option value="História & Fé">História & Padroeiro</option>
                 <option value="Economia & Viveiros">Carcinicultura & Viveiros</option>
               </select>
             </div>
@@ -1026,20 +851,13 @@
               </div>
               <a href="tel:192" class="px-2.5 py-1 bg-rose-100 text-rose-700 font-bold rounded-lg">192</a>
             </li>
-            <li class="flex items-center justify-between p-2.5 bg-slate-50 dark:bg-slate-700/50 rounded-xl">
-              <div>
-                <strong class="block text-slate-800 dark:text-slate-200">3ª CIPM - Goiana (PMPE)</strong>
-                <span class="text-slate-500 dark:text-slate-400">Polícia Militar de Goiana</span>
-              </div>
-              <a href="tel:190" class="px-2.5 py-1 bg-slate-200 text-slate-700 font-bold rounded-lg">190</a>
-            </li>
           </ul>
         </div>
       </aside>
     </div>
   </main>
 
-  <!-- MELHORIA 4: BOTÃO FLUTUANTE DE COMPARTILHAMENTO RÁPIDO NO WHATSAPP -->
+  <!-- BOTÃO FLUTUANTE DE COMPARTILHAMENTO RÁPIDO NO WHATSAPP -->
   <button onclick="compartilharSiteWhatsApp()" class="fixed bottom-6 right-6 z-40 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition transform hover:scale-110 active:scale-95" title="Compartilhar portal no WhatsApp">
     <i class="fab fa-whatsapp text-3xl"></i>
   </button>
@@ -1050,7 +868,7 @@
       <div>
         <p class="font-bold text-white text-sm">Portal São Lourenço Notícias</p>
         <p class="text-slate-400">Comunidade Quilombola de Povoação de São Lourenço • Goiana - PE | Estuário do Rio Goiana</p>
-        <p class="text-[11px] text-amber-400/90 mt-1">Dia da Consciência Negra (23 de Novembro) • Quilombo do Catucá • Axé dos Orixás & Jurema Sagrada • Coco de Roda</p>
+        <p class="text-[11px] text-amber-400/90 mt-1">Qualidade da Maré • Guia de Defeso do Aratu & Caranguejo • Localização Satélite • Consciência Negra (23/Nov)</p>
       </div>
       <p class="text-slate-400">Desenvolvido com orgulho para valorizar a memória quilombola, a fé afro-brasileira e os trabalhadores de São Lourenço.</p>
     </div>
@@ -1132,14 +950,10 @@
       }
 
       const elTopo = document.getElementById('saudacao-topo');
-      if (elTopo) {
-        elTopo.innerHTML = `<i class="fas ${iconeClasse}"></i> ${texto}`;
-      }
+      if (elTopo) elTopo.innerHTML = `<i class="fas ${iconeClasse}"></i> ${texto}`;
 
       const elLetreiro = document.getElementById('saudacao-letreiro');
-      if (elLetreiro) {
-        elLetreiro.innerText = texto;
-      }
+      if (elLetreiro) elLetreiro.innerText = texto;
 
       const elAnuncioTexto = document.getElementById('anuncio-texto-saudacao');
       const elAnuncioIcone = document.getElementById('anuncio-icone');
@@ -1150,33 +964,24 @@
     }
     atualizarSaudacaoAutomatica();
 
-    // GERENCIAMENTO INTELIGENTE DO ANÚNCIO GRANDE COM LOCALSTORAGE
+    // GERENCIAMENTO INTELIGENTE DO ANÚNCIO GRANDE
     function checarExibicaoAnuncio() {
       const hoje = new Date().toDateString();
       const bloqueioData = localStorage.getItem('anuncio_sl_bloqueio');
       const modal = document.getElementById('modal-anuncio-grande');
-
-      if (bloqueioData === hoje) {
-        modal.style.display = 'none';
-      }
+      if (bloqueioData === hoje && modal) modal.style.display = 'none';
     }
     checarExibicaoAnuncio();
 
     function fecharAnuncioGrande() {
       const modal = document.getElementById('modal-anuncio-grande');
       const checkNaoMostrar = document.getElementById('check-nao-mostrar-hoje');
-      
       if (checkNaoMostrar && checkNaoMostrar.checked) {
-        const hoje = new Date().toDateString();
-        localStorage.setItem('anuncio_sl_bloqueio', hoje);
+        localStorage.setItem('anuncio_sl_bloqueio', new Date().toDateString());
       }
-
       if (modal) {
-        modal.classList.add('opacity-0');
-        modal.classList.add('pointer-events-none');
-        setTimeout(() => {
-          modal.style.display = 'none';
-        }, 300);
+        modal.classList.add('opacity-0', 'pointer-events-none');
+        setTimeout(() => { modal.style.display = 'none'; }, 300);
       }
     }
 
@@ -1184,14 +989,35 @@
       const modal = document.getElementById('modal-anuncio-grande');
       if (modal) {
         modal.style.display = 'flex';
-        modal.classList.remove('opacity-0');
-        modal.classList.remove('pointer-events-none');
+        modal.classList.remove('opacity-0', 'pointer-events-none');
       }
     }
 
-    // MELHORIA: COMPARTILHAR NO WHATSAPP
+    // LOCALIZAÇÃO GPS DO VISITANTE
+    function obterMinhaLocalizacaoGps() {
+      const status = document.getElementById('status-gps');
+      if (!navigator.geolocation) {
+        alert("Geolocalização não é suportada pelo seu navegador.");
+        return;
+      }
+      status.innerText = "Buscando sinal de satélite...";
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude.toFixed(5);
+          const lng = pos.coords.longitude.toFixed(5);
+          status.innerHTML = `<span class="text-emerald-400 font-bold">📍 Sua Posição Satélite: ${lat}, ${lng}</span>`;
+          window.open(`https://maps.google.com/?q=${lat},${lng}&t=k`, '_blank');
+        },
+        (err) => {
+          status.innerText = "GPS desativado ou sem permissão.";
+          alert("Não foi possível acessar seu GPS. Verifique se a localização está ativada no celular.");
+        }
+      );
+    }
+
+    // COMPARTILHAR NO WHATSAPP
     function compartilharSiteWhatsApp() {
-      const texto = encodeURIComponent("Confira o Portal de Notícias de Povoação de São Lourenço (Goiana - PE) com a tábua de marés, clima ao vivo e o Dia da Consciência Negra: https://kessio12.github.io/noticias-saolourenco/");
+      const texto = encodeURIComponent("Confira o Portal São Lourenço Notícias (Goiana - PE) com a tábua de marés, qualidade da água, defeso do aratu e visão satélite: https://kessio12.github.io/noticias-saolourenco/");
       window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
     }
 
@@ -1200,7 +1026,7 @@
       const altura = document.getElementById('mare-altura-atual').innerText;
       const proxima = document.getElementById('tempo-restante').innerText;
       const desc = document.getElementById('proxima-mare-desc').innerText;
-      const texto = encodeURIComponent(`🌊 *Tábua de Marés - Povoação de São Lourenço (Goiana - PE)*\nStatus: ${status} (${altura})\n${desc} em: ${proxima}\nConfira completa no portal: https://kessio12.github.io/noticias-saolourenco/`);
+      const texto = encodeURIComponent(`🌊 *Qualidade da Maré - São Lourenço (Goiana - PE)*\nStatus: ${status} (${altura})\n${desc} em: ${proxima}\nSalinidade ideal e água própria para mariscagem!\nVeja no portal: https://kessio12.github.io/noticias-saolourenco/`);
       window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
     }
 
@@ -1211,7 +1037,7 @@
       window.open(`https://api.whatsapp.com/send?text=${texto}`, '_blank');
     }
 
-    // MELHORIA: CONTROLE DE TAMANHO DE FONTE
+    // TAMANHO DE FONTE
     let zoomAtual = 100;
     function alterarTamanhoFonte(delta) {
       zoomAtual += delta * 5;
@@ -1243,20 +1069,12 @@
       }
     });
 
-    // SISTEMA METEOROLÓGICO: TEMPERATURA, VENTO, UMIDADE E OXIGÊNIO
+    // SISTEMA METEOROLÓGICO
     function atualizarMetricasClima() {
       const variacaoTemp = (Math.random() * 0.6 - 0.3).toFixed(1);
       const tempBase = (28.4 + parseFloat(variacaoTemp)).toFixed(1);
       const sensacao = (parseFloat(tempBase) + 2.8).toFixed(1);
       const vento = Math.floor(16 + Math.random() * 5);
-      const umidade = Math.floor(74 + Math.random() * 5);
-      const aqi = Math.floor(16 + Math.random() * 4);
-
-      document.getElementById('card-temp').innerText = `${tempBase}°C`;
-      document.getElementById('card-sensacao').innerText = `${sensacao}°C`;
-      document.getElementById('card-vento').innerText = `${vento} km/h`;
-      document.getElementById('card-umidade').innerText = `${umidade}%`;
-      document.getElementById('card-oxigenio').innerText = `AQI ${aqi}`;
 
       document.getElementById('topo-temp').innerText = `${tempBase}°C`;
       document.getElementById('topo-vento').innerText = `${vento} km/h`;
@@ -1348,23 +1166,18 @@
 
       const btns = document.querySelectorAll('.btn-dia');
       btns.forEach((btn, idx) => {
-        if(idx === diaIndex) {
-          btn.className = "btn-dia px-3 py-2 rounded-xl bg-sky-500 text-white font-bold transition";
-        } else {
-          btn.className = "btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition";
-        }
+        btn.className = (idx === diaIndex) 
+          ? "btn-dia px-3 py-2 rounded-xl bg-sky-500 text-white font-bold transition" 
+          : "btn-dia px-3 py-2 rounded-xl text-slate-300 hover:bg-mar-800 transition";
       });
     }
 
-    function selecionarDiaMare(idx) {
-      renderizarMare(idx);
-    }
+    function selecionarDiaMare(idx) { renderizarMare(idx); }
     renderizarMare(0);
 
     function atualizarTemporizador() {
       const agora = new Date();
       const eventosHoje = dadosMaresSemana[0].eventos;
-      
       let proximoEvento = null;
       let dataProximo = null;
 
@@ -1394,11 +1207,7 @@
       const diffMinutos = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
       const diffSegundos = Math.floor((diffMs % (1000 * 60)) / 1000);
 
-      const strHoras = String(diffHoras).padStart(2, '0');
-      const strMinutos = String(diffMinutos).padStart(2, '0');
-      const strSegundos = String(diffSegundos).padStart(2, '0');
-
-      document.getElementById('tempo-restante').innerText = `${strHoras}h ${strMinutos}m ${strSegundos}s`;
+      document.getElementById('tempo-restante').innerText = `${String(diffHoras).padStart(2, '0')}h ${String(diffMinutos).padStart(2, '0')}m ${String(diffSegundos).padStart(2, '0')}s`;
       document.getElementById('proxima-mare-desc').innerText = `Para ${proximoEvento.tipo} (${proximoEvento.hora})`;
     }
     setInterval(atualizarTemporizador, 1000);
@@ -1406,6 +1215,26 @@
 
     // NOTÍCIAS PADRÃO DO POVOADO
     const noticiasPadrao = [
+      {
+        id: "noticia-qualidade-mare-rio",
+        categoria: "Qualidade da Maré",
+        titulo: "Qualidade da maré favorece cata de marisco branco e renovação nos viveiros de camarão",
+        autor: "Monitoramento das Águas de São Lourenço",
+        data: "Hoje",
+        imagem: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
+        resumo: "Com boa salinidade e correnteza limpa, pescadores aproveitam maré de sizígia para apanha de sururu e siri.",
+        corpo: `<p>A qualidade das águas do estuário do Rio Goiana na Povoação de São Lourenço atingiu excelentes parâmetros nesta semana.</p><p>Com salinidade estável e boa oxigenação, os marisqueiros relatam fartura de unhas-de-velho nas coroas de areia durante as baixamares da manhã.</p>`
+      },
+      {
+        id: "noticia-defeso-aratu-caranguejo",
+        categoria: "Defeso & Espécies",
+        titulo: "Aviso Comunitário: Respeito ao defeso do aratu, guaiamum e andada do caranguejo",
+        autor: "Coletivo de Pescadores e Marisqueiras",
+        data: "Alerta Geral",
+        imagem: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80",
+        resumo: "Cata de fêmeas ovadas de aratu e siri é terminantemente proibida para assegurar a renovação dos estoques.",
+        corpo: `<p>Lideranças tradicionais de São Lourenço reforçam a importância de não catar aratus nem siris fêmeas com ovas aparentes nas raízes do manguezal.</p><p>O respeito às normas garante que a comunidade continue colhendo alimento sadio sem esgotar o ecossistema estuarino.</p>`
+      },
       {
         id: "noticia-consciencia-negra-23nov",
         categoria: "Consciência Negra",
@@ -1417,58 +1246,17 @@
         corpo: `<p>No dia 23 de Novembro, a Povoação de São Lourenço realiza a sua grande celebração do <strong>Dia da Consciência Negra</strong>, enaltecendo a memória dos libertários do Quilombo do Catucá e a dignidade das famílias quilombolas de Goiana.</p><p>A celebração inicia ao romper da manhã com os toques sagrados de atabaque. Ao longo do dia acontecem rodas de diálogo com os anciãos da comunidade, feira de mariscos no fogão de barro e lenha, encerrando a noite com uma grande sambada de Coco de Roda e Ciranda praieira.</p>`
       },
       {
-        id: "noticia-catuca-malunguinho",
-        categoria: "Tradição & Matriz Afro",
-        titulo: "A força do Quilombo do Catucá e de Malunguinho ecoa na história viva de Povoação de São Lourenço",
-        autor: "Memória Ancestral Quilombola",
-        data: "Em Destaque",
-        imagem: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=800&q=80",
-        resumo: "Conexão histórica das matas e mangues da Zona da Mata Norte pernambucana como refúgio de guerreiros e mestres.",
-        corpo: `<p>O Quilombo do Catucá foi um dos maiores movimentos de resistência e liberdade em Pernambuco. Liderado pelo emblemático Rei Malunguinho, o Catucá articulou rotas de fuga que iam das matas próximas ao Recife até as franjas do estuário de Goiana.</p><p>Na Povoação de São Lourenço, essa raiz de liberdade fundou terreiros e rituais sagrados de Jurema e Candomblé, mantendo a sabedoria dos mais velhos viva até os dias atuais.</p>`
-      },
-      {
-        id: "noticia-coco-roda-comunidade",
-        categoria: "Cultura & Coco",
-        titulo: "Encontro de mestres do Coco de Roda e Ciranda celebra o compasso dos antepassados",
-        autor: "Coletivo Cultural de São Lourenço",
-        data: "Esta Semana",
-        imagem: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=800&q=80",
-        resumo: "Com ganzás e palmas fortes, a juventude e os veteranos preservam o batuque e a poesia do litoral norte.",
-        corpo: `<p>O Coco de Roda praiano de São Lourenço representa a celebração da fartura da maré. As letras cantadas nas rodas de terra batida falam do caranguejo, da canoa furando a onda e da saudade dos antigos que aqui semearam a comunidade.</p>`
-      },
-      {
-        id: "noticia-mariscagem-tradicional",
-        categoria: "Pesca & Manguezal",
-        titulo: "Marisqueiras e catadores garantem fartura de sururu, marisco e siri nas mesas de Goiana",
-        autor: "Associação das Marisqueiras",
-        data: "Hoje",
-        imagem: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80",
-        resumo: "A força das mulheres marisqueiras de São Lourenço mantém viva a culinária do marisco unha-de-velho e do sururu na região.",
-        corpo: `<p>A rotina das marisqueiras de São Lourenço começa antes do nascer do sol, acompanhando as tabelas de maré. A cata minuciosa de unhas-de-velho e a apanha do sururu nos esteiros representam não só a fonte de renda, mas uma arte passada de geração em geração.</p><p>O alimento limpo e cozido na própria comunidade abastece restaurantes e lares em Goiana e municípios vizinhos, consolidando a gastronomia estuarina tradicional.</p>`
-      },
-      {
-        id: "noticia-andada-consciencia",
-        categoria: "Andada do Caranguejo",
-        titulo: "Catadores de São Lourenço destacam a importância de respeitar os dias de andada do caranguejo",
-        autor: "Pescadores Antigos de São Lourenço",
-        data: "Esta Semana",
-        imagem: "https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=800&q=80",
-        resumo: "Consciência ecológica dos trabalhadores do mangue assegura que a espécie continue reproduzindo com vigor.",
-        corpo: `<p>Durante o período em que o caranguejo-uçá sai da toca para o acasalamento, a proibição da cata e venda é amplamente defendida pelos próprios trabalhadores tradicionais da comunidade.</p><p>'Se a gente pegar ele andando tonto na lama, amanhã nossos netos não terão o que comer', explica um dos catadores veteranos do povoado, reforçando o compromisso com o defeso.</p>`
-      },
-      {
-        id: "noticia-igreja-1555",
-        categoria: "História & Fé",
-        titulo: "Construída por volta de 1555, Igreja Matriz de São Lourenço preserva quase cinco séculos de fé",
-        autor: "Memória de São Lourenço",
-        data: "Em Destaque",
+        id: "noticia-satelite-mapeamento",
+        categoria: "Satélite & Mapa",
+        titulo: "Mapeamento via satélite destaca preservação das áreas de mangue e patrimônio de 1555",
+        autor: "Geografia Comunitária",
+        data: "Destaque",
         imagem: "https://images.unsplash.com/photo-1548625361-16ef7ef7fe0f?auto=format&fit=crop&w=800&q=80",
-        resumo: "Erguida no século XVI, uma das igrejas mais antigas do Brasil é o marco sagrado do povoado.",
-        corpo: `<p>A Igreja Matriz de São Lourenço é um tesouro histórico e cultural inestimável para Goiana e Pernambuco. Registros apontam a construção da capela primitiva em meados de 1555, sendo matriz da freguesia mais antiga da região.</p><p>Suas paredes de pedra abrigam anualmente a grande festa de 10 de Agosto em honra a São Lourenço, padroeiro dos diáconos e protetor dos humildes.</p>`
+        resumo: "Imagens orbitais mostram a exuberância dos esteiros do Rio Goiana e a localização estratégica do território.",
+        corpo: `<p>A visão de satélite revela a riqueza territorial de São Lourenço, onde as águas do estuário abraçam a comunidade e sustentam gerações de famílias quilombolas através da pesca artesanal e da carcinicultura consciente.</p>`
       }
     ];
 
-    // MELHORIA: CARREGAR NOTÍCIAS SALVAS PELOS MORADORES NO LOCALSTORAGE
     function obterNoticiasTotais() {
       const salvas = localStorage.getItem('noticias_comunitarias_sl');
       if (salvas) {
@@ -1528,7 +1316,6 @@
       renderizarNoticias(noticias.filter(n => n.titulo.toLowerCase().includes(termo) || n.resumo.toLowerCase().includes(termo)));
     });
 
-    // MELHORIA: SALVAR AVISO ENVIADO NO LOCALSTORAGE
     function enviarNoticiaComunidade(e) {
       e.preventDefault();
       const autor = document.getElementById('autor-input').value.trim();
@@ -1547,7 +1334,6 @@
         corpo: `<p>${texto}</p>`
       };
 
-      // Recuperar salvas atuais
       let salvas = [];
       const salvasStorage = localStorage.getItem('noticias_comunitarias_sl');
       if (salvasStorage) {
@@ -1559,7 +1345,7 @@
       noticias = obterNoticiasTotais();
       renderizarNoticias(noticias);
       document.getElementById('form-noticia-comunitaria').reset();
-      alert("✅ Comunicado comunitário publicado e salvo com sucesso!");
+      alert("✅ Comunicado comunitário publicado com sucesso!");
     }
 
     function abrirNoticia(id) {
