@@ -1,5 +1,5 @@
 // Service Worker - Portal São Lourenço Notícias PWA
-const CACHE_NAME = 'sao-lourenco-v5';
+const CACHE_NAME = 'sao-lourenco-v6';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
