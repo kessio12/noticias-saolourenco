@@ -1,11 +1,12 @@
 // Service Worker - Portal São Lourenço Notícias PWA
-const CACHE_NAME = 'sao-lourenco-v6';
+const CACHE_NAME = 'sao-lourenco-v7';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
   './manifest.json',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  './igreja.jpg'
 ];
 
 self.addEventListener('install', (event) => {
