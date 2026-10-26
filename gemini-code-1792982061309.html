@@ -1,0 +1,70 @@
+<!-- SEÇÃO: MURAL DO CAIS (COMÉRCIO & SERVIÇOS TRADICIONAIS) -->
+<section id="mural-do-cais" class="bg-white dark:bg-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm border border-slate-200 dark:border-slate-700">
+  <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-6 border-b border-slate-200 dark:border-slate-700">
+    <div>
+      <div class="inline-flex items-center gap-2 bg-amber-100 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 text-xs px-3 py-1 rounded-full font-bold mb-2">
+        <i class="fas fa-anchor"></i> Economia Local & Fretes
+      </div>
+      <h2 class="text-2xl sm:text-3xl font-black text-slate-900 dark:text-white flex items-center gap-2">
+        <i class="fas fa-ship text-amber-500"></i> Mural do Cais de São Lourenço
+      </h2>
+      <p class="text-slate-500 dark:text-slate-400 text-sm mt-1">
+        Frete e travessia de canoa, venda de marisco limpo direto da marisqueira e despesca de viveiros.
+      </p>
+    </div>
+    <button onclick="abrirModalAnuncioCais()" class="px-4 py-2.5 bg-amber-500 hover:bg-amber-400 text-mar-950 font-black rounded-2xl shadow transition text-xs flex items-center gap-2">
+      <i class="fas fa-plus-circle"></i> Anunciar no Cais
+    </button>
+  </div>
+
+  <!-- LISTA DE ANÚNCIOS ATIVOS -->
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mt-6" id="lista-anuncios-cais">
+    <!-- Card Exemplo 1: Travessia de Canoa -->
+    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="bg-teal-100 dark:bg-teal-950 text-teal-800 dark:text-teal-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Travessia / Frete</span>
+          <span class="font-mono font-bold text-xs text-slate-400">Ativo</span>
+        </div>
+        <h4 class="font-black text-slate-900 dark:text-white text-base">Travessia São Lourenço ⇄ Acaú / Pitimbu</h4>
+        <p class="text-xs text-slate-500 dark:text-slate-300 mt-2">Saídas do porto principal na cheia e na vaza. Transporte de compras e passageiros com colete salva-vidas.</p>
+        <div class="mt-3 font-bold text-xs text-mar-700 dark:text-sky-400">Canoeiro: Seu Zé de Damião</div>
+      </div>
+      <a href="https://wa.me/5581999999999?text=Olá,%20vi%20seu%20serviço%20de%20canoa%20no%20Portal%20São%20Lourenço" target="_blank" class="mt-4 w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition">
+        <i class="fab fa-whatsapp"></i> Chamar no WhatsApp
+      </a>
+    </div>
+
+    <!-- Card Exemplo 2: Marisco Limpo -->
+    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Marisco Fresco</span>
+          <span class="font-mono font-bold text-xs text-slate-400">Diário</span>
+        </div>
+        <h4 class="font-black text-slate-900 dark:text-white text-base">Marisco Branco & Sururu Catado no Dia</h4>
+        <p class="text-xs text-slate-500 dark:text-slate-300 mt-2">Marisco lavado e escaldado na hora, pronto para o cozinho. Retirada no cais ou entrega na comunidade.</p>
+        <div class="mt-3 font-bold text-xs text-mar-700 dark:text-sky-400">Marisqueira: Dona Maria do Coco</div>
+      </div>
+      <a href="https://wa.me/5581999999999?text=Olá,%20vi%20seu%20anúncio%20de%20marisco%20no%20Portal%20São%20Lourenço" target="_blank" class="mt-4 w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition">
+        <i class="fab fa-whatsapp"></i> Pedir Marisco no Zap
+      </a>
+    </div>
+
+    <!-- Card Exemplo 3: Camarão de Viveiro -->
+    <div class="bg-slate-50 dark:bg-slate-700/50 p-5 rounded-2xl border border-slate-200 dark:border-slate-600 flex flex-col justify-between">
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <span class="bg-rose-100 dark:bg-rose-950 text-rose-800 dark:text-rose-300 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase">Carcinicultura</span>
+          <span class="font-mono font-bold text-xs text-slate-400">Despesca</span>
+        </div>
+        <h4 class="font-black text-slate-900 dark:text-white text-base">Despesca de Camarão Cinza (Vannamei)</h4>
+        <p class="text-xs text-slate-500 dark:text-slate-300 mt-2">Camarão fresco no gelo direto do viveiro. Venda no atacado (balde de 10 kg a 20 kg) e no quilo.</p>
+        <div class="mt-3 font-bold text-xs text-mar-700 dark:text-sky-400">Produtor: Viveiro São Lourenço</div>
+      </div>
+      <a href="https://wa.me/5581999999999?text=Olá,%20vi%20seu%20aviso%20de%20despesca%20no%20Portal%20São%20Lourenço" target="_blank" class="mt-4 w-full py-2 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-1.5 transition">
+        <i class="fab fa-whatsapp"></i> Reservar Camarão
+      </a>
+    </div>
+  </div>
+</section>
